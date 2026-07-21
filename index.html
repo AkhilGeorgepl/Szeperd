@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExploreScape</title>
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a class="nav-items active">Home</a>
+      <a class="nav-items">About</a>
+      <a class="nav-items">Reviews</a>
+      <a class="nav-items">Gallery</a>
+      <a class="nav-items">Contacts</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="content">
+    <!-- Parallax layers ordered correctly from back to front -->
+    <img src="img/bac6.png" alt="background" class="back-6">
+    <img src="img/bac5.png" alt="background" class="back-5">
+    <img src="img/bac4.png" alt="background" class="back-4">
+    <img src="img/bac3.png" alt="background" class="back-3">
+    <img src="img/bac2.png" alt="background" class="back-2">
+
+    <!-- Title moved down into the info-wrap position -->
+    <div class="info-wrap">
+      <div class="title">
+        <h3>Welcome</h3>
+        <h1>Hi</h1>
+      </div>
+    </div>
+
+    <img src="img/bac1.png" alt="foreground frame" class="back-1">
+
+    <div class="cta">
+      <button>
+        Explore More
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="slider">
+      <i class="fa-solid fa-chevron-left"></i>
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <!-- Cloud Images -->
+  <div class="clouds">
+    <img src="img/cloud1.png" alt="cloud" class="cloud cloud1">
+    <img src="img/cloud2.png" alt="cloud" class="cloud cloud2">
+    <img src="img/cloud3.png" alt="cloud" class="cloud cloud3">
+  </div>
+
+  <!-- Rain container -->
+  <div class="rain"></div>
+
+  <!-- Scrollable Travel Sections -->
+  <main class="travel-sections">
+    
+    <!-- 1. Highlights Section -->
+    <section class="travel-section">
+      <div class="section-image">
+        <img src="img/Highlights.jpg" alt="Featured Highlights">
+      </div>
+      <div class="section-content">
+        <h2>Featured Destinations</h2>
+        <p>Discover breathtaking views, untouched wilderness, and unforgettable routes handpicked for true explorers.</p>
+      </div>
+    </section>
+
+    <!-- 2. Experience Section -->
+    <section class="travel-section reverse">
+      <div class="section-image">
+        <img src="img/Experience.jpg" alt="The Journey Experience">
+      </div>
+      <div class="section-content">
+        <h2>The Experience</h2>
+        <p>From base camp to final summit, experience immersive guides and expert-led expeditions designed for safety and thrills.</p>
+      </div>
+    </section>
+
+    <!-- 3. Stories Section -->
+    <section class="travel-section">
+      <div class="section-image">
+        <img src="img/Stories.jpg" alt="Traveler Stories">
+      </div>
+      <div class="section-content">
+        <h2>Traveler Stories</h2>
+        <p>Read authentic reviews and personal tales from adventurers who took the leap and explored the unknown with us.</p>
+      </div>
+    </section>
+
+    <!-- 4. Book / CTA Section -->
+    <section class="travel-section reverse booking-section">
+      <div class="section-image">
+        <img src="img/Book.jpg" alt="Book Your Trip">
+      </div>
+      <div class="section-content">
+        <h2>Plan Your Journey</h2>
+        <p>Ready to start your next great adventure? Get in touch with our team and secure your custom itinerary today.</p>
+        <button class="section-btn">
+          Book Now <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('img/bac 5.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  animation: backgroundImage 1.6s ease-out forwards;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: linear-gradient(transparent 50%, rgb(0, 0, 0));
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* Background-images / Parallax layers */
+.content img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.content{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.back-5 {
+  z-index: 1;
+}
+
+.back-4 {
+  z-index: 2;
+}
+
+.back-3 {
+  z-index: 3;
+}
+
+.back-2 {
+  z-index: 4;
+}
+
+.back-1 {
+  z-index: 5;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 5%;
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 30px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  animation: topIn 1.2s ease-out forwards;
+}
+
+nav a {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgb(53, 53, 53);
+  width: 110px;
+  text-align: center;
+  padding: 15px 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.active {
+  background-color: #16423c;
+  color: white;
+}
+
+nav a:hover {
+  background-color: #16423c;
+  color: white;
+}
+
+nav:hover > a:not(:hover) {
+  background-color: transparent;
+  color: rgb(53, 53, 53);
+}
+
+.title {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 4;
+  box-sizing: border-box;
+}
+
+.title h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 15px;
+  color: white;
+  text-align: center;
+  animation: bottomInText 1s ease-out forwards;
+}
+
+.title h1 {
+  font-size: 15rem;
+  font-weight: 800;
+  letter-spacing: 50px;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  margin: -20px 0;
+  animation: bottomInText 1.2s ease-out forwards;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  width: 70%;
+  text-align: center;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  animation: bottomInText 1.2s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+  margin: 0 auto;
+}
+
+.info-wrap {
+  width: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 18%;
+  z-index: 6;
+  box-sizing: border-box;
+}
+
+.cta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 6;
+  box-sizing: border-box;
+}
+
+.cta button {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+  height: 50px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  cursor: pointer;
+  animation: bottomInText 1.2s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.cta button:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(53, 53, 53);
+}
+
+.slider {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 6;
+  animation: zoomOut 1.2s ease-out forwards;
+}
+
+.slider i {
+  padding: 0 5%;
+  font-size: 36px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Animations */
+@keyframes bottomIn {
+  from {
+    transform: translateY(200px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.back-1 {
+  animation: bottomIn 1s ease-out forwards;
+}
+
+.back-2 {
+  animation: bottomIn 1.1s ease-out forwards;
+}
+
+.back-3 {
+  animation: bottomIn 1.3s ease-out forwards;
+}
+
+.back-4 {
+  animation: bottomIn 1.4s ease-out forwards;
+}
+
+.back-5 {
+  animation: bottomIn 1.5s ease-out forwards;
+}
+
+@keyframes bottomInText {
+  from {
+    transform: translateY(500px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundImage {
+  from {
+    background-position: center top;
+  }
+  to {
+    background-position: 50% 14%;
+  }
+}
+
+@keyframes topIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Cloud animations */
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  top: 0;
+  width: 800px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.cloud1 {
+  animation: moveCloud1 110s linear infinite;
+}
+
+.cloud2 {
+  animation: moveCloud2 120s linear infinite;
+  top: 40%;
+}
+
+.cloud3 {
+  animation: moveCloud3 100s linear infinite;
+  top: 20%;
+}
+
+@keyframes moveCloud1 {
+  from {
+    left: 200%;
+  }
+  to {
+    left: -800px;
+  }
+}
+
+@keyframes moveCloud2 {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -800px;
+  }
+}
+
+@keyframes moveCloud3 {
+  from {
+    left: 150%;
+  }
+  to {
+    left: -800px;
+  }
+}
+
+/* Rain effect */
+.rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.rain-drop {
+  position: absolute;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  animation: rain-fall linear infinite;
+}
+
+@keyframes rain-fall {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.travel-sections{
+    position: relative;
+    background:#111;
+    z-index:20;
+}
+
+.travel-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:80px;
+    padding:100px 10%;
+}
+
+.travel-section.reverse{
+    flex-direction:row-reverse;
+}
+
+.section-image{
+    flex:1;
+}
+
+.section-image img{
+    width:100%;
+    border-radius:20px;
+}
+
+.section-content{
+    flex:1;
+    color:#fff;
+}
+
+.section-content h2{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.section-content p{
+    width:100%;
+    color:#ccc;
+    font-size:18px;
+    line-height:1.8;
+    text-align:left;
+}
+
+.section-btn{
+    margin-top:30px;
+    padding:15px 35px;
+    border-radius:40px;
+    border:1px solid white;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.section-btn:hover{
+    background:white;
+    color:black;
+}
+
