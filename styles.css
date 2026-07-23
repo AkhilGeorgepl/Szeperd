@@ -369,10 +369,11 @@ p {
 
 @keyframes moveCloud1 {
   from {
-    left: 200%;
+    transform: translateX(200%);
   }
+
   to {
-    left: -800px;
+    transform: translateX(-800px);
   }
 }
 
