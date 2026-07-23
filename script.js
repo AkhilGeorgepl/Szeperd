@@ -58,3 +58,48 @@ document.addEventListener('DOMContentLoaded', function () {
   // Maintain a steady drizzle running constantly
   setInterval(createRainDrop, 100); 
 });
+
+// =========================
+// CUSTOMER REVIEWS SLIDER
+// =========================
+
+const reviewSlider = document.querySelector(".review-slider");
+const reviewNext = document.querySelector(".right-arrow");
+const reviewPrev = document.querySelector(".left-arrow");
+
+let reviewPosition = 0;
+
+
+if (reviewSlider && reviewNext && reviewPrev) {
+
+
+    reviewNext.addEventListener("click", function(){
+
+        if(reviewPosition < 2){
+
+            reviewPosition++;
+
+            reviewSlider.style.transform =
+            `translateX(-${reviewPosition * 441}px)`;
+
+        }
+
+    });
+
+
+
+    reviewPrev.addEventListener("click", function(){
+
+        if(reviewPosition > 0){
+
+            reviewPosition--;
+
+            reviewSlider.style.transform =
+            `translateX(-${reviewPosition * 441}px)`;
+
+        }
+
+    });
+
+
+}
