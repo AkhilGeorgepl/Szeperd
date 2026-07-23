@@ -182,3 +182,14 @@ document.addEventListener("mouseleave",()=>{
 
 
 }
+
+/* =========================
+    PAGE LOADER
+========================= */
+window.addEventListener("load",()=>{
+
+    const loader=document.querySelector(".loader");
+
+    loader.classList.add("hide");
+
+});
