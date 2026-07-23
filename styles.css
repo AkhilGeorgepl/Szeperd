@@ -38,12 +38,13 @@ body {
 /* Background-images / Parallax layers */
 .content img {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  bottom: -3%;
+  left: -3%;
+  width: 106%;
+  height: 106%;
   object-fit: cover;
   pointer-events: none;
+  transition: transform 0.3s ease-out;
 }
 
 .content{
@@ -1672,5 +1673,57 @@ p {
         justify-content:center;
 
     }
+
+}
+
+/* =========================
+   MOUSE PARALLAX EFFECT
+========================= */
+
+.content img {
+    transform: translate(
+        var(--moveX,0px),
+        var(--moveY,0px)
+    );
+
+    transition: transform 0.3s ease-out;
+}
+
+/* =========================
+   MOUSE LIGHT TRAIL
+========================= */
+
+.cursor-trail {
+
+    position: fixed;
+
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.7);
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    transform: translate(-50%, -50%);
+
+    filter: blur(8px);
+
+    opacity: 0;
+
+    transition:
+        opacity .3s ease,
+        width .3s ease,
+        height .3s ease;
+
+}
+
+
+.cursor-trail.active {
+
+    opacity:1;
 
 }
