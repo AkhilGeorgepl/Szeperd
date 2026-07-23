@@ -283,13 +283,7 @@ reviewSlider.addEventListener(
 "touchstart",
 (e)=>{
 
-
-    startX =
-    e.touches[0].clientX;
-
-
-    reviewSlider.style.transition="none";
-
+    startX = e.touches[0].clientX;
 
 });
 
@@ -305,51 +299,36 @@ reviewSlider.addEventListener(
 (e)=>{
 
 
-    reviewSlider.style.transition=".5s ease";
-
-
-
     let endX =
     e.changedTouches[0].clientX;
-
 
 
     let difference =
     startX-endX;
 
 
-
-
     if(difference > 50){
-
         reviewPosition++;
-
     }
-
 
 
     if(difference < -50){
-
         reviewPosition--;
-
     }
-
 
 
     if(reviewPosition < 0){
-
         reviewPosition=0;
-
     }
-
 
 
     if(reviewPosition > cards.length-1){
-
         reviewPosition=cards.length-1;
-
     }
 
+
+    reviewSlider.style.transition =
+    "transform .6s cubic-bezier(.25,.8,.25,1)";
 
 
     moveReviews();
