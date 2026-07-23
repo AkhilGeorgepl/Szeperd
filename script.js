@@ -145,16 +145,14 @@ let startX = 0;
 if(reviewSlider){
 
 
-
 const cards =
 reviewSlider.querySelectorAll(".review-card");
 
 
 
-
 function getCardWidth(){
 
-    return cards[0].offsetWidth + 20;
+    return cards[0].getBoundingClientRect().width + 20;
 
 }
 
@@ -194,7 +192,7 @@ function moveReviews(){
 
     if(move > maxMove){
 
-        move=maxMove;
+        move = maxMove;
 
     }
 
@@ -202,7 +200,7 @@ function moveReviews(){
 
     if(move < 0){
 
-        move=0;
+        move = 0;
 
     }
 
@@ -220,19 +218,29 @@ function moveReviews(){
 
 if(reviewNext){
 
-
 reviewNext.addEventListener("click",()=>{
 
 
     reviewPosition++;
 
 
-    if(reviewPosition > cards.length-1){
+    const maxPosition =
+    Math.ceil(
+        (cards.length * getCardWidth() - 20) /
+        document.querySelector(".review-wrapper").offsetWidth
+    ) - 1;
 
-        reviewPosition =
-        cards.length-1;
+
+
+    if(reviewPosition > maxPosition){
+
+        reviewPosition = maxPosition;
 
     }
+
+
+    reviewSlider.style.transition =
+    "transform .6s cubic-bezier(.25,.8,.25,1)";
 
 
     moveReviews();
@@ -240,9 +248,7 @@ reviewNext.addEventListener("click",()=>{
 
 });
 
-
 }
-
 
 
 
@@ -250,7 +256,6 @@ reviewNext.addEventListener("click",()=>{
 // PREVIOUS BUTTON
 
 if(reviewPrev){
-
 
 reviewPrev.addEventListener("click",()=>{
 
@@ -260,9 +265,13 @@ reviewPrev.addEventListener("click",()=>{
 
     if(reviewPosition < 0){
 
-        reviewPosition=0;
+        reviewPosition = 0;
 
     }
+
+
+    reviewSlider.style.transition =
+    "transform .6s cubic-bezier(.25,.8,.25,1)";
 
 
     moveReviews();
@@ -270,9 +279,7 @@ reviewPrev.addEventListener("click",()=>{
 
 });
 
-
 }
-
 
 
 
@@ -291,7 +298,6 @@ reviewSlider.addEventListener(
 
 
 
-
 // TOUCH END
 
 reviewSlider.addEventListener(
@@ -304,27 +310,48 @@ reviewSlider.addEventListener(
 
 
     let difference =
-    startX-endX;
+    startX - endX;
+
 
 
     if(difference > 50){
+
         reviewPosition++;
+
     }
+
 
 
     if(difference < -50){
+
         reviewPosition--;
+
     }
+
+
+
+    const maxPosition =
+    Math.ceil(
+        (cards.length * getCardWidth() - 20) /
+        document.querySelector(".review-wrapper").offsetWidth
+    ) - 1;
+
 
 
     if(reviewPosition < 0){
-        reviewPosition=0;
+
+        reviewPosition = 0;
+
     }
 
 
-    if(reviewPosition > cards.length-1){
-        reviewPosition=cards.length-1;
+
+    if(reviewPosition > maxPosition){
+
+        reviewPosition = maxPosition;
+
     }
+
 
 
     reviewSlider.style.transition =
@@ -342,17 +369,16 @@ reviewSlider.addEventListener(
 
 window.addEventListener(
 "resize",
-moveReviews
-);
+()=>{
+
+    reviewPosition = 0;
+    moveReviews();
+
+});
 
 
 
 }
-
-
-
-
-
 
 /* =========================
    SMOOTH MOUSE PARALLAX
