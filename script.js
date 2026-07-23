@@ -103,3 +103,82 @@ if (reviewSlider && reviewNext && reviewPrev) {
 
 
 }
+/* =========================
+   SMOOTH MOUSE PARALLAX EFFECT
+========================= */
+
+if(window.matchMedia("(pointer:fine)").matches){
+
+const content = document.querySelector(".content");
+
+const layers = document.querySelectorAll(
+".back-1, .back-2, .back-3, .back-4, .back-5"
+);
+
+let mouseX = 0;
+let mouseY = 0;
+
+let currentX = 0;
+let currentY = 0;
+
+
+content.addEventListener("mousemove", (e)=>{
+
+    mouseX = (e.clientX / window.innerWidth - 0.5);
+    mouseY = (e.clientY / window.innerHeight - 0.5);
+
+});
+
+
+function animateParallax(){
+
+    currentX += (mouseX - currentX) * 0.05;
+    currentY += (mouseY - currentY) * 0.05;
+
+
+    layers.forEach((layer,index)=>{
+
+        let speed = (index + 1) * 5;
+
+        layer.style.translate =
+        `${currentX * speed}px ${currentY * speed}px`;
+
+    });
+
+
+    requestAnimationFrame(animateParallax);
+
+}
+
+
+animateParallax();
+
+}
+
+/* =========================
+   MOUSE LIGHT TRAIL
+========================= */
+
+const trail = document.querySelector(".cursor-trail");
+
+
+if(trail){
+
+document.addEventListener("mousemove",(e)=>{
+
+    trail.style.left = e.clientX + "px";
+    trail.style.top = e.clientY + "px";
+
+    trail.classList.add("active");
+
+});
+
+
+document.addEventListener("mouseleave",()=>{
+
+    trail.classList.remove("active");
+
+});
+
+
+}
