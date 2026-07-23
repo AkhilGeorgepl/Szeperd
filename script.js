@@ -1,24 +1,24 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function(){
 
 
 /* =========================
    STICKY HEADER
 ========================= */
 
-const header = document.querySelector('header');
+const header = document.querySelector("header");
 
 if(header){
 
-    window.addEventListener('scroll', function(){
+window.addEventListener("scroll",()=>{
 
-        if(window.scrollY > 50){
-            header.classList.add('sticky');
-        } 
-        else {
-            header.classList.remove('sticky');
-        }
+    if(window.scrollY > 50){
+        header.classList.add("sticky");
+    }
+    else{
+        header.classList.remove("sticky");
+    }
 
-    });
+});
 
 }
 
@@ -28,54 +28,48 @@ if(header){
    RAIN EFFECT
 ========================= */
 
+const rainContainer = document.querySelector(".rain");
+
 
 function createRainDrop(){
 
-    const rainContainer =
-    document.querySelector('.rain');
+if(!rainContainer) return;
 
 
-    if(!rainContainer) return;
+const drop = document.createElement("div");
+
+drop.className="rain-drop";
 
 
-    const rainDrop =
-    document.createElement('div');
+drop.style.left =
+Math.random()*100+"%";
 
 
-    rainDrop.classList.add('rain-drop');
+drop.style.height =
+(10 + Math.random()*30)+"px";
 
 
-    const fallDuration =
-    1 + Math.random() * 2;
+let duration =
+1 + Math.random()*2;
 
 
-
-    rainDrop.style.left =
-    `${Math.random()*100}%`;
-
-
-    rainDrop.style.animationDuration =
-    `${fallDuration}s`;
+drop.style.animationDuration =
+duration+"s";
 
 
-    rainDrop.style.height =
-    `${Math.random()*30+10}px`;
+drop.style.opacity =
+0.2 + Math.random()*0.3;
 
 
-    rainDrop.style.opacity =
-    `${Math.random()*0.3+0.2}`;
+rainContainer.appendChild(drop);
 
 
 
-    rainContainer.appendChild(rainDrop);
+setTimeout(()=>{
 
+drop.remove();
 
-
-    setTimeout(()=>{
-
-        rainDrop.remove();
-
-    }, fallDuration*1000);
+},duration*1000);
 
 
 }
@@ -85,26 +79,26 @@ function createRainDrop(){
 function startRain(){
 
 
-    const rainContainer =
-    document.querySelector('.rain');
+if(!rainContainer) return;
 
 
-    if(!rainContainer) return;
-
-
-
-    rainContainer.style.display="block";
+let amount =
+window.innerWidth < 768 ? 40 : 150;
 
 
 
-    for(let i=0;i<150;i++){
+for(let i=0;i<amount;i++){
 
-        setTimeout(
-            createRainDrop,
-            Math.random()*3000
-        );
+setTimeout(
+createRainDrop,
+Math.random()*3000
+);
 
-    }
+}
+
+
+setInterval(createRainDrop,100);
+
 
 }
 
@@ -112,319 +106,248 @@ function startRain(){
 startRain();
 
 
-setInterval(createRainDrop,100);
-
-
-
 
 
 /* =========================
-   CUSTOMER REVIEW SLIDER
-   BUTTON + MOBILE SWIPE
+   REVIEW SLIDER
 ========================= */
 
 
-const reviewSlider =
+const slider =
 document.querySelector(".review-slider");
 
 
-const reviewNext =
+const next =
 document.querySelector(".right-arrow");
 
 
-const reviewPrev =
+const prev =
 document.querySelector(".left-arrow");
 
 
-let reviewPosition = 0;
 
-let startX = 0;
-
+let reviewIndex=0;
 
 
-if(reviewSlider){
+
+if(slider){
 
 
 const cards =
-reviewSlider.querySelectorAll(".review-card");
+slider.querySelectorAll(".review-card");
+
+
+const wrapper =
+document.querySelector(".review-wrapper");
 
 
 
-function getCardWidth(){
+function cardWidth(){
 
-    return cards[0].getBoundingClientRect().width + 20;
-
-}
-
-
-
-
-function moveReviews(){
-
-
-    const wrapper =
-    document.querySelector(".review-wrapper");
-
-
-    if(!wrapper) return;
-
-
-
-    const visibleWidth =
-    wrapper.offsetWidth;
-
-
-
-    const totalWidth =
-    cards.length * getCardWidth() - 20;
-
-
-
-    const maxMove =
-    totalWidth - visibleWidth;
-
-
-
-    let move =
-    reviewPosition * getCardWidth();
-
-
-
-    if(move > maxMove){
-
-        move = maxMove;
-
-    }
-
-
-
-    if(move < 0){
-
-        move = 0;
-
-    }
-
-
-
-    reviewSlider.style.transform =
-    `translateX(-${move}px)`;
+return cards[0].offsetWidth + 20;
 
 }
 
 
 
-
-// NEXT BUTTON
-
-if(reviewNext){
-
-reviewNext.addEventListener("click",()=>{
+function updateSlider(){
 
 
-    reviewPosition++;
+if(!wrapper) return;
 
 
-    const maxPosition =
-    Math.ceil(
-        (cards.length * getCardWidth() - 20) /
-        document.querySelector(".review-wrapper").offsetWidth
-    ) - 1;
+let total =
+cards.length * cardWidth()-20;
+
+
+let max =
+total - wrapper.offsetWidth;
 
 
 
-    if(reviewPosition > maxPosition){
-
-        reviewPosition = maxPosition;
-
-    }
+let move =
+reviewIndex * cardWidth();
 
 
-    reviewSlider.style.transition =
-    "transform .6s cubic-bezier(.25,.8,.25,1)";
+
+if(move > max)
+move=max;
 
 
-    moveReviews();
+if(move<0)
+move=0;
+
+
+
+slider.style.transform =
+`translateX(-${move}px)`;
+
+
+}
+
+
+
+if(next){
+
+next.addEventListener("click",()=>{
+
+reviewIndex++;
+
+let max =
+Math.ceil(
+(cards.length*cardWidth())/
+wrapper.offsetWidth
+)-1;
+
+
+if(reviewIndex>max)
+reviewIndex=max;
+
+
+updateSlider();
 
 
 });
 
+
 }
 
 
 
+if(prev){
 
-// PREVIOUS BUTTON
-
-if(reviewPrev){
-
-reviewPrev.addEventListener("click",()=>{
+prev.addEventListener("click",()=>{
 
 
-    reviewPosition--;
+reviewIndex--;
 
 
-    if(reviewPosition < 0){
-
-        reviewPosition = 0;
-
-    }
+if(reviewIndex<0)
+reviewIndex=0;
 
 
-    reviewSlider.style.transition =
-    "transform .6s cubic-bezier(.25,.8,.25,1)";
-
-
-    moveReviews();
+updateSlider();
 
 
 });
 
+
 }
 
 
 
 
-// TOUCH START
+/* Mobile Swipe */
 
-reviewSlider.addEventListener(
+
+let startX=0;
+
+
+slider.addEventListener(
 "touchstart",
-(e)=>{
+e=>{
 
-    startX = e.touches[0].clientX;
+startX=e.touches[0].clientX;
 
 });
 
 
 
-
-
-// TOUCH END
-
-reviewSlider.addEventListener(
+slider.addEventListener(
 "touchend",
-(e)=>{
+e=>{
 
 
-    let endX =
-    e.changedTouches[0].clientX;
+let endX =
+e.changedTouches[0].clientX;
 
 
-    let difference =
-    startX - endX;
+if(startX-endX>50)
+reviewIndex++;
 
 
-
-    if(difference > 50){
-
-        reviewPosition++;
-
-    }
+if(endX-startX>50)
+reviewIndex--;
 
 
 
-    if(difference < -50){
-
-        reviewPosition--;
-
-    }
-
-
-
-    const maxPosition =
-    Math.ceil(
-        (cards.length * getCardWidth() - 20) /
-        document.querySelector(".review-wrapper").offsetWidth
-    ) - 1;
+let max =
+Math.ceil(
+(cards.length*cardWidth())/
+wrapper.offsetWidth
+)-1;
 
 
+if(reviewIndex<0)
+reviewIndex=0;
 
-    if(reviewPosition < 0){
 
-        reviewPosition = 0;
-
-    }
+if(reviewIndex>max)
+reviewIndex=max;
 
 
 
-    if(reviewPosition > maxPosition){
+updateSlider();
 
-        reviewPosition = maxPosition;
-
-    }
-
-
-
-    reviewSlider.style.transition =
-    "transform .6s cubic-bezier(.25,.8,.25,1)";
-
-
-    moveReviews();
 
 
 });
-
-
-
 
 
 window.addEventListener(
 "resize",
 ()=>{
 
-    reviewPosition = 0;
-    moveReviews();
+reviewIndex=0;
+updateSlider();
 
 });
 
 
-
 }
 
-/* =========================
-   SMOOTH MOUSE PARALLAX
-========================= */
 
+
+
+
+/* =========================
+   MOUSE PARALLAX
+========================= */
 
 if(window.matchMedia("(pointer:fine)").matches){
 
 
-
-const content =
-document.querySelector(".content");
+const content = document.querySelector(".content");
 
 
+const layers = document.querySelectorAll(
+".back-1,.back-2,.back-3,.back-4,.back-5,.back-6"
+);
 
-const layers =
-document.querySelectorAll(
-".back-1,.back-2,.back-3,.back-4,.back-5"
+
+const cloudLayers = document.querySelectorAll(
+".cloud-layer-back,.cloud-layer-front"
 );
 
 
 
-if(content && layers.length){
+if(content){
 
 
-let mouseX=0;
-let mouseY=0;
+let mouseX = 0;
+let mouseY = 0;
 
-
-let currentX=0;
-let currentY=0;
-
+let currentX = 0;
+let currentY = 0;
 
 
 
-content.addEventListener(
-"mousemove",
-(e)=>{
+content.addEventListener("mousemove", e=>{
 
 
-mouseX =
-e.clientX/window.innerWidth-0.5;
+mouseX = e.clientX / window.innerWidth - 0.5;
 
-
-mouseY =
-e.clientY/window.innerHeight-0.5;
+mouseY = e.clientY / window.innerHeight - 0.5;
 
 
 });
@@ -432,61 +355,75 @@ e.clientY/window.innerHeight-0.5;
 
 
 
-
-function animateParallax(){
-
-
-currentX +=
-(mouseX-currentX)*0.05;
+function animate(){
 
 
-currentY +=
-(mouseY-currentY)*0.05;
+currentX += (mouseX-currentX)*0.05;
+
+currentY += (mouseY-currentY)*0.05;
 
 
 
+
+/* Background parallax */
 
 layers.forEach((layer,index)=>{
 
 
-let speed =
-(index+1)*5;
+let speed = (index + 1) * 5;
+
+
+layer.style.transform =
+`translate(
+${currentX * speed}px,
+${currentY * speed}px
+)`;
+
+});
 
 
 
-layer.style.translate =
-`${currentX*speed}px ${currentY*speed}px`;
 
+
+/* Cloud parallax */
+
+cloudLayers.forEach((cloud,index)=>{
+
+
+let cloudSpeed = (index + 1) * 3;
+
+
+cloud.style.marginLeft =
+`${currentX * cloudSpeed}px`;
+
+
+cloud.style.marginTop =
+`${currentY * cloudSpeed}px`;
 
 
 });
 
 
 
-requestAnimationFrame(
-animateParallax
-);
+
+requestAnimationFrame(animate);
 
 
 }
 
 
 
-animateParallax();
+animate();
 
 
 }
 
 
 }
-
-
-
-
 
 
 /* =========================
-   MOUSE LIGHT TRAIL
+   CURSOR LIGHT TRAIL
 ========================= */
 
 
@@ -494,13 +431,12 @@ const trail =
 document.querySelector(".cursor-trail");
 
 
-
 if(trail){
 
 
 document.addEventListener(
 "mousemove",
-(e)=>{
+e=>{
 
 
 trail.style.left =
@@ -517,20 +453,16 @@ trail.classList.add("active");
 });
 
 
-
 document.addEventListener(
 "mouseleave",
 ()=>{
 
-
 trail.classList.remove("active");
-
 
 });
 
 
 }
-
 
 
 
@@ -553,7 +485,13 @@ document.querySelector(".loader");
 
 if(loader){
 
-    loader.classList.add("hide");
+
+setTimeout(()=>{
+
+loader.classList.add("hide");
+
+},500);
+
 
 }
 
@@ -561,38 +499,75 @@ if(loader){
 });
 
 
- /* =========================
-   MOBILE MENU TOGGLE
+
+
+
+
+/* =========================
+   MOBILE MENU
 ========================= */
 
-const menuBtn = document.querySelector("#menu-btn");
-const nav = document.querySelector("nav");
+
+const menuBtn =
+document.querySelector("#menu-btn");
+
+
+const nav =
+document.querySelector("nav");
+
+
 
 if(menuBtn && nav){
 
-    menuBtn.addEventListener("click",()=>{
 
-        nav.classList.toggle("show");
+menuBtn.addEventListener(
+"click",
+()=>{
 
-    });
+
+nav.classList.toggle("show");
+
+
+});
+
 
 }
-});
+
+
+
+
+
 
 /* =========================
    SEARCH BOX
 ========================= */
 
-const searchIcon = document.querySelector("#search-btn");
-const searchBox = document.querySelector(".search-box");
+
+const searchBtn =
+document.querySelector("#search-btn");
 
 
-if(searchIcon && searchBox){
+const searchBox =
+document.querySelector(".search-box");
 
-    searchIcon.addEventListener("click",()=>{
 
-        searchBox.classList.toggle("active");
 
-    });
+if(searchBtn && searchBox){
+
+
+searchBtn.addEventListener(
+"click",
+()=>{
+
+
+searchBox.classList.toggle("open");
+
+
+});
+
 
 }
+
+
+
+});
