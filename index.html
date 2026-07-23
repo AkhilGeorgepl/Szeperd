@@ -45,7 +45,7 @@ aria-label="Chat on WhatsApp">
 
 </a>
 
-
+ <!-- search BAR -->
 
 
 
@@ -177,26 +177,20 @@ CONTACT
 
 </nav>
 
+<div class="search-box">
 
-
-
-
-
-
-<div class="header-icons">
-
-
-<i class="fas fa-search"></i>
-
-
-<i class="fas fa-bars" id="menu-btn"></i>
-
+    <input type="text" placeholder="Search...">
 
 </div>
 
 
+<div class="header-icons">
 
+    <i class="fas fa-search" id="search-btn"></i>
 
+    <i class="fas fa-bars" id="menu-btn"></i>
+
+</div>
 </header>
 
 
@@ -310,16 +304,9 @@ class="back-1">
 
 
 
-<!-- CLOUDS -->
-
+<!-- CLOUD2 + CLOUD3 (normal layer) -->
 
 <div class="clouds">
-
-
-<img src="img/cloud1.png"
-class="cloud cloud1"
-alt="cloud">
-
 
 <img src="img/cloud2.png"
 class="cloud cloud2"
@@ -330,9 +317,14 @@ alt="cloud">
 class="cloud cloud3"
 alt="cloud">
 
-
-
 </div>
+
+
+<!-- CLOUD1 (front layer) -->
+
+<img src="img/cloud1.png"
+class="cloud cloud1"
+alt="cloud">
 
 
 
@@ -1018,8 +1010,15 @@ Portugal
 <div class="cursor-trail"></div>
 
 <script src="script.js"></script>
+<script>
 
-</body>
-</html>
+const searchBtn = document.getElementById("search-btn");
+const searchBox = document.querySelector(".search-box");
+
+searchBtn.addEventListener("click", () => {
+    searchBox.classList.toggle("open");
+});
+
+</script>
 </body>
 </html>
