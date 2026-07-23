@@ -523,8 +523,7 @@ p {
 .travel-sections::before{
     display:none;
 }
-    pointer-events: none;
-}
+
 
 .social-right {
     display: flex;
@@ -590,12 +589,26 @@ p {
 
 /* Header icons */
 
+/* Header icons */
+
 .header-icons {
     display: flex;
     gap: 20px;
     font-size: 22px;
     cursor: pointer;
 }
+
+
+.header-icons i{
+
+    color:#333;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
 
 #menu-btn {
     display: none;
@@ -628,6 +641,10 @@ p {
         margin:auto;
     }
 
+     .cursor-trail{
+        display:none;
+    }
+
 
 
     /* Header mobile */
@@ -641,30 +658,48 @@ p {
     .logo img{
         height:40px;
     }
+nav{
+
+    position:absolute;
+    top:60px;
+    left:0;
+
+    width:100%;
+
+    background:rgba(47,59,31,0.5);
+
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
+
+    padding:25px 0;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+    opacity:0;
+
+    transform:translateY(-20px);
+
+    pointer-events:none;
+
+    transition:
+    opacity .4s ease,
+    transform .4s ease;
+
+}
 
 
-    nav{
 
-        position:absolute;
-        top:60px;
-        left:0;
-        width:100%;
-        background:white;
+nav.show{
 
-        display:none;
-        flex-direction:column;
-        gap:20px;
+    opacity:1;
 
-        padding:25px 0;
+    transform:translateY(0);
 
-        box-shadow:0 5px 15px rgba(0,0,0,.2);
+    pointer-events:auto;
 
-    }
-
-
-    nav.show{
-        display:flex;
-    }
+}
 
 
 
@@ -1800,5 +1835,250 @@ p {
     50%{
         transform:scale(1.05);
     }
+
+}
+/* =========================
+   CONFIDENCE BANNER MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .confidence-banner {
+
+        width:90%;
+        height:auto;
+
+        margin:50px auto;
+
+        display:flex;
+        flex-direction:column;
+
+    }
+
+
+    .confidence-text {
+
+        width:100%;
+        height:auto;
+
+        min-height:350px;
+
+        padding:40px 25px;
+
+        order:1;
+
+    }
+
+
+    .confidence-image {
+
+        width:100%;
+        height:350px;
+
+        order:2;
+
+    }
+
+
+    .confidence-image img {
+
+        width:100%;
+        height:350px;
+
+        object-fit:cover;
+
+    }
+
+
+}
+@media(max-width:768px){
+
+    .top-bar{
+        justify-content:flex-end;
+        padding:0 15px;
+    }
+
+
+    /* show only email icon */
+    .contact-left{
+
+        display:flex;
+        margin-right:10px;
+
+    }
+
+
+    .contact-left span:first-child{
+
+        display:none;
+
+    }
+
+
+    .contact-left span:nth-child(2){
+
+        display:flex;
+
+    }
+
+
+    .contact-left span:nth-child(2){
+
+        font-size:0;
+
+    }
+
+
+    .contact-left span:nth-child(2) i{
+
+        font-size:16px;
+        color:#333;
+
+    }
+
+
+
+    /* facebook instagram */
+
+    .social-right{
+
+        margin:0;
+        display:flex;
+        gap:15px;
+
+    }
+
+
+}
+@media(max-width:768px){
+
+    header{
+
+        justify-content:space-between;
+        padding:0 20px;
+
+    }
+
+
+    .logo{
+
+        margin-left:0;
+
+    }
+
+
+    .logo img{
+
+        height:65px;
+         width:auto;
+        transform:translateY(-15px);
+    }
+
+}
+/* Mobile parallax wider view */
+@media(max-width:768px){
+
+    .content img {
+
+        width:120%;
+        height:100%;
+
+        left:-10%;
+        bottom:0;
+
+        object-fit:cover;
+
+    }
+
+
+    .content {
+
+        overflow:hidden;
+
+    }
+
+}
+@media(max-width:768px){
+
+    nav a{
+
+        color:white;
+        font-weight:600;
+
+    }
+
+
+    /* Selected / active menu */
+
+    nav a.active{
+
+        color:#d8c27a;
+
+    }
+
+
+    /* Hover */
+
+    nav a:hover{
+
+        color:#d8c27a;
+
+    }
+
+}
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-box{
+
+    position:absolute;
+
+    right:90px;
+    top:50%;
+
+    transform:translateY(-50%) translateX(30px);
+
+    width:250px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:0.3s ease;
+
+    z-index:9999;
+
+}
+
+
+.search-box.open{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(-50%) translateX(0);
+
+}
+
+
+
+.search-box input{
+
+    width:100%;
+    height:42px;
+
+    padding:0 20px;
+
+    border-radius:25px;
+
+    border:1px solid #777;
+
+    background:white;
+
+    color:#333;
+
+    font-size:16px;
 
 }
