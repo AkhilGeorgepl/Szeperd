@@ -178,20 +178,19 @@ nav a:hover {
 }
 
 .title {
-  position: absolute;
-  top:calc(45% - 40px);
-  left: 0;
-  right: 0;
-  width: 100%;
-  transform: translateY(-50%);
-  z-index: 4;
-  box-sizing: border-box;
+    position:absolute;
+    top:45%;
+    left:50%;
+    width:100%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:4;
 }
 
 .title h3 {
   font-size: 1.5rem;
   font-weight: 400;
-  letter-spacing: 15px;
+  letter-spacing: 18px;
   color: white;
   text-align: center;
   transform: translateY(-20px);
@@ -199,13 +198,13 @@ nav a:hover {
 }
 
 .title h1 {
-  font-size: clamp(40px, 8vw, 7rem);
+  font-size: clamp(60px, 8vw, 7rem);
   font-weight: 800;
-  letter-spacing: clamp(10px, 3vw, 50px);
+  letter-spacing:50px;
   text-transform: uppercase;
   color: white;
   text-align: center;
-  margin: -20px 0;
+  margin:0;
   white-space: nowrap;
 
   animation: bottomInText 1.2s ease-out forwards;
