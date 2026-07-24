@@ -309,30 +309,21 @@ updateSlider();
 
 
 
-
 /* =========================
    MOUSE PARALLAX
 ========================= */
 
 if(window.matchMedia("(pointer:fine)").matches){
 
-
 const content = document.querySelector(".content");
 
 
 const layers = document.querySelectorAll(
-".back-1,.back-2,.back-3,.back-4,.back-5,.back-6"
+".back-2,.back-3,.back-4,.back-5,.cloud"
 );
 
 
-const cloudLayers = document.querySelectorAll(
-".cloud-layer-back,.cloud-layer-front"
-);
-
-
-
-if(content){
-
+if(content && layers.length){
 
 let mouseX = 0;
 let mouseY = 0;
@@ -341,83 +332,41 @@ let currentX = 0;
 let currentY = 0;
 
 
-
 content.addEventListener("mousemove", e=>{
 
-
-mouseX = e.clientX / window.innerWidth - 0.5;
-
-mouseY = e.clientY / window.innerHeight - 0.5;
-
+    mouseX = e.clientX / window.innerWidth - 0.5;
+    mouseY = e.clientY / window.innerHeight - 0.5;
 
 });
-
-
 
 
 function animate(){
 
-
-currentX += (mouseX-currentX)*0.05;
-
-currentY += (mouseY-currentY)*0.05;
+    currentX += (mouseX - currentX) * 0.08;
+    currentY += (mouseY - currentY) * 0.08;
 
 
+    layers.forEach((layer,index)=>{
 
 
-/* Background parallax */
-
-layers.forEach((layer,index)=>{
+        let speed = (index + 1) * 15;
 
 
-let speed = (index + 1) * 5;
+        layer.style.translate =
+        `${currentX * speed}px ${currentY * speed}px`;
 
 
-layer.style.transform =
-`translate(
-${currentX * speed}px,
-${currentY * speed}px
-)`;
-
-});
+    });
 
 
-
-
-
-/* Cloud parallax */
-
-cloudLayers.forEach((cloud,index)=>{
-
-
-let cloudSpeed = (index + 1) * 3;
-
-
-cloud.style.marginLeft =
-`${currentX * cloudSpeed}px`;
-
-
-cloud.style.marginTop =
-`${currentY * cloudSpeed}px`;
-
-
-});
-
-
-
-
-requestAnimationFrame(animate);
-
+    requestAnimationFrame(animate);
 
 }
-
 
 
 animate();
 
-
 }
-
 
 }
 
