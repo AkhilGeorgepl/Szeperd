@@ -3,29 +3,30 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>ExploreScape</title>
+    <!-- Responsive on all devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- SEO -->
+    <title>Szepred | Where Maps End and Stories Begin</title>
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Discover unforgettable journeys with Szepred. Curated travel experiences, unique destinations, and personalized adventures around the world.">
 
+    <meta name="theme-color" content="#1b3b2f">
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-
-<!-- CSS -->
-<link rel="stylesheet" href="styles.css">
-
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles.css">
 
 </head>
-
-
 
 <body>
 
@@ -34,16 +35,7 @@
     <div class="loader-line"></div>
 </div>
 
-<!-- WhatsApp Floating Button -->
 
-<a href="https://wa.me/48571993223"
-class="whatsapp-float"
-target="_blank"
-aria-label="Chat on WhatsApp">
-
-<i class="fab fa-whatsapp"></i>
-
-</a>
 
 
 
@@ -87,77 +79,64 @@ aria-label="Chat on WhatsApp">
 
 <header>
 
+    <div class="logo">
+
+        <a href="index.html">
+            <img src="logo.png" alt="Szepred Logo">
+        </a>
+
+    </div>
 
 
-<div class="logo">
+    <nav id="menu">
 
+        <a class="active">HOME</a>
+        <a>ABOUT US</a>
+        <a>TOUR</a>
+        <a>DESTINATIONS</a>
+        <a>PACKAGES</a>
+        <a>CONTACT</a>
 
-<a href="index.html">
-
-<img src="logo.png" alt="Szepred Logo">
-
-</a>
-
-
-</div>
-
-
-
-
-
-<nav id="menu">
-
-
-<a class="active">
-HOME
-</a>
-
-
-<a>
-ABOUT US
-</a>
-
-
-<a>
-TOUR
-</a>
-
-
-<a>
-DESTINATIONS
-</a>
-
-
-<a>
-PACKAGES
-</a>
-
-
-<a>
-CONTACT
-</a>
+    </nav>
 
 
 
-</nav>
+    <!-- DESKTOP SEARCH BOX -->
 
-<div class="search-box">
+    <div class="search-box">
 
-    <input type="text" placeholder="Search...">
+        <input 
+        type="text" 
+        placeholder="Search...">
 
-</div>
+    </div>
 
 
-<div class="header-icons">
 
-    <i class="fas fa-search" id="search-btn"></i>
+    <div class="header-icons">
 
-    <i class="fas fa-bars" id="menu-btn"></i>
+        <i class="fas fa-search" id="search-btn"></i>
 
-</div>
+        <i class="fas fa-bars" id="menu-btn"></i>
+
+    </div>
 
 
 </header>
+
+
+
+<!-- MOBILE SEARCH OVERLAY -->
+
+<div class="mobile-search-overlay">
+
+    <i class="fas fa-times" id="close-search"></i>
+
+    <input 
+    type="text" 
+    placeholder="Search destination...">
+
+</div>
 
 
 
@@ -964,16 +943,7 @@ Portugal
 <div class="cursor-trail"></div>
 
 <script src="script.js"></script>
-<script>
 
-const searchBtn = document.getElementById("search-btn");
-const searchBox = document.querySelector(".search-box");
-
-searchBtn.addEventListener("click", () => {
-    searchBox.classList.toggle("open");
-});
-
-</script>
 
 
 </body>
