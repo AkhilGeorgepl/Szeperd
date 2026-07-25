@@ -39,7 +39,7 @@ body {
   background: linear-gradient(transparent 50%, rgb(0, 0, 0));
   z-index: 6;
   pointer-events: none;
-}
+}  */
 
 /* =========================
    Background Parallax Layers
@@ -720,131 +720,90 @@ nav.show{
 ========================= */
 
 .feature-bar {
-
-    background:rgba(255,255,255,0.25);
-
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-
-    border-top:0px solid rgba(255,255,255,0.35);
-    border-bottom:0px solid rgba(255,255,255,0.25);
-
-
-    overflow:hidden;
-
-    display:flex;
-    flex-direction:row;
-
-    justify-content:space-between;
-    align-items:center;
-
-    padding:15px 8%;
-    
-    margin-top:-80Px;
-
-    gap:40px;
-
-    position:relative;
-
-    z-index:50;
-     transform:translateY(-30px);
-
+    background: rgba(255, 255, 255, 0.25); /* Semi-transparent white background for the glassmorphism effect */
+    backdrop-filter: blur(15px); /* Blurs whatever is directly behind the bar */
+    -webkit-backdrop-filter: blur(15px); /* Safari support for the blur effect */
+    border-top: 0px solid rgba(255, 255, 255, 0.35); /* Top border width and color (currently invisible at 0px) */
+    border-bottom: 0px solid rgba(255, 255, 255, 0.25); /* Bottom border width and color (currently invisible at 0px) */
+    overflow: hidden; /* Hides any content that spills outside the boundaries of the feature bar */
+    display: flex; /* Activates Flexbox layout to align items horizontally */
+    flex-direction: row; /* Arranges child items side-by-side in a row */
+    flex-wrap: nowrap; /* Prevents items from wrapping onto multiple lines by default */
+    justify-content: space-between; /* Spaces items evenly with maximum room between them */
+    align-items: center; /* Vertically centers the items inside the bar */
+    padding: 15px 8%; /* Adds inner spacing: 15px top/bottom, 8% left/right */
+    margin-top: -80px; /* Pulls the feature bar upward into the section above it */
+    gap: 40px; /* Sets a fixed 40px gap of space between each feature item */
+    position: relative; /* Allows position adjustments using z-index and offsets */
+    z-index: 50; /* Keeps the feature bar layered cleanly above the background sections */
+    transform: translateY(-30px); /* Shifts the bar an additional 30px up on the Y-axis */
 }
-
-
-
-
-
 
 /* Feature items */
-
 .feature-item {
-
-    flex:1;
-
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:20px;
-
-    position:relative;
-    z-index:5;
-
+    flex: 0 0 calc(33.333% - 27px); /* Forces each item to take up roughly one-third of the row minus gap spacing */
+    min-width: 0; /* Prevents flex items from overflowing or breaking out of their container width */
+    display: flex; /* Enables flexbox layout for the contents inside each individual item */
+    align-items: flex-start; /* Aligns the icon and text to start cleanly from the top */
+    gap: 20px; /* Space between the feature icon and the text block */
+    position: relative; /* Establishes a positioning context */
+    z-index: 5; /* Layering priority for the individual items */
 }
-
-
-
-/* Icons */
-
-.feature-icon {
-
-    font-size:40px;
-
-    color:#2f3b1f;
-
-    width:55px;
-
-    text-align:center;
-
-    flex-shrink:0;
-
-}
-
-
 
 /* Heading */
-
 .feature-item h3 {
-
-    color:light green;
-
-    font-size:22px;
-
-    margin-bottom:10px;
-
+    color: lightgreen;
+    font-size: 22px;
+    margin-bottom: 10px;
 }
-
-
 
 /* Description */
-
 .feature-item p {
-
-    color:white;
-
-    width:100%;
-
-    text-align:left;
-
-    font-size:16px;
-
-    line-height:1.6;
-
-    animation:none;
-
-    opacity:1;
-
+    color: white;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
+    animation: none;
+    opacity: 1;
 }
 
-/* Mobile */
-
-@media(max-width:768px){
-
+/* Breakpoint extended to 2553px */
+@media (max-width: 2754px) {
     .feature-bar {
-        flex-direction:column;
-        padding:35px 25px;
+        flex-wrap: wrap;
     }
-
+    .feature-item {
+        flex: 1 1 100%;
+    }
+}
+/* =========================
+   MOBILE FEATURE BAR ADJUSTMENTS
+========================= */
+@media(max-width: 768px) {
+    .feature-bar {
+        flex-direction: column;
+        
+        /* Height & Spacing Control */
+        padding: 35px 25px; /* Adjust top/bottom (35px) and left/right (25px) */
+        
+        /* Up / Down Position Control */
+        margin-top: -10px !important; /* Negative moves it up, positive moves it down */
+        
+        /* Spacing Between Stacked Items */
+        gap: 20px !important; 
+        
+        transform: translateY(0) !important;
+    }
 
     .feature-item {
-        width:100%;
+        width: 100%;
+        
+        /* Internal Item Height / Padding Control */
+        padding: 10px 0 !important; 
     }
+}
 
-}
-.logo {
-    margin-left:100px;
-}
 
 /* WhatsApp Floating Button */
 
@@ -2000,6 +1959,7 @@ nav.show{
     }
 
 }
+
 @media(max-width:768px){
 
     nav a{
@@ -2029,61 +1989,6 @@ nav.show{
 
 }
 
-/* =========================
-   SEARCH BOX
-========================= */
-
-.search-box{
-
-    position:absolute;
-
-    right:90px;
-    top:50%;
-
-    transform:translateY(-50%) translateX(30px);
-
-    width:250px;
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:0.3s ease;
-
-    z-index:9999;
-
-}
-
-
-.search-box.open{
-
-    opacity:1;
-
-    visibility:visible;
-
-    transform:translateY(-50%) translateX(0);
-
-}
-
-
-
-.search-box input{
-
-    width:100%;
-    height:42px;
-
-    padding:0 20px;
-
-    border-radius:25px;
-
-    border:1px solid #777;
-
-    background:white;
-
-    color:#333;
-
-    font-size:16px;
-
-}
 
 
 /* =========================
@@ -2152,7 +2057,7 @@ nav.show{
 
 .cloud-layer-back .cloud1-copy{
 
-    width:;1050px
+    width: 1050px;
     top:-25px;
     opacity:0.15;
     animation-duration:90s;
@@ -2260,3 +2165,314 @@ header {
     color:#555;
 }
 
+/* =========================
+   MOBILE FLOATING SOCIAL ADJUSTMENTS
+========================= */
+@media(max-width: 768px) {
+    .floating-social {
+        /* Position adjustments: change top/bottom/left/right */
+        top: auto !important;
+        bottom: 20px !important; /* Distance from bottom of screen */
+        left: 20px !important;  /* Distance from left of screen (or use right: 20px) */
+        
+        /* Layout & Spacing inside the container */
+        flex-direction: row !important; /* Change to 'column' if you want them stacked vertically */
+        gap: 10px !important;           /* Space between the icon circles */
+        padding: 10px 12px !important;   /* Inner padding of the background pill */
+        
+        /* Transform reset */
+        transform: none !important;
+    }
+
+    .floating-social a {
+        /* Size adjustments: control the width and height of the circular shape */
+        width: 36px !important;  
+        height: 36px !important; 
+        
+        /* Icon font size adjustment */
+        font-size: 16px !important; 
+    }
+}
+
+/* =========================
+   MOBILE HEADER LOGO CONTROLS
+========================= */
+@media(max-width: 768px) {
+    header {
+        /* Control header height on mobile */
+        height: 30px !important;
+        padding: 0 20px !important;
+    }
+
+    .logo {
+        /* Control logo alignment/positioning (left, right, or center) */
+        margin-left: 0 !important;
+    }
+
+    .logo img {
+        /* Control logo height size */
+        height: 35px !important; /* Change this value to make the logo bigger or smaller */
+        
+        width: auto !important;
+        
+        /* Control fine-tuning vertical alignment/position (move up or down) */
+        transform: translateY(50px) !important; /* Adjust negative or positive pixels to shift position */
+    }
+}
+
+/* =========================
+   MOBILE LANDSCAPE FIXES
+========================= */
+@media (max-width: 1024px) and (orientation: landscape) {
+
+    /* Reset the negative top margin pulling elements up */
+    .feature-bar {
+        margin-top: 20px !important;
+        transform: none !important;
+        padding: 15px 5%;
+        gap: 20px;
+    }
+
+    /* Keep feature items clean and prevent squishing */
+    .feature-item {
+        flex: 1 1 auto;
+        min-width: 220px;
+    }
+
+    /* Prevent full-screen sections from overflowing short heights */
+    .content {
+        height: auto !important;
+        min-height: 100vh;
+    }
+
+    /* Ensure mobile navigation doesn't get cut off vertically */
+    nav {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+
+
+
+}/* =========================
+   DESKTOP SEARCH
+========================= */
+
+
+.search-box{
+
+    position:absolute;
+
+    right:120px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:min(300px,25vw);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s ease;
+
+}
+
+
+.search-box.open{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+
+.search-box input{
+
+    width:100%;
+
+    height:40px;
+
+    border-radius:25px;
+
+    padding:0 20px;
+
+    font-size:15px;
+
+    border:1px solid #aaa;
+
+    background:white;
+
+}
+
+
+
+
+#search-btn{
+
+    cursor:pointer;
+
+}
+/* =========================
+   MOBILE SEARCH DROPDOWN
+========================= */
+
+.mobile-search-overlay{
+
+    display:none;
+
+    position:absolute;
+
+    top:60px;
+    left:0;
+
+    width:100%;
+
+    background:rgba(47,59,31,0.5);
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    padding:25px 20px;
+
+    z-index:999999;
+
+    opacity:0;
+
+    transform:translateY(-20px);
+
+    transition:
+    opacity .4s ease,
+    transform .4s ease;
+
+    align-items:center;
+    justify-content:center;
+
+}
+
+
+.mobile-search-overlay.active{
+
+    display:flex;
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+
+.mobile-search-overlay input{
+
+    width:90%;
+
+    max-width:400px;
+
+    height:45px;
+
+    border-radius:25px;
+
+    padding:0 20px;
+
+    font-size:16px;
+
+    border:none;
+
+    outline:none;
+
+}
+
+
+
+/* Close button */
+
+#close-search{
+
+    display:none;
+
+}
+
+/* =========================
+   MOBILE HERO SECTION ADJUSTMENTS
+========================= */
+
+/* Default / Desktop Hero Settings */
+.content {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mobile Portrait & General Mobile Screens */
+@media (max-width: 768px) {
+    .content {
+        height: auto !important;
+        min-height: 40vh; /* Adjusts to fit phone screens better */
+        padding: 40px 5%;
+    }
+}
+
+/* Mobile Landscape (Phones turned sideways) */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .content {
+        height: auto !important;
+        min-height: 100vh;
+        padding: 30px 5%;
+    }
+}
+
+/* =========================
+   MOBILE PARALLAX EDGE FIX
+========================= */
+
+@media (max-width:1024px){
+
+    /* Keep background layers oversized for parallax */
+    .content .back-2,
+    .content .back-3,
+    .content .back-4,
+    .content .back-5 {
+
+        transform:scale(1.15);
+        width:130%;
+        height:100%;
+        object-fit:cover;
+
+    }
+
+}
+
+/* =========================
+   MOBILE CLOUD SIZE CONTROL
+========================= */
+
+@media(max-width:768px){
+
+    .cloud-layer-back .cloud1{
+        width:120px !important;
+        height:auto !important;
+        top:15%;
+        opacity:0.8;
+    }
+
+
+    .cloud-layer-back .cloud1-copy{
+        width:180px !important;
+        height:auto !important;
+        top:5%;
+        opacity:0.9;
+    }
+
+
+    .cloud-layer-front .cloud2{
+        width:250px !important;
+        height:auto !important;
+        top:25%;
+        opacity:0.8;
+    }
+
+}
