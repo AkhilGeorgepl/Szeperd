@@ -70,7 +70,6 @@ window.addEventListener("scroll", () => {
 
 /* =========================================================
    IMAGE PATH
-   Important for GitHub Pages
 ========================================================= */
 
 function getImagePath(filename) {
@@ -114,17 +113,10 @@ function renderGallery() {
     imageElement.loading =
       index < 6 ? "eager" : "lazy";
 
-    /*
-      Add loaded class when image is ready.
-      Your CSS already supports .gallery-item.loaded
-    */
     imageElement.addEventListener("load", () => {
       item.classList.add("loaded");
     });
 
-    /*
-      Prevent broken images from looking completely empty.
-    */
     imageElement.addEventListener("error", () => {
       console.error(
         "Unable to load gallery image:",
@@ -162,40 +154,104 @@ function renderGallery() {
 
 
 /* =========================================================
-   ALIGN PICTURES
+   GALLERY LAYOUT TOGGLE
 ========================================================= */
 
-function alignPictures() {
+function updateLayoutButton() {
+  if (!layoutButton || !galleryGrid) return;
+
+  const isAligned =
+    galleryGrid.classList.contains("tile-view");
+
+  if (isAligned) {
+
+    /* Button remains visible */
+
+    layoutButton.style.opacity = "1";
+    layoutButton.style.pointerEvents = "auto";
+
+    layoutButton.setAttribute(
+      "aria-label",
+      "Restore collage"
+    );
+
+    layoutButton.setAttribute(
+      "title",
+      "Restore collage"
+    );
+
+    layoutButton.innerHTML =
+      '<i class="fas fa-layer-group"></i>';
+
+    /* Change the message */
+
+    if (seeAllLabel) {
+      seeAllLabel.textContent = "Restore collage";
+      seeAllLabel.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+    }
+
+    /* Show restore button */
+
+    if (restoreButton) {
+      restoreButton.classList.add("visible");
+      restoreButton.style.opacity = "1";
+      restoreButton.style.pointerEvents = "auto";
+    }
+
+  } else {
+
+    /* Button remains visible */
+
+    layoutButton.style.opacity = "1";
+    layoutButton.style.pointerEvents = "auto";
+
+    layoutButton.setAttribute(
+      "aria-label",
+      "Align pictures"
+    );
+
+    layoutButton.setAttribute(
+      "title",
+      "Align pictures"
+    );
+
+    layoutButton.innerHTML =
+      '<i class="fas fa-grip"></i>';
+
+    /* Change the message */
+
+    if (seeAllLabel) {
+      seeAllLabel.textContent = "Align pictures";
+      seeAllLabel.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+    }
+
+    /* Hide restore button */
+
+    if (restoreButton) {
+      restoreButton.classList.remove("visible");
+      restoreButton.style.opacity = "0";
+      restoreButton.style.pointerEvents = "none";
+    }
+  }
+}
+
+
+/* =========================================================
+   TOGGLE BETWEEN COLLAGE AND ALIGNED GRID
+========================================================= */
+
+function toggleGalleryLayout() {
   if (!galleryGrid) return;
 
-  galleryGrid.classList.add("tile-view");
+  galleryGrid.classList.toggle("tile-view");
 
-  /*
-    Hide the alignment button after switching
-    to the clean grid layout.
-  */
-  if (layoutButton) {
-    layoutButton.style.opacity = "0";
-    layoutButton.style.pointerEvents = "none";
-  }
-
-  /*
-    Hide the "Align pictures" label.
-  */
-  if (seeAllLabel) {
-    seeAllLabel.style.opacity = "0";
-    seeAllLabel.style.pointerEvents = "none";
-    seeAllLabel.setAttribute("aria-hidden", "true");
-  }
-
-  /*
-    Show restore button.
-  */
-  if (restoreButton) {
-    restoreButton.classList.add("visible");
-    restoreButton.style.opacity = "1";
-    restoreButton.style.pointerEvents = "auto";
-  }
+  updateLayoutButton();
 }
 
 
@@ -208,51 +264,43 @@ function restoreCollage() {
 
   galleryGrid.classList.remove("tile-view");
 
-  /*
-    Show alignment button again.
-  */
-  if (layoutButton) {
-    layoutButton.style.opacity = "1";
-    layoutButton.style.pointerEvents = "auto";
-  }
-
-  /*
-    Show alignment label again.
-  */
-  if (seeAllLabel) {
-    seeAllLabel.style.opacity = "1";
-    seeAllLabel.style.pointerEvents = "none";
-    seeAllLabel.setAttribute("aria-hidden", "false");
-  }
-
-  /*
-    Hide restore button.
-  */
-  if (restoreButton) {
-    restoreButton.classList.remove("visible");
-    restoreButton.style.opacity = "0";
-    restoreButton.style.pointerEvents = "none";
-  }
+  updateLayoutButton();
 }
 
 
 /* =========================================================
-   ALIGNMENT BUTTON EVENTS
+   LAYOUT BUTTON
 ========================================================= */
 
 if (layoutButton) {
   layoutButton.addEventListener("click", (event) => {
     event.preventDefault();
-    alignPictures();
+    event.stopPropagation();
+
+    toggleGalleryLayout();
   });
 }
+
+
+/* =========================================================
+   RESTORE BUTTON
+========================================================= */
 
 if (restoreButton) {
   restoreButton.addEventListener("click", (event) => {
     event.preventDefault();
+    event.stopPropagation();
+
     restoreCollage();
   });
 }
+
+
+/* =========================================================
+   INITIAL LAYOUT
+========================================================= */
+
+updateLayoutButton();
 
 
 /* =========================================================
@@ -351,7 +399,7 @@ if (lightboxNext) {
 
 
 /* =========================================================
-   CLOSE LIGHTBOX BY CLICKING OUTSIDE IMAGE
+   CLOSE LIGHTBOX BY CLICKING OUTSIDE
 ========================================================= */
 
 if (lightbox) {
@@ -368,7 +416,10 @@ if (lightbox) {
 ========================================================= */
 
 document.addEventListener("keydown", (event) => {
-  if (!lightbox || !lightbox.classList.contains("active")) {
+  if (
+    !lightbox ||
+    !lightbox.classList.contains("active")
+  ) {
     return;
   }
 
@@ -387,16 +438,24 @@ document.addEventListener("keydown", (event) => {
 
 
 /* =========================================================
-   LOAD GALLERY IMAGES
+   LOAD IMAGES FROM YOUR EXISTING PHP
 ========================================================= */
 
-fetch("gallery-images.json", {
+/*
+   IMPORTANT:
+   Keep your existing PHP exactly as it is.
+
+   This assumes the PHP file is named:
+   gallery.php
+*/
+
+fetch("gallery.php", {
   cache: "no-store"
 })
   .then((response) => {
     if (!response.ok) {
       throw new Error(
-        "Unable to load gallery-images.json"
+        "Unable to load gallery.php"
       );
     }
 
@@ -404,6 +463,7 @@ fetch("gallery-images.json", {
   })
 
   .then((fileNames) => {
+
     if (
       !Array.isArray(fileNames) ||
       !fileNames.length
@@ -413,9 +473,21 @@ fetch("gallery-images.json", {
       );
     }
 
+    /*
+      PHP returns filenames such as:
+
+      01.jpg
+      02.jpg
+      03.jpg
+
+      We use them directly.
+    */
+
     images.push(...fileNames);
 
     renderGallery();
+
+    updateLayoutButton();
   })
 
   .catch((error) => {
