@@ -1,0 +1,729 @@
+[
+  {
+    "id": "golden-triangle",
+    "title": "Golden Triangle",
+    "subtitle": "Delhi, Agra & Jaipur",
+    "category": "North India",
+    "duration": "6 Days / 5 Nights",
+    "price": "$499",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/golden-triangle.jpg",
+    "status": "Popular",
+    "description": "Discover three of India's most celebrated destinations on a carefully planned journey through Delhi, Agra and Jaipur. Experience historic monuments, colourful markets, royal architecture and the Taj Mahal.",
+    "destinations": "Delhi, Agra, Jaipur",
+    "highlights": [
+      "Explore historic Delhi",
+      "Visit the Taj Mahal in Agra",
+      "Discover Jaipur's royal palaces and forts"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Delhi",
+        "description": "Arrival in Delhi, airport transfer and time to settle into your hotel."
+      },
+      {
+        "day": 2,
+        "title": "Delhi Sightseeing",
+        "description": "Explore Old and New Delhi including major landmarks, historic areas and local markets."
+      },
+      {
+        "day": 3,
+        "title": "Delhi to Agra",
+        "description": "Travel to Agra and visit Agra Fort. Enjoy the evening exploring the city."
+      },
+      {
+        "day": 4,
+        "title": "Taj Mahal & Jaipur",
+        "description": "Visit the Taj Mahal before continuing to Jaipur, the Pink City."
+      },
+      {
+        "day": 5,
+        "title": "Jaipur Sightseeing",
+        "description": "Explore Amber Fort, City Palace, Hawa Mahal and other highlights of Jaipur."
+      },
+      {
+        "day": 6,
+        "title": "Departure",
+        "description": "Transfer to the airport or continue with your onward travel arrangements."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Airport and station transfers",
+      "Private transportation during the tour",
+      "Local sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Lunch and dinner unless specified"
+    ]
+  },
+  {
+    "id": "kerala-backwaters",
+    "title": "Kerala Backwaters & Hills",
+    "subtitle": "Tea plantations, wildlife & waterways",
+    "category": "South India",
+    "duration": "8 Days / 7 Nights",
+    "price": "$699",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/kerala.jpg",
+    "status": "Nature",
+    "description": "Experience the diverse landscapes of Kerala, from the tea-covered hills of Munnar to the peaceful backwaters of Alappuzha. Discover local culture, nature and traditional Kerala hospitality.",
+    "destinations": "Kochi, Munnar, Thekkady, Alappuzha",
+    "highlights": [
+      "Explore Munnar's tea plantations",
+      "Discover the wildlife of Thekkady",
+      "Experience Kerala's famous backwaters"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Kochi",
+        "description": "Arrival in Kochi and transfer to your hotel."
+      },
+      {
+        "day": 2,
+        "title": "Kochi",
+        "description": "Explore Fort Kochi, historic streets and important cultural landmarks."
+      },
+      {
+        "day": 3,
+        "title": "Kochi to Munnar",
+        "description": "Travel through scenic mountain landscapes to Munnar."
+      },
+      {
+        "day": 4,
+        "title": "Munnar",
+        "description": "Explore tea plantations, viewpoints and the surrounding hills."
+      },
+      {
+        "day": 5,
+        "title": "Munnar to Thekkady",
+        "description": "Travel towards Thekkady and enjoy the natural surroundings."
+      },
+      {
+        "day": 6,
+        "title": "Thekkady",
+        "description": "Explore the Periyar region and enjoy optional nature activities."
+      },
+      {
+        "day": 7,
+        "title": "Thekkady to Alappuzha",
+        "description": "Travel to Alappuzha and experience Kerala's famous waterways."
+      },
+      {
+        "day": 8,
+        "title": "Departure",
+        "description": "Transfer for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Private transportation",
+      "Airport and station transfers",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Meals not specifically mentioned"
+    ]
+  },
+  {
+    "id": "ladakh-adventure",
+    "title": "Ladakh Adventure",
+    "subtitle": "High-altitude landscapes & Himalayan passes",
+    "category": "Himalaya",
+    "duration": "8 Days / 7 Nights",
+    "price": "$799",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/ladakh.jpg",
+    "status": "Adventure",
+    "description": "Explore the dramatic landscapes of Ladakh, from the ancient monasteries around Leh to the high mountain roads leading to Nubra Valley and Pangong Lake.",
+    "destinations": "Leh, Nubra Valley, Pangong Lake",
+    "highlights": [
+      "Explore Leh and its monasteries",
+      "Cross spectacular Himalayan mountain passes",
+      "Experience Nubra Valley and Pangong Lake"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Leh",
+        "description": "Arrival in Leh and time to rest and acclimatise to the altitude."
+      },
+      {
+        "day": 2,
+        "title": "Leh Sightseeing",
+        "description": "Explore Leh Market, Leh Palace, Shanti Stupa and nearby cultural sites."
+      },
+      {
+        "day": 3,
+        "title": "Leh to Nubra Valley",
+        "description": "Travel across Khardung La towards Nubra Valley."
+      },
+      {
+        "day": 4,
+        "title": "Nubra Valley",
+        "description": "Explore Diskit, Hunder and the surrounding valley landscapes."
+      },
+      {
+        "day": 5,
+        "title": "Nubra to Pangong",
+        "description": "Travel towards Pangong Lake through spectacular mountain scenery."
+      },
+      {
+        "day": 6,
+        "title": "Pangong Lake",
+        "description": "Enjoy time beside Pangong Lake and explore the surrounding area."
+      },
+      {
+        "day": 7,
+        "title": "Pangong to Leh",
+        "description": "Return to Leh and enjoy your final evening."
+      },
+      {
+        "day": 8,
+        "title": "Departure",
+        "description": "Transfer to the airport for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Private transportation",
+      "Airport transfers",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Meals not specifically mentioned"
+    ]
+  },
+  {
+    "id": "golden-triangle-ranthambore",
+    "title": "Golden Triangle & Ranthambore",
+    "subtitle": "Culture, heritage & wildlife",
+    "category": "North India",
+    "duration": "8 Days / 7 Nights",
+    "price": "$699",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/golden-triangle-ranthambore.jpg",
+    "status": "Wildlife",
+    "description": "Combine India's classic Golden Triangle with the wildlife landscapes of Ranthambore. Discover historic cities, magnificent forts and the possibility of seeing Bengal tigers in their natural environment.",
+    "destinations": "Delhi, Agra, Ranthambore, Jaipur",
+    "highlights": [
+      "Visit the Taj Mahal",
+      "Experience a Ranthambore wildlife safari",
+      "Explore Jaipur's royal heritage"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Delhi",
+        "description": "Arrival and transfer to your hotel in Delhi."
+      },
+      {
+        "day": 2,
+        "title": "Delhi Sightseeing",
+        "description": "Discover the highlights of Old and New Delhi."
+      },
+      {
+        "day": 3,
+        "title": "Delhi to Agra",
+        "description": "Travel to Agra and explore Agra Fort and the surrounding historic area."
+      },
+      {
+        "day": 4,
+        "title": "Agra to Ranthambore",
+        "description": "Visit the Taj Mahal in the morning before travelling towards Ranthambore."
+      },
+      {
+        "day": 5,
+        "title": "Ranthambore Safari",
+        "description": "Enjoy a wildlife safari and explore the natural surroundings of Ranthambore."
+      },
+      {
+        "day": 6,
+        "title": "Ranthambore to Jaipur",
+        "description": "Travel to Jaipur and enjoy a relaxed evening in the Pink City."
+      },
+      {
+        "day": 7,
+        "title": "Jaipur Sightseeing",
+        "description": "Explore Amber Fort, City Palace, Hawa Mahal and local markets."
+      },
+      {
+        "day": 8,
+        "title": "Departure",
+        "description": "Transfer for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Private transportation",
+      "Airport and station transfers",
+      "Ranthambore safari as selected",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Meals not specifically mentioned"
+    ]
+  },
+  {
+    "id": "royal-rajasthan",
+    "title": "Royal Rajasthan Journey",
+    "subtitle": "Forts, palaces & desert landscapes",
+    "category": "Rajasthan",
+    "duration": "10 Days / 9 Nights",
+    "price": "$899",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/royal-rajasthan.jpg",
+    "status": "Luxury",
+    "description": "Travel through the colourful heart of Rajasthan and discover magnificent forts, royal palaces, desert landscapes and historic cities. A journey designed for travellers who want to experience Rajasthan beyond Jaipur.",
+    "destinations": "Delhi, Jodhpur, Jaisalmer, Udaipur, Jaipur",
+    "highlights": [
+      "Explore the Blue City of Jodhpur",
+      "Experience the Jaisalmer desert",
+      "Discover romantic Udaipur"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Delhi",
+        "description": "Arrival in Delhi and transfer to your hotel."
+      },
+      {
+        "day": 2,
+        "title": "Delhi to Jodhpur",
+        "description": "Travel to Jodhpur and begin exploring the Blue City."
+      },
+      {
+        "day": 3,
+        "title": "Jodhpur",
+        "description": "Explore Mehrangarh Fort, the old city and local markets."
+      },
+      {
+        "day": 4,
+        "title": "Jodhpur to Jaisalmer",
+        "description": "Travel across Rajasthan towards Jaisalmer."
+      },
+      {
+        "day": 5,
+        "title": "Jaisalmer",
+        "description": "Explore Jaisalmer Fort, historic havelis and the desert surroundings."
+      },
+      {
+        "day": 6,
+        "title": "Jaisalmer to Udaipur",
+        "description": "Continue towards Udaipur, the City of Lakes."
+      },
+      {
+        "day": 7,
+        "title": "Udaipur",
+        "description": "Explore City Palace, Lake Pichola and the historic centre."
+      },
+      {
+        "day": 8,
+        "title": "Udaipur to Jaipur",
+        "description": "Travel to Jaipur and enjoy an evening in the Pink City."
+      },
+      {
+        "day": 9,
+        "title": "Jaipur",
+        "description": "Discover Amber Fort, City Palace, Hawa Mahal and local markets."
+      },
+      {
+        "day": 10,
+        "title": "Departure",
+        "description": "Transfer to the airport for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Private transportation",
+      "Airport and station transfers",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Meals not specifically mentioned"
+    ]
+  },
+  {
+    "id": "kashmir-valley",
+    "title": "Kashmir Valley Escape",
+    "subtitle": "Lakes, mountains & Himalayan scenery",
+    "category": "North India",
+    "duration": "7 Days / 6 Nights",
+    "price": "$649",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/kashmir.jpg",
+    "status": "Scenic",
+    "description": "Discover the spectacular landscapes of Kashmir with time in Srinagar and excursions to Gulmarg, Pahalgam and Sonamarg. Enjoy mountain scenery, lakes and the distinctive culture of the Kashmir Valley.",
+    "destinations": "Srinagar, Gulmarg, Pahalgam, Sonamarg",
+    "highlights": [
+      "Stay beside Dal Lake",
+      "Visit Gulmarg's mountain landscapes",
+      "Explore Pahalgam and Sonamarg"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Srinagar",
+        "description": "Arrival and transfer to your hotel or houseboat."
+      },
+      {
+        "day": 2,
+        "title": "Srinagar",
+        "description": "Explore Srinagar including the Mughal gardens, Dal Lake and local markets."
+      },
+      {
+        "day": 3,
+        "title": "Gulmarg",
+        "description": "Day excursion to Gulmarg and the surrounding mountain scenery."
+      },
+      {
+        "day": 4,
+        "title": "Pahalgam",
+        "description": "Travel to Pahalgam and explore the beautiful valley."
+      },
+      {
+        "day": 5,
+        "title": "Pahalgam",
+        "description": "Enjoy additional time in the Pahalgam area and optional local activities."
+      },
+      {
+        "day": 6,
+        "title": "Sonamarg",
+        "description": "Visit Sonamarg before returning to Srinagar."
+      },
+      {
+        "day": 7,
+        "title": "Departure",
+        "description": "Transfer to the airport for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Private transportation",
+      "Airport transfers",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Meals not specifically mentioned"
+    ]
+  },
+  {
+    "id": "goa-culture-beach",
+    "title": "Goa Beach & Culture",
+    "subtitle": "Beaches, heritage & relaxed coastal life",
+    "category": "South India",
+    "duration": "6 Days / 5 Nights",
+    "price": "$499",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/goa.jpg",
+    "status": "Beach",
+    "description": "Enjoy a relaxed journey through Goa combining beaches, Portuguese-influenced heritage, local markets and coastal landscapes.",
+    "destinations": "North Goa, Panaji, South Goa",
+    "highlights": [
+      "Relax on Goa's beaches",
+      "Explore Panaji and Old Goa",
+      "Discover South Goa's quieter coastline"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Goa",
+        "description": "Arrival and transfer to your hotel."
+      },
+      {
+        "day": 2,
+        "title": "North Goa",
+        "description": "Explore popular beaches, coastal villages and local markets."
+      },
+      {
+        "day": 3,
+        "title": "Panaji & Old Goa",
+        "description": "Discover Panaji and the historic churches and heritage sites of Old Goa."
+      },
+      {
+        "day": 4,
+        "title": "South Goa",
+        "description": "Explore South Goa's beaches and relaxed coastal surroundings."
+      },
+      {
+        "day": 5,
+        "title": "Free Day",
+        "description": "Enjoy a flexible day for beach time, optional activities or local exploration."
+      },
+      {
+        "day": 6,
+        "title": "Departure",
+        "description": "Transfer to the airport for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Airport transfers",
+      "Private transportation",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Meals not specifically mentioned"
+    ]
+  },
+  {
+    "id": "varanasi-golden-triangle",
+    "title": "Varanasi & Golden Triangle",
+    "subtitle": "Heritage, spirituality & India's historic cities",
+    "category": "North India",
+    "duration": "9 Days / 8 Nights",
+    "price": "$799",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/varanasi.jpg",
+    "status": "Cultural",
+    "description": "Combine the classic Golden Triangle with the spiritual atmosphere of Varanasi. Experience Delhi, Agra, Jaipur and the sacred Ganges in one varied journey.",
+    "destinations": "Delhi, Agra, Jaipur, Varanasi",
+    "highlights": [
+      "Visit the Taj Mahal",
+      "Explore Jaipur's royal heritage",
+      "Experience the evening Ganga ceremony in Varanasi"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Delhi",
+        "description": "Arrival and transfer to your hotel."
+      },
+      {
+        "day": 2,
+        "title": "Delhi",
+        "description": "Explore the major historic and cultural highlights of Delhi."
+      },
+      {
+        "day": 3,
+        "title": "Delhi to Agra",
+        "description": "Travel to Agra and visit Agra Fort."
+      },
+      {
+        "day": 4,
+        "title": "Agra to Jaipur",
+        "description": "Visit the Taj Mahal before continuing to Jaipur."
+      },
+      {
+        "day": 5,
+        "title": "Jaipur",
+        "description": "Explore Amber Fort, City Palace, Hawa Mahal and the old city."
+      },
+      {
+        "day": 6,
+        "title": "Jaipur to Varanasi",
+        "description": "Travel onward to Varanasi."
+      },
+      {
+        "day": 7,
+        "title": "Varanasi",
+        "description": "Explore the ghats, old city and experience the evening Ganga ceremony."
+      },
+      {
+        "day": 8,
+        "title": "Varanasi",
+        "description": "Enjoy an early morning experience on the Ganges and additional local sightseeing."
+      },
+      {
+        "day": 9,
+        "title": "Departure",
+        "description": "Transfer for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Private transportation",
+      "Airport and station transfers",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Meals not specifically mentioned"
+    ]
+  },
+  {
+    "id": "andaman-escape",
+    "title": "Andaman Island Escape",
+    "subtitle": "Tropical beaches, islands & clear waters",
+    "category": "Islands",
+    "duration": "7 Days / 6 Nights",
+    "price": "$749",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/andaman.jpg",
+    "status": "Island",
+    "description": "Escape to the tropical islands of the Andaman Sea. Enjoy beautiful beaches, island landscapes and a relaxed combination of Port Blair, Havelock Island and Neil Island.",
+    "destinations": "Port Blair, Havelock Island, Neil Island",
+    "highlights": [
+      "Relax on tropical beaches",
+      "Explore Havelock Island",
+      "Experience the peaceful atmosphere of Neil Island"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Port Blair",
+        "description": "Arrival and transfer to your hotel."
+      },
+      {
+        "day": 2,
+        "title": "Port Blair",
+        "description": "Explore local sights and enjoy the coastal atmosphere."
+      },
+      {
+        "day": 3,
+        "title": "Port Blair to Havelock",
+        "description": "Travel by ferry to Havelock Island."
+      },
+      {
+        "day": 4,
+        "title": "Havelock Island",
+        "description": "Enjoy the island's beaches and optional water activities."
+      },
+      {
+        "day": 5,
+        "title": "Havelock to Neil Island",
+        "description": "Continue by ferry to Neil Island."
+      },
+      {
+        "day": 6,
+        "title": "Neil Island",
+        "description": "Enjoy a relaxed day exploring beaches and coastal scenery."
+      },
+      {
+        "day": 7,
+        "title": "Departure",
+        "description": "Return to Port Blair and transfer for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Airport transfers",
+      "Ferry transfers as selected",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Water sports and optional activities",
+      "Meals not specifically mentioned"
+    ]
+  },
+  {
+    "id": "sikkim-darjeeling",
+    "title": "Sikkim & Darjeeling",
+    "subtitle": "Tea gardens, monasteries & Himalayan views",
+    "category": "Himalaya",
+    "duration": "8 Days / 7 Nights",
+    "price": "$699",
+    "priceNote": "Per person • Based on selected services",
+    "image": "packages/sikkim-darjeeling.jpg",
+    "status": "Mountain",
+    "description": "Explore the Himalayan foothills through Darjeeling and Sikkim. Discover tea plantations, Buddhist monasteries, mountain viewpoints and the distinctive culture of the region.",
+    "destinations": "Darjeeling, Gangtok, Sikkim",
+    "highlights": [
+      "Visit Darjeeling's famous tea region",
+      "Explore Gangtok and Sikkimese culture",
+      "Enjoy Himalayan mountain views"
+    ],
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Darjeeling",
+        "description": "Arrival and transfer to Darjeeling."
+      },
+      {
+        "day": 2,
+        "title": "Darjeeling",
+        "description": "Explore Darjeeling and its surrounding tea gardens and viewpoints."
+      },
+      {
+        "day": 3,
+        "title": "Darjeeling",
+        "description": "Enjoy additional sightseeing and local experiences."
+      },
+      {
+        "day": 4,
+        "title": "Darjeeling to Gangtok",
+        "description": "Travel through scenic mountain roads to Gangtok."
+      },
+      {
+        "day": 5,
+        "title": "Gangtok",
+        "description": "Explore Gangtok and important cultural and Buddhist sites."
+      },
+      {
+        "day": 6,
+        "title": "Sikkim",
+        "description": "Enjoy an excursion into the surrounding Sikkimese landscapes."
+      },
+      {
+        "day": 7,
+        "title": "Sikkim",
+        "description": "Enjoy a relaxed day with optional local sightseeing."
+      },
+      {
+        "day": 8,
+        "title": "Departure",
+        "description": "Transfer for your onward journey."
+      }
+    ],
+    "included": [
+      "Accommodation as selected",
+      "Daily breakfast",
+      "Private transportation",
+      "Airport and station transfers",
+      "Sightseeing as described"
+    ],
+    "notIncluded": [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses",
+      "Meals not specifically mentioned"
+    ]
+  }
+]

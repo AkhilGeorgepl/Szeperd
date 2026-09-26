@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | Szepred</title>
+
+    <meta name="description"
+          content="Contact Szepred for tours, travel packages and travel experiences.">
+
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <!-- MAIN WEBSITE CSS -->
+
+    <link rel="stylesheet"
+          href="styles.css">
+
+
+<style>
+
+/* =========================================================
+   CONTACT PAGE SCROLL
+========================================================= */
+
+html,
+body {
+
+    height: auto;
+
+    min-height: 100%;
+
+    overflow-x: hidden;
+
+    overflow-y: auto !important;
+}
+
+
+/* =========================================================
+   HEADER / NAVIGATION
+========================================================= */
+
+header {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 1000;
+
+    background:
+        rgba(233, 224, 207, 0.78);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(120%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(120%);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.55);
+
+    box-shadow:
+        0 8px 28px
+        rgba(70, 58, 40, 0.08);
+
+    transition:
+        background .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+
+header.scrolled {
+
+    background:
+        rgba(227, 215, 195, 0.94);
+
+    box-shadow:
+        0 10px 30px
+        rgba(70, 58, 40, 0.12);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.logo a {
+
+    display: block;
+}
+
+
+.logo img {
+
+    display: block;
+
+    width: auto;
+
+    height: 40px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   DESKTOP MENU
+========================================================= */
+
+#menu {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 32px;
+
+    margin: 0;
+
+    z-index: 1;
+}
+
+
+#menu a {
+
+    position: relative;
+
+    padding: 0;
+
+    color:
+        #173c2a;
+
+    text-decoration: none;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .6px;
+
+    white-space: nowrap;
+
+    border-radius: 0;
+
+    transition:
+        color .25s ease,
+        background .25s ease,
+        transform .25s ease;
+}
+
+
+#menu a:hover {
+
+    color:
+        #a88445;
+
+    background:
+        transparent;
+
+    transform:
+        translateY(-1px);
+}
+
+
+#menu a.active {
+
+    color:
+        #a88445;
+
+    background:
+        transparent;
+}
+
+
+/* =========================================================
+   HEADER ICONS
+========================================================= */
+
+.header-icons {
+
+    display: none;
+
+    align-items: center;
+
+    gap: 18px;
+
+    color:
+        #173c2a;
+
+    font-size: 20px;
+}
+
+
+.header-icons i {
+
+    cursor: pointer;
+
+    transition:
+        color .25s ease,
+        transform .25s ease;
+}
+
+
+.header-icons i:hover {
+
+    color:
+        #a88445;
+
+    transform:
+        scale(1.08);
+}
+
+
+/* =========================================================
+   TABLET / MOBILE HEADER
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    header {
+
+        height: 70px;
+
+        padding:
+            0 22px;
+    }
+
+
+    .logo img {
+
+        height: 42px;
+    }
+
+
+    .header-icons {
+
+        display: flex;
+    }
+
+
+    /* =====================================================
+       MOBILE / TABLET POPUP MENU
+
+       CENTERED LIKE GALLERY
+
+       CONTACT COLOURS RETAINED
+    ===================================================== */
+
+    #menu {
+
+        position: absolute;
+
+        top:
+            calc(100% + 10px);
+
+        left: 50%;
+
+        right: auto;
+
+        width:
+            calc(100% - 30px);
+
+        max-width: none;
+
+        height: auto;
+
+        transform:
+            translateX(-50%);
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        padding: 10px;
+
+        margin: 0;
+
+        box-sizing: border-box;
+
+        background:
+            rgba(233, 224, 207, 0.97);
+
+        backdrop-filter:
+            blur(18px)
+            saturate(120%);
+
+        -webkit-backdrop-filter:
+            blur(18px)
+            saturate(120%);
+
+        border:
+            1px solid
+            rgba(168,132,69,0.25);
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 20px 50px
+            rgba(70,58,40,.16);
+
+        z-index: 1001;
+    }
+
+
+    #menu.show {
+
+        display: flex;
+    }
+
+
+    #menu a {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding:
+            13px 12px;
+
+        margin: 0;
+
+        text-align: center;
+
+        color:
+            #173c2a;
+
+        border-radius: 10px;
+
+        transform: none;
+    }
+
+
+    #menu a:hover {
+
+        color:
+            #a88445;
+
+        background:
+            rgba(168,132,69,.07);
+
+        transform: none;
+    }
+
+
+    #menu a.active {
+
+        color:
+            #a88445;
+
+        background:
+            transparent;
+
+        box-shadow: none;
+    }
+
+}
+
+
+/* =========================================================
+   PAGE BACKGROUND
+========================================================= */
+
+.contact-page {
+
+    min-height: 100vh;
+
+    background:
+
+        repeating-linear-gradient(
+            0deg,
+            rgba(90, 75, 50, 0.018) 0px,
+            rgba(90, 75, 50, 0.018) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+
+        repeating-linear-gradient(
+            90deg,
+            rgba(90, 75, 50, 0.014) 0px,
+            rgba(90, 75, 50, 0.014) 1px,
+            transparent 1px,
+            transparent 5px
+        ),
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 250, 235, 0.75),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            135deg,
+            #e9e0cf 0%,
+            #e3d7c3 48%,
+            #dcd0bb 100%
+        );
+
+    padding-top: 100px;
+
+    padding-bottom: 90px;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.contact-container {
+
+    width:
+        min(
+            1120px,
+            calc(100% - 40px)
+        );
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.contact-heading {
+
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+
+.contact-heading span {
+
+    display: block;
+
+    font-family:
+        var(--main-font);
+
+    color:
+        #a88445;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 14px;
+}
+
+
+.contact-heading h1 {
+
+    margin: 0 0 18px;
+
+    font-family:
+        var(--heading-font);
+
+    font-size:
+        clamp(
+            46px,
+            6vw,
+            76px
+        );
+
+    line-height: 1.05;
+
+    font-weight: 500;
+
+    color:
+        #173c2a;
+}
+
+
+.contact-heading p {
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    font-weight: 400;
+
+    color:
+        #68685f;
+}
+
+
+/* =========================================================
+   CONTACT GRID
+========================================================= */
+
+.contact-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        0.9fr 1.1fr;
+
+    gap: 28px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   ELEGANT PANELS
+========================================================= */
+
+.contact-info,
+.contact-form {
+
+    background:
+        rgba(255, 252, 245, 0.72);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.85);
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(60, 50, 35, 0.10),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.85);
+}
+
+
+/* =========================================================
+   LEFT PANEL
+========================================================= */
+
+.contact-info {
+
+    padding: 42px;
+}
+
+
+/* =========================================================
+   MESSAGE PANEL
+========================================================= */
+
+.contact-form {
+
+    padding: 42px;
+
+    border:
+        1px solid
+        rgba(168, 132, 69, 0.28);
+
+    box-shadow:
+        0 20px 60px
+        rgba(60, 50, 35, 0.11),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.9);
+}
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+.contact-info h2,
+.contact-form h2 {
+
+    margin: 0 0 28px;
+
+    font-family:
+        var(--heading-font);
+
+    font-size: 31px;
+
+    font-weight: 500;
+
+    color:
+        #173c2a;
+}
+
+
+/* =========================================================
+   CONTACT ITEMS
+========================================================= */
+
+.contact-item {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 17px;
+
+    margin-bottom: 29px;
+}
+
+
+.contact-item:last-child {
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CLICKABLE CONTACT ITEMS
+========================================================= */
+
+.contact-link {
+
+    display: flex;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+}
+
+
+.contact-link:hover {
+
+    transform:
+        translateX(4px);
+
+    opacity: .92;
+}
+
+
+/* =========================================================
+   CONTACT ICONS
+========================================================= */
+
+.contact-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    min-width: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        #244d38;
+
+    color:
+        #f7ead0;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 6px 18px
+        rgba(36, 77, 56, 0.18);
+
+    transition:
+        background .25s ease,
+        transform .25s ease;
+}
+
+
+.contact-link:hover .contact-icon {
+
+    background:
+        #173c2a;
+
+    transform:
+        scale(1.05);
+}
+
+
+/* =========================================================
+   CONTACT TEXT
+========================================================= */
+
+.contact-item h3 {
+
+    margin: 0 0 5px;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: .4px;
+
+    color:
+        #293c31;
+}
+
+
+.contact-item p {
+
+    margin: 0;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color:
+        #77766d;
+}
+
+
+/* =========================================================
+   CONTACT FORM
+========================================================= */
+
+.contact-form form {
+
+    display: grid;
+
+    gap: 19px;
+}
+
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.form-group label {
+
+    font-family:
+        var(--main-font);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+    color:
+        #34483b;
+}
+
+
+/* =========================================================
+   INPUT BOXES
+========================================================= */
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(76, 87, 73, 0.20);
+
+    border-radius: 13px;
+
+    padding: 14px 16px;
+
+    background:
+        rgba(255, 255, 255, 0.70);
+
+    color:
+        #26372d;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-shadow:
+        inset 0 1px 3px
+        rgba(60, 50, 35, 0.035);
+
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+
+    color:
+        #a09d93;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   MESSAGE FIELD
+========================================================= */
+
+.form-group textarea {
+
+    min-height: 155px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+
+    border-color:
+        #a88445;
+
+    background:
+        rgba(255,255,255,.92);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(168,132,69,.10);
+}
+
+
+/* =========================================================
+   SEND BUTTON
+========================================================= */
+
+.contact-submit {
+
+    width: fit-content;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius: 30px;
+
+    padding:
+        13px 28px;
+
+    background:
+        #173c2a;
+
+    color:
+        #f8f3e8;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+
+.contact-submit:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        #244d38;
+
+    box-shadow:
+        0 8px 20px
+        rgba(23,60,42,.18);
+}
+
+
+/* =========================================================
+   WHATSAPP BUTTON
+========================================================= */
+
+.contact-whatsapp {
+
+    margin-top: 30px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        12px 20px;
+
+    border-radius: 30px;
+
+    background:
+        #244d38;
+
+    color:
+        #f8f3e8 !important;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 7px 18px
+        rgba(36,77,56,.15);
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+
+.contact-whatsapp:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        #173c2a;
+}
+
+
+/* =====================================================
+   FOOTER
+   CONTACT PAGE — EXACTLY 50PX
+===================================================== */
+
+.footer {
+
+    width: 100%;
+
+    height: 50px;
+
+    min-height: 50px;
+
+    padding:
+        0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    background:
+        #e3d7c3;
+
+    color:
+        rgba(23,60,42,.65);
+
+    border-top:
+        1px solid
+        rgba(168,132,69,.22);
+}
+
+
+.footer-bottom {
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    text-align: center;
+
+    color:
+        rgba(23,60,42,.65);
+
+    font-family:
+        var(--main-font);
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    letter-spacing: .4px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    header {
+
+        height: 64px;
+
+        padding:
+            0 17px;
+    }
+
+
+    .logo img {
+
+        height: 35px;
+    }
+
+
+    .contact-page {
+
+        padding-top: 90px;
+
+        padding-bottom: 55px;
+
+        background-attachment: scroll;
+    }
+
+
+    .contact-container {
+
+        width:
+            min(
+                calc(100% - 24px),
+                600px
+            );
+    }
+
+
+    .contact-heading {
+
+        margin-bottom: 35px;
+    }
+
+
+    .contact-heading span {
+
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .contact-heading h1 {
+
+        font-size: 46px;
+    }
+
+
+    .contact-heading p {
+
+        font-size: 15px;
+
+        line-height: 1.75;
+    }
+
+
+    .contact-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    .contact-info,
+    .contact-form {
+
+        padding:
+            28px 22px;
+
+        border-radius: 22px;
+    }
+
+
+    .contact-info h2,
+    .contact-form h2 {
+
+        font-size: 27px;
+
+        margin-bottom: 23px;
+    }
+
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    .contact-item {
+
+        gap: 14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header id="site-header">
+
+    <div class="logo">
+
+        <a href="index.html">
+
+            <img src="logo.png"
+                 alt="Szepred Logo">
+
+        </a>
+
+    </div>
+
+
+    <nav id="menu">
+
+        <a href="index.html">
+            HOME
+        </a>
+
+        <a href="experiences.html">
+            EXPERIENCES
+        </a>
+
+        <a href="packages.html">
+            PACKAGES
+        </a>
+
+        <a href="gallery.html">
+            GALLERY
+        </a>
+
+        <a href="about.html">
+            ABOUT US
+        </a>
+
+        <a href="contact.html"
+           class="active">
+            CONTACT
+        </a>
+
+    </nav>
+
+
+    <div class="header-icons">
+
+        <i class="fas fa-bars"
+           id="menu-btn">
+        </i>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     CONTACT PAGE
+===================================================== -->
+
+<main class="contact-page">
+
+    <div class="contact-container">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="contact-heading">
+
+            <span>
+                Let's Talk
+            </span>
+
+
+            <h1>
+                Contact Us
+            </h1>
+
+
+            <p>
+                Have a question about a tour,
+                package or travel experience?
+                Get in touch with Szepred
+                and let's start planning
+                your journey.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+            <!-- =================================================
+                 CONTACT INFORMATION
+            ================================================= -->
+
+            <section class="contact-info">
+
+                <h2>
+                    Get In Touch
+                </h2>
+
+
+                <!-- PHONE -->
+
+                <a class="contact-item contact-link"
+                   href="tel:+48571993223">
+
+                    <div class="contact-icon">
+
+                        <i class="fas fa-phone"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Phone
+                        </h3>
+
+
+                        <p>
+                            +48 571 993 223
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <!-- WHATSAPP -->
+
+                <a class="contact-item contact-link"
+                   href="https://wa.me/48571993223"
+                   target="_blank"
+                   rel="noopener">
+
+                    <div class="contact-icon">
+
+                        <i class="fab fa-whatsapp"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            WhatsApp
+                        </h3>
+
+
+                        <p>
+                            Chat with us on WhatsApp
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <!-- EMAIL -->
+
+                <a class="contact-item contact-link"
+                   href="mailto:info@szeperd.pl">
+
+                    <div class="contact-icon">
+
+                        <i class="fas fa-envelope"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Email
+                        </h3>
+
+
+                        <p>
+                            info@szeperd.pl
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <!-- RESPONSE TIME -->
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+
+                        <i class="fas fa-clock"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Response Time
+                        </h3>
+
+
+                        <p>
+                            We usually respond
+                            as soon as possible.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WHATSAPP CTA -->
+
+                <a class="contact-whatsapp"
+                   href="https://wa.me/48571993223"
+                   target="_blank"
+                   rel="noopener">
+
+                    <i class="fab fa-whatsapp"></i>
+
+                    Chat on WhatsApp
+
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 SEND MESSAGE
+            ================================================= -->
+
+            <section class="contact-form">
+
+                <h2>
+                    Send Us a Message
+                </h2>
+
+
+                <form id="contact-form">
+
+
+                    <!-- NAME + EMAIL -->
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                Your Name
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Your name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email
+                            </label>
+
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Your email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBJECT -->
+
+                    <div class="form-group">
+
+                        <label for="subject">
+                            Subject
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            placeholder="What would you like to ask?">
+
+                    </div>
+
+
+                    <!-- MESSAGE -->
+
+                    <div class="form-group">
+
+                        <label for="message">
+                            Message
+                        </label>
+
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Tell us about your travel plans..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <!-- SEND -->
+
+                    <button
+                        type="submit"
+                        class="contact-submit">
+
+                        Send Message
+
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-bottom">
+
+        © 2026 Szepred. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     FLOATING WHATSAPP
+===================================================== -->
+
+<a href="https://wa.me/48571993223"
+   class="whatsapp-float"
+   target="_blank"
+   rel="noopener"
+   aria-label="Chat on WhatsApp">
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>
+
+
+<!-- =====================================================
+     MAIN WEBSITE SCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+<!-- =====================================================
+     CONTACT FORM SCRIPT
+===================================================== -->
+
+<script>
+
+const contactForm =
+    document.querySelector("#contact-form");
+
+
+if (contactForm) {
+
+    contactForm.addEventListener(
+        "submit",
+        function(e) {
+
+            e.preventDefault();
+
+            alert(
+                "Thank you! Your message form is ready. We will connect it to the Szepred contact system next."
+            );
+
+        }
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

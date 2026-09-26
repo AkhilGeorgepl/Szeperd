@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Anna",
+        "photo": "clients/anna.jpg",
+        "review": "An unforgettable journey. Everything was perfectly organised."
+    },
+    {
+        "name": "Michael",
+        "photo": "clients/michael.jpg",
+        "review": "Amazing experience and wonderful guides."
+    },
+    {
+        "name": "Sofia",
+        "photo": "clients/sofia.jpg",
+        "review": "Beautiful places and excellent support."
+    },
+    {
+        "name": "David",
+        "photo": "clients/david.jpg",
+        "review": "One of my best travel memories."
+    },
+    {
+        "name": "Maria",
+        "photo": "clients/maria.jpg",
+        "review": "Amazing adventure from start to finish."
+    }
+]

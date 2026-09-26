@@ -1,0 +1,1348 @@
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+:root {
+
+    --main-font:
+        "Nunito",
+        Arial,
+        sans-serif;
+
+    --heading-font:
+        "Lora",
+        Georgia,
+        serif;
+
+
+    --green-dark:
+        #173c2a;
+
+    --green:
+        #244d38;
+
+    --gold:
+        #a88445;
+
+    --gold-light:
+        #c4a66d;
+
+    --cream:
+        #e9e0cf;
+
+    --cream-dark:
+        #dcd0bb;
+
+    --text:
+        #293c31;
+
+    --text-light:
+        #68685f;
+
+    --white:
+        #fffdf7;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+    overflow-x: hidden;
+
+}
+
+
+body {
+
+    min-height: 100%;
+
+    overflow-x: hidden;
+
+    overflow-y: auto;
+
+    background:
+        #e9e0cf;
+
+    color:
+        var(--text);
+
+    font-family:
+        var(--main-font);
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 1000;
+
+    background:
+        rgba(233, 224, 207, 0.78);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(120%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(120%);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.55);
+
+    box-shadow:
+        0 8px 28px
+        rgba(70, 58, 40, 0.08);
+
+    transition:
+        background .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+
+}
+
+
+header.scrolled {
+
+    background:
+        rgba(227, 215, 195, 0.94);
+
+    box-shadow:
+        0 10px 30px
+        rgba(70, 58, 40, 0.12);
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.logo a {
+
+    display: block;
+
+}
+
+
+.logo img {
+
+    display: block;
+
+    width: auto;
+
+    height: 40px;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================================================
+   DESKTOP MENU
+========================================================= */
+
+#menu {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 32px;
+
+    margin: 0;
+
+    z-index: 1;
+
+}
+
+
+#menu a {
+
+    position: relative;
+
+    padding: 0;
+
+    color:
+        #173c2a;
+
+    text-decoration: none;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .6px;
+
+    white-space: nowrap;
+
+    border-radius: 0;
+
+    transition:
+        color .25s ease,
+        background .25s ease,
+        transform .25s ease;
+
+}
+
+
+#menu a:hover {
+
+    color:
+        #a88445;
+
+    background:
+        transparent;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+#menu a.active {
+
+    color:
+        #a88445;
+
+    background:
+        transparent;
+
+}
+
+
+/* =========================================================
+   HEADER ICONS
+========================================================= */
+
+.header-icons {
+
+    display: none;
+
+    align-items: center;
+
+    gap: 18px;
+
+    color:
+        #173c2a;
+
+    font-size: 20px;
+
+}
+
+
+.header-icons i {
+
+    cursor: pointer;
+
+    transition:
+        color .25s ease,
+        transform .25s ease;
+
+}
+
+
+.header-icons i:hover {
+
+    color:
+        #a88445;
+
+    transform:
+        scale(1.08);
+
+}
+
+
+/* =========================================================
+   TABLET / MOBILE HEADER
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    header {
+
+        height: 70px;
+
+        padding:
+            0 22px;
+
+    }
+
+
+    .logo img {
+
+        height: 42px;
+
+    }
+
+
+    .header-icons {
+
+        display: flex;
+
+    }
+
+
+    #menu {
+
+        position: absolute;
+
+        top:
+            calc(100% + 10px);
+
+        left: 50%;
+
+        right: auto;
+
+        width:
+            calc(100% - 30px);
+
+        max-width: none;
+
+        height: auto;
+
+        transform:
+            translateX(-50%);
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        padding: 10px;
+
+        margin: 0;
+
+        box-sizing: border-box;
+
+        background:
+            rgba(233, 224, 207, 0.97);
+
+        backdrop-filter:
+            blur(18px)
+            saturate(120%);
+
+        -webkit-backdrop-filter:
+            blur(18px)
+            saturate(120%);
+
+        border:
+            1px solid
+            rgba(168,132,69,0.25);
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 20px 50px
+            rgba(70,58,40,.16);
+
+        z-index: 1001;
+
+    }
+
+
+    #menu.show {
+
+        display: flex;
+
+    }
+
+
+    #menu a {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding:
+            13px 12px;
+
+        margin: 0;
+
+        text-align: center;
+
+        color:
+            #173c2a;
+
+        border-radius: 10px;
+
+        transform: none;
+
+    }
+
+
+    #menu a:hover {
+
+        color:
+            #a88445;
+
+        background:
+            rgba(168,132,69,.07);
+
+        transform: none;
+
+    }
+
+
+    #menu a.active {
+
+        color:
+            #a88445;
+
+        background:
+            transparent;
+
+        box-shadow: none;
+
+    }
+
+}
+
+
+/* =========================================================
+   PAGE BACKGROUND
+========================================================= */
+
+.experiences-page {
+
+    min-height: 100vh;
+
+    padding-top: 50px;
+
+    padding-bottom: 80px;
+
+    background:
+
+        repeating-linear-gradient(
+            0deg,
+            rgba(90, 75, 50, 0.018) 0px,
+            rgba(90, 75, 50, 0.018) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+
+        repeating-linear-gradient(
+            90deg,
+            rgba(90, 75, 50, 0.014) 0px,
+            rgba(90, 75, 50, 0.014) 1px,
+            transparent 1px,
+            transparent 5px
+        ),
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 250, 235, 0.75),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            135deg,
+            #e9e0cf 0%,
+            #e3d7c3 48%,
+            #dcd0bb 100%
+        );
+
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.experiences-container {
+
+    width:
+        min(
+            1120px,
+            calc(100% - 40px)
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.experiences-heading {
+
+    text-align: center;
+
+    padding-top: 75px;
+
+    padding-bottom: 50px;
+
+}
+
+
+.experiences-heading span {
+
+    display: block;
+
+    font-family:
+        var(--main-font);
+
+    color:
+        #a88445;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 14px;
+
+}
+
+
+.experiences-heading h1 {
+
+    margin:
+        0 0 18px;
+
+    font-family:
+        var(--heading-font);
+
+    font-size:
+        clamp(
+            46px,
+            6vw,
+            76px
+        );
+
+    line-height: 1.05;
+
+    font-weight: 500;
+
+    color:
+        #173c2a;
+
+}
+
+
+.experiences-heading h1 em {
+
+    font-style: normal;
+
+    color:
+        #a88445;
+
+}
+
+
+.experiences-heading p {
+
+    max-width:
+        650px;
+
+    margin:
+        0 auto;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    font-weight: 400;
+
+    color:
+        #68685f;
+
+}
+
+
+/* =========================================================
+   EXPERIENCES SECTION
+========================================================= */
+
+.experiences-section {
+
+    width: 100%;
+
+}
+
+
+/* =========================================================
+   EXPERIENCES GRID
+========================================================= */
+
+.experiences-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 30px;
+
+}
+
+
+/* =========================================================
+   EXPERIENCE CARD
+========================================================= */
+
+.experience-card {
+
+    position: relative;
+
+    min-height: 500px;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background:
+        rgba(255, 252, 245, 0.72);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.82);
+
+    box-shadow:
+        0 20px 60px
+        rgba(60,50,35,.12),
+
+        inset 0 1px 0
+        rgba(255,255,255,.85);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+
+}
+
+
+.experience-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        0 28px 70px
+        rgba(60,50,35,.18),
+
+        inset 0 1px 0
+        rgba(255,255,255,.9);
+
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.experience-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+}
+
+
+.experience-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform .7s ease;
+
+}
+
+
+.experience-card:hover
+.experience-image img {
+
+    transform:
+        scale(1.06);
+
+}
+
+
+/* =========================================================
+   IMAGE DARK GRADIENT
+========================================================= */
+
+.experience-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(23,60,42,.90) 0%,
+            rgba(23,60,42,.62) 30%,
+            rgba(23,60,42,.12) 68%,
+            rgba(23,60,42,0) 100%
+        );
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.experience-content {
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 2;
+
+    padding:
+        34px;
+
+    color:
+        white;
+
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.experience-category {
+
+    display: inline-block;
+
+    margin-bottom: 11px;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color:
+        #f1d89f;
+
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.experience-content h2 {
+
+    margin:
+        0 0 12px;
+
+    font-family:
+        var(--heading-font);
+
+    font-size:
+        clamp(
+            28px,
+            3vw,
+            40px
+        );
+
+    line-height: 1.15;
+
+    font-weight: 500;
+
+    color:
+        #fffdf7;
+
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.experience-content p {
+
+    max-width:
+        650px;
+
+    margin:
+        0 0 22px;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color:
+        rgba(255,255,255,.88);
+
+}
+
+
+/* =========================================================
+   EXPLORE BUTTON
+========================================================= */
+
+.experience-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding:
+        11px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.20);
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.14);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    color:
+        #fffdf7;
+
+    text-decoration: none;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        border-color .25s ease;
+
+}
+
+
+.experience-button span {
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    transition:
+        transform .25s ease;
+
+}
+
+
+.experience-button:hover {
+
+    background:
+        rgba(168,132,69,.90);
+
+    border-color:
+        rgba(255,255,255,.30);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.experience-button:hover span {
+
+    transform:
+        translateX(4px);
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.experiences-message {
+
+    min-height: 20px;
+
+    margin-top: 25px;
+
+    text-align: center;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 14px;
+
+    color:
+        #68685f;
+
+}
+
+
+/* =========================================================
+   WHATSAPP FLOAT
+========================================================= */
+
+.whatsapp-float {
+
+    position: fixed;
+
+    right: 24px;
+
+    bottom: 24px;
+
+    width: 54px;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 900;
+
+    border-radius: 50%;
+
+    background:
+        #244d38;
+
+    color:
+        #f8f3e8;
+
+    text-decoration: none;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(36,77,56,.25);
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+
+}
+
+
+.whatsapp-float:hover {
+
+    transform:
+        translateY(-4px);
+
+    background:
+        #173c2a;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .experiences-container {
+
+        width:
+            min(
+                calc(100% - 30px),
+                700px
+            );
+
+    }
+
+
+    .experiences-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 24px;
+
+    }
+
+
+    .experience-card {
+
+        min-height:
+            470px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    header {
+
+        height: 64px;
+
+        padding:
+            0 17px;
+
+    }
+
+
+    .logo img {
+
+        height: 35px;
+
+    }
+
+
+    .experiences-page {
+
+        padding-top: 64px;
+
+        padding-bottom: 55px;
+
+    }
+
+
+    .experiences-container {
+
+        width:
+            min(
+                calc(100% - 24px),
+                600px
+            );
+
+    }
+
+
+    .experiences-heading {
+
+        padding-top: 55px;
+
+        padding-bottom: 35px;
+
+    }
+
+
+    .experiences-heading span {
+
+        font-size: 11px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .experiences-heading h1 {
+
+        font-size: 46px;
+
+    }
+
+
+    .experiences-heading p {
+
+        font-size: 15px;
+
+        line-height: 1.75;
+
+    }
+
+
+    .experience-card {
+
+        min-height:
+            450px;
+
+        border-radius:
+            22px;
+
+    }
+
+
+    .experience-content {
+
+        padding:
+            26px 22px;
+
+    }
+
+
+    .experience-content h2 {
+
+        font-size:
+            30px;
+
+    }
+
+
+    .experience-content p {
+
+        font-size:
+            14px;
+
+        line-height:
+            1.65;
+
+    }
+
+
+    .whatsapp-float {
+
+        right: 17px;
+
+        bottom: 18px;
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 23px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .experiences-heading h1 {
+
+        font-size:
+            40px;
+
+    }
+
+
+    .experience-card {
+
+        min-height:
+            420px;
+
+    }
+
+
+    .experience-content {
+
+        padding:
+            23px 19px;
+
+    }
+
+
+    .experience-content h2 {
+
+        font-size:
+            27px;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior:
+            auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+    }
+
+}
+/* =====================================================
+   FOOTER
+   EXPERIENCES PAGE — EXACTLY 50PX
+===================================================== */
+
+.footer {
+
+    width: 100%;
+
+    height: 50px;
+
+    min-height: 50px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    background:
+        #e3d7c3;
+
+    color:
+        #244d38;
+
+    border-top:
+        1px solid
+        rgba(168,132,69,.22);
+}
+
+
+.footer-bottom {
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    text-align: center;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    letter-spacing: .4px;
+
+    line-height: 1;
+
+    color:
+        #244d38;
+}

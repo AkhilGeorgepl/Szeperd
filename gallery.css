@@ -1,0 +1,2566 @@
+/* =========================================================
+   SZEPRED GALLERY
+   gallery.css
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --green: #1b3b2f;
+    --green-deep: #142d24;
+
+    --gold: #9a7b2f;
+    --gold-light: #d8c27a;
+
+    --cream: #f4f0e6;
+    --white: #ffffff;
+
+    --text: #222222;
+    --text-muted: #6b6b6b;
+
+    --glass-white: rgba(255,255,255,.14);
+    --glass-border: rgba(255,255,255,.55);
+    --glass-highlight: rgba(255,255,255,.30);
+
+    --heading-font: "Lora", serif;
+    --main-font: "Nunito", sans-serif;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family: var(--main-font);
+
+    color: var(--text);
+
+    background: var(--cream);
+
+    overflow-x: hidden;
+
+}
+
+
+body.no-scroll {
+
+    overflow: hidden;
+
+}
+
+
+button,
+a {
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+
+button {
+
+    font-family: inherit;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+#site-header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    /*
+       LIGHT BLUE APPLE-STYLE GLASS
+    */
+
+    background:
+        rgba(205,226,240,.72);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(135%);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.55);
+
+    box-shadow:
+        0 8px 30px
+        rgba(70,100,120,.10);
+
+    z-index: 1000;
+
+    transition:
+        background .45s ease,
+        box-shadow .45s ease,
+        border-color .45s ease;
+
+}
+
+
+#site-header.scrolled {
+
+    background:
+        rgba(190,216,233,.88);
+
+    border-bottom-color:
+        rgba(255,255,255,.70);
+
+    box-shadow:
+        0 8px 30px
+        rgba(70,100,120,.16);
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.logo a {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.logo img {
+
+    display: block;
+
+    max-height: 40px;
+
+    width: auto;
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+#menu {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 32px;
+
+    z-index: 1;
+
+}
+
+
+#menu a {
+
+    position: relative;
+
+    color: #173447;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .6px;
+
+    white-space: nowrap;
+
+    transition:
+        color .35s ease;
+
+}
+
+
+#menu a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: var(--gold);
+
+    transition:
+        width .4s cubic-bezier(.22,.61,.36,1);
+
+}
+
+
+#menu a:hover,
+#menu a.active {
+
+    color: var(--gold);
+
+}
+
+
+#menu a:hover::after,
+#menu a.active::after {
+
+    width: 100%;
+
+}
+
+
+/* =========================================================
+   HEADER MENU BUTTON
+========================================================= */
+
+.header-icons {
+
+    display: none;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+#menu-btn {
+
+    width: 44px;
+
+    height: 44px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.55);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.30);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    color: #173447;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        background .35s ease,
+        transform .35s ease;
+
+}
+
+
+#menu-btn:hover {
+
+    background:
+        rgba(255,255,255,.48);
+
+    transform:
+        scale(1.04);
+
+}
+
+
+/* =========================================================
+   INTRO — EDITORIAL TYPOGRAPHY
+========================================================= */
+
+.gallery-intro {
+
+    position: relative;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding:
+        145px
+        30px
+        65px;
+
+    text-align: center;
+
+    background: transparent;
+
+    color: var(--text);
+
+}
+
+
+.gallery-eyebrow {
+
+    margin-bottom: 20px;
+
+    color: var(--gold);
+
+    font-family: var(--main-font);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: .32em;
+
+    text-transform: uppercase;
+
+}
+
+
+.gallery-intro h1 {
+
+    margin: 0;
+
+    font-family: var(--heading-font);
+
+    font-size: clamp(
+        46px,
+        6vw,
+        78px
+    );
+
+    font-weight: 400;
+
+    line-height: 1.04;
+
+    letter-spacing: -.035em;
+
+    color: #1f2a25;
+
+}
+
+
+.gallery-intro p {
+
+    max-width: 600px;
+
+    margin:
+        28px auto
+        0;
+
+    color:
+        rgba(31,42,37,.68);
+
+    font-family: var(--main-font);
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    line-height: 1.8;
+
+    letter-spacing: .01em;
+
+}
+
+
+/* =========================================================
+   EDITORIAL DIVIDER
+========================================================= */
+
+.gallery-intro::after {
+
+    content: "";
+
+    display: block;
+
+    width: 46px;
+
+    height: 1px;
+
+    margin:
+        34px auto
+        0;
+
+    background: var(--gold);
+
+    opacity: .65;
+
+}
+
+
+/* =========================================================
+   GALLERY SECTION
+========================================================= */
+
+.gallery-section {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 980px;
+
+    padding:
+        65px
+        4vw
+        120px;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(216,194,122,.13),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(27,59,47,.08),
+            transparent 32%
+        ),
+
+        var(--cream);
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.gallery-status {
+
+    text-align: center;
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    padding: 50px 20px;
+
+    transition:
+        opacity .5s ease;
+
+}
+
+
+.gallery-status.hidden {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   GALLERY GRID
+========================================================= */
+
+.gallery-grid {
+
+    position: relative;
+
+    width: min(
+        1380px,
+        100%
+    );
+
+    height: 930px;
+
+    margin: 0 auto;
+
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.gallery-item {
+
+    position: absolute;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    background:
+        rgba(255,255,255,.16);
+
+    border:
+        4px solid
+        rgba(255,255,255,.82);
+
+    border-radius: 14px;
+
+    box-shadow:
+
+        0 20px 45px
+        rgba(48,42,31,.16),
+
+        0 5px 15px
+        rgba(48,42,31,.08),
+
+        inset 0 1px 0
+        rgba(255,255,255,.55);
+
+    opacity: 0;
+
+    transform:
+        translate3d(0,42px,0)
+        rotate(var(--rotation))
+        scale(.94);
+
+    transition:
+
+        opacity .85s ease,
+
+        transform 1.05s
+        cubic-bezier(.16,1,.3,1),
+
+        box-shadow .55s
+        cubic-bezier(.22,.61,.36,1),
+
+        filter .55s ease;
+
+    will-change:
+        transform,
+        opacity;
+
+    user-select: none;
+
+}
+
+
+/* =========================================================
+   STAGGERED ENTRANCE
+========================================================= */
+
+.gallery-item:nth-child(1) {
+    transition-delay: .05s;
+}
+
+.gallery-item:nth-child(2) {
+    transition-delay: .17s;
+}
+
+.gallery-item:nth-child(3) {
+    transition-delay: .29s;
+}
+
+.gallery-item:nth-child(4) {
+    transition-delay: .41s;
+}
+
+.gallery-item:nth-child(5) {
+    transition-delay: .53s;
+}
+
+.gallery-item:nth-child(6) {
+    transition-delay: .65s;
+}
+
+.gallery-item:nth-child(7) {
+    transition-delay: .77s;
+}
+
+.gallery-item:nth-child(8) {
+    transition-delay: .89s;
+}
+
+
+/* =========================================================
+   PHOTO IMAGE
+========================================================= */
+
+.gallery-item img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    opacity: 0;
+
+    transform:
+        scale(1.035);
+
+    transition:
+
+        opacity .9s ease,
+
+        transform 1.25s
+        cubic-bezier(.16,1,.3,1);
+
+    user-select: none;
+
+}
+
+
+/* =========================================================
+   GLASS HIGHLIGHT
+========================================================= */
+
+.gallery-item::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.18),
+            transparent 28%,
+            transparent 70%,
+            rgba(255,255,255,.07)
+        );
+
+    opacity: .65;
+
+    transition:
+        opacity .6s ease;
+
+}
+
+
+/* =========================================================
+   LOADED
+========================================================= */
+
+.gallery-item.loaded img {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+
+}
+
+
+/* =========================================================
+   VISIBLE
+========================================================= */
+
+.gallery-item.visible {
+
+    opacity: 1;
+
+    transform:
+        translate3d(0,0,0)
+        rotate(var(--rotation))
+        scale(1);
+
+}
+
+
+/* =========================================================
+   COLLAGE POSITIONS
+========================================================= */
+
+.gallery-item:nth-child(1) {
+
+    --rotation: -3deg;
+
+    width: 32%;
+
+    height: 430px;
+
+    left: 2%;
+
+    top: 35px;
+
+    z-index: 20;
+
+}
+
+
+.gallery-item:nth-child(2) {
+
+    --rotation: 2deg;
+
+    width: 31%;
+
+    height: 355px;
+
+    left: 27%;
+
+    top: 5px;
+
+    z-index: 30;
+
+}
+
+
+.gallery-item:nth-child(3) {
+
+    --rotation: -2deg;
+
+    width: 32%;
+
+    height: 425px;
+
+    right: 2%;
+
+    top: 45px;
+
+    z-index: 15;
+
+}
+
+
+.gallery-item:nth-child(4) {
+
+    --rotation: 2.5deg;
+
+    width: 29%;
+
+    height: 350px;
+
+    left: 10%;
+
+    top: 360px;
+
+    z-index: 35;
+
+}
+
+
+.gallery-item:nth-child(5) {
+
+    --rotation: -1.5deg;
+
+    width: 34%;
+
+    height: 440px;
+
+    left: 34%;
+
+    top: 320px;
+
+    z-index: 45;
+
+}
+
+
+.gallery-item:nth-child(6) {
+
+    --rotation: 2.5deg;
+
+    width: 29%;
+
+    height: 355px;
+
+    right: 7%;
+
+    top: 390px;
+
+    z-index: 25;
+
+}
+
+
+.gallery-item:nth-child(7) {
+
+    --rotation: -2deg;
+
+    width: 27%;
+
+    height: 310px;
+
+    left: 3%;
+
+    top: 685px;
+
+    z-index: 18;
+
+}
+
+
+.gallery-item:nth-child(8) {
+
+    --rotation: 1.5deg;
+
+    width: 31%;
+
+    height: 300px;
+
+    left: 31%;
+
+    top: 720px;
+
+    z-index: 28;
+
+}
+
+
+/* =========================================================
+   MORE THAN 8 PHOTOS
+========================================================= */
+
+.gallery-item:nth-child(n + 9) {
+
+    position: relative;
+
+    display: inline-block;
+
+    width: calc(25% - 12px);
+
+    height: 300px;
+
+    margin:
+        8px 4px;
+
+    vertical-align: top;
+
+    transform:
+        rotate(0deg);
+
+}
+
+
+/* =========================================================
+   TITLE OVERLAY
+========================================================= */
+
+.gallery-overlay {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 3;
+
+    padding:
+        70px
+        18px
+        17px;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.52),
+            rgba(0,0,0,.22),
+            transparent
+        );
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    transition:
+        opacity .45s ease;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.gallery-title {
+
+    display: block;
+
+    color:
+        rgba(255,255,255,.90);
+
+    font-family:
+        var(--heading-font);
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    text-shadow:
+        0 2px 12px
+        rgba(0,0,0,.70);
+
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .gallery-item:hover {
+
+        z-index: 500 !important;
+
+        box-shadow:
+
+            0 32px 65px
+            rgba(35,30,21,.25),
+
+            0 10px 25px
+            rgba(35,30,21,.12),
+
+            inset 0 1px 0
+            rgba(255,255,255,.65);
+
+        transform:
+
+            translate3d(0,-9px,0)
+            rotate(var(--rotation))
+            scale(1.018);
+
+    }
+
+
+    .gallery-item:hover::before {
+
+        opacity: .95;
+
+    }
+
+
+    .gallery-item:hover img {
+
+        transform:
+            scale(1.025);
+
+    }
+
+}
+
+
+/* =========================================================
+   FRONT PHOTO
+========================================================= */
+
+.gallery-item.front-photo {
+
+    z-index: 1000 !important;
+
+    filter: none;
+
+}
+
+
+/* =========================================================
+   MOVED-BACK PHOTO
+========================================================= */
+
+.gallery-item.sent-back {
+
+    opacity: .76;
+
+    filter:
+        saturate(.88)
+        brightness(.98);
+
+    transition:
+        opacity .65s ease,
+        filter .65s ease,
+        transform 1.05s
+        cubic-bezier(.16,1,.3,1);
+
+}
+
+
+/* =========================================================
+   FLOATING LAYOUT BUTTON
+========================================================= */
+
+.gallery-layout-button {
+
+    position: fixed;
+
+    right: 28px;
+
+    bottom: 96px;
+
+    z-index: 900;
+
+    width: 56px;
+
+    height: 56px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.55);
+
+    border-radius: 50%;
+
+    background:
+        rgba(205,226,240,.62);
+
+    backdrop-filter:
+        blur(16px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(16px)
+        saturate(140%);
+
+    color: #173447;
+
+    font-size: 18px;
+
+    box-shadow:
+
+        0 14px 35px
+        rgba(70,100,120,.20),
+
+        inset 0 1px 0
+        rgba(255,255,255,.60);
+
+    cursor: pointer;
+
+    transition:
+
+        background .35s ease,
+
+        transform .45s
+        cubic-bezier(.16,1,.3,1);
+
+}
+
+
+.gallery-layout-button:hover {
+
+    background:
+        rgba(184,211,230,.88);
+
+    transform:
+        translateY(-4px)
+        scale(1.06);
+
+}
+
+
+/* =========================================================
+   SEE ALL GLASS LABEL
+========================================================= */
+
+.gallery-see-all {
+
+    position: fixed;
+
+    right: 18px;
+
+    bottom: 164px;
+
+    z-index: 899;
+
+    padding:
+        9px
+        14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.48);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.50);
+
+    backdrop-filter:
+        blur(16px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(16px)
+        saturate(140%);
+
+    color:
+        rgba(31,42,37,.72);
+
+    font-family:
+        var(--main-font);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: .02em;
+
+    white-space: nowrap;
+
+    box-shadow:
+
+        0 10px 28px
+        rgba(0,0,0,.12),
+
+        inset 0 1px 0
+        rgba(255,255,255,.55);
+
+    pointer-events: none;
+
+}
+
+
+.gallery-see-all span {
+
+    margin-left: 4px;
+
+    color:
+        var(--green);
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   ALIGNED TILE VIEW
+========================================================= */
+
+.gallery-grid.tile-view {
+
+    height: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    align-items: stretch;
+
+}
+
+
+/* =========================================================
+   TILE VIEW PHOTO
+========================================================= */
+
+.gallery-grid.tile-view .gallery-item {
+
+    position: relative;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0;
+
+    left: auto !important;
+
+    right: auto !important;
+
+    top: auto !important;
+
+    margin: 0 !important;
+
+    display: block;
+
+    aspect-ratio: 1 / 1;
+
+    transform:
+        rotate(0deg)
+        scale(.96);
+
+    border:
+        4px solid
+        rgba(255,255,255,.88);
+
+    border-radius: 14px;
+
+    opacity: 0;
+
+}
+
+
+.gallery-grid.tile-view .gallery-item.visible {
+
+    opacity: 1;
+
+    transform:
+        rotate(0deg)
+        scale(1);
+
+}
+
+
+.gallery-grid.tile-view .gallery-item.front-photo {
+
+    z-index: 10 !important;
+
+}
+
+
+.gallery-grid.tile-view .gallery-item.sent-back {
+
+    opacity: 1;
+
+    filter: none;
+
+}
+
+
+/* =========================================================
+   TILE VIEW IMAGE
+========================================================= */
+
+.gallery-grid.tile-view .gallery-item img {
+
+    object-fit: cover;
+
+    transform:
+        scale(1.01);
+
+}
+
+
+.gallery-grid.tile-view .gallery-item.loaded img {
+
+    transform:
+        scale(1);
+
+}
+
+
+/* =========================================================
+   TILE VIEW OVERLAY
+========================================================= */
+
+.gallery-grid.tile-view .gallery-overlay {
+
+    border-radius:
+        0
+        0
+        10px
+        10px;
+
+}
+
+
+/* =========================================================
+   TILE VIEW HOVER
+========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .gallery-grid.tile-view .gallery-item:hover {
+
+        transform:
+            translateY(-5px)
+            rotate(0deg)
+            scale(1.015);
+
+    }
+
+
+    .gallery-grid.tile-view .gallery-item:hover img {
+
+        transform:
+            scale(1.025);
+
+    }
+
+}
+
+
+/* =========================================================
+   FLOATING RESTORE BUTTON
+========================================================= */
+
+.gallery-restore-button {
+
+    position: fixed;
+
+    right: 28px;
+
+    bottom: 28px;
+
+    z-index: 900;
+
+    width: 56px;
+
+    height: 56px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.55);
+
+    border-radius: 50%;
+
+    background:
+        rgba(205,226,240,.62);
+
+    backdrop-filter:
+        blur(16px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(16px)
+        saturate(140%);
+
+    color: #173447;
+
+    box-shadow:
+
+        0 14px 35px
+        rgba(70,100,120,.20),
+
+        inset 0 1px 0
+        rgba(255,255,255,.60);
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px)
+        scale(.82);
+
+    pointer-events: none;
+
+    transition:
+
+        opacity .55s ease,
+
+        transform .65s
+        cubic-bezier(.16,1,.3,1),
+
+        background .35s ease;
+
+}
+
+
+.gallery-restore-button.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events: auto;
+
+}
+
+
+.gallery-restore-button:hover {
+
+    background:
+        rgba(184,211,230,.88);
+
+    transform:
+        translateY(-4px)
+        scale(1.06);
+
+}
+
+
+.gallery-restore-button i {
+
+    font-size: 18px;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px;
+
+    background:
+        rgba(10,18,15,.90);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+
+        opacity .55s ease,
+
+        visibility .55s ease;
+
+}
+
+
+.lightbox.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX CONTENT
+========================================================= */
+
+.lightbox-content {
+
+    position: relative;
+
+    max-width: 90vw;
+
+    max-height: 88vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    animation:
+        lightboxEnter .7s
+        cubic-bezier(.16,1,.3,1);
+
+}
+
+
+@keyframes lightboxEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.94)
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   LIGHTBOX IMAGE
+========================================================= */
+
+.lightbox-image {
+
+    display: block;
+
+    max-width: 90vw;
+
+    max-height: 82vh;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(0,0,0,.45),
+
+        0 0 0 1px
+        rgba(255,255,255,.05);
+
+}
+
+
+/* =========================================================
+   LIGHTBOX TITLE
+========================================================= */
+
+.lightbox-title {
+
+    margin-top: 15px;
+
+    color: var(--white);
+
+    font-family:
+        var(--heading-font);
+
+    font-size: 18px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX COUNTER
+========================================================= */
+
+.lightbox-counter {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 22px;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX BUTTONS
+========================================================= */
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 50px;
+
+    height: 50px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.30);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.10);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    color: var(--white);
+
+    cursor: pointer;
+
+    box-shadow:
+
+        inset 0 1px 0
+        rgba(255,255,255,.20),
+
+        0 8px 25px
+        rgba(0,0,0,.18);
+
+    transition:
+
+        background .35s ease,
+
+        transform .45s
+        cubic-bezier(.16,1,.3,1);
+
+}
+
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+
+    background:
+        rgba(255,255,255,.20);
+
+}
+
+
+.lightbox-close {
+
+    top: 25px;
+
+    right: 25px;
+
+}
+
+
+.lightbox-prev {
+
+    left: 25px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+}
+
+
+.lightbox-next {
+
+    right: 25px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+}
+
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+}
+
+
+.lightbox-close:hover {
+
+    transform:
+        scale(1.08)
+        rotate(3deg);
+
+}
+
+/* =====================================================
+   FOOTER
+   GALLERY PAGE — EXACTLY 50PX
+===================================================== */
+
+.footer {
+
+    width: 100%;
+
+    height: 50px;
+
+    min-height: 50px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    background:
+        #dceff3;
+
+    color:
+        #244d5a;
+
+    border-top:
+        1px solid
+        rgba(36, 77, 90, .18);
+}
+
+
+.footer-bottom {
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    text-align: center;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    letter-spacing: .4px;
+
+    line-height: 1;
+}
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp-float {
+
+    position: fixed;
+
+    right: 24px;
+
+    bottom: 24px;
+
+    z-index: 950;
+
+    width: 54px;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #25d366;
+
+    color: var(--white);
+
+    text-decoration: none;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.20);
+
+    font-size: 26px;
+
+    transition:
+        transform .45s
+        cubic-bezier(.16,1,.3,1);
+
+}
+
+
+.whatsapp-float:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.05);
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    #site-header {
+
+        height: 72px;
+
+        padding:
+            0 25px;
+
+    }
+
+
+    #menu {
+
+        gap: 20px;
+
+    }
+
+
+    #menu a {
+
+        font-size: 12px;
+
+    }
+
+
+    .gallery-section {
+
+        padding:
+            50px
+            3vw
+            100px;
+
+    }
+
+
+    .gallery-grid {
+
+        height: 790px;
+
+    }
+
+
+    .gallery-item:nth-child(1) {
+
+        width: 38%;
+
+        height: 330px;
+
+        left: 2%;
+
+        top: 25px;
+
+    }
+
+
+    .gallery-item:nth-child(2) {
+
+        width: 36%;
+
+        height: 280px;
+
+        left: 31%;
+
+        top: 5px;
+
+    }
+
+
+    .gallery-item:nth-child(3) {
+
+        width: 37%;
+
+        height: 330px;
+
+        right: 2%;
+
+        top: 30px;
+
+    }
+
+
+    .gallery-item:nth-child(4) {
+
+        width: 34%;
+
+        height: 275px;
+
+        left: 7%;
+
+        top: 285px;
+
+    }
+
+
+    .gallery-item:nth-child(5) {
+
+        width: 38%;
+
+        height: 320px;
+
+        left: 32%;
+
+        top: 270px;
+
+    }
+
+
+    .gallery-item:nth-child(6) {
+
+        width: 34%;
+
+        height: 275px;
+
+        right: 5%;
+
+        top: 300px;
+
+    }
+
+
+    .gallery-item:nth-child(7) {
+
+        width: 31%;
+
+        height: 230px;
+
+        left: 3%;
+
+        top: 545px;
+
+    }
+
+
+    .gallery-item:nth-child(8) {
+
+        width: 35%;
+
+        height: 225px;
+
+        left: 32%;
+
+        top: 570px;
+
+    }
+
+
+    /* TILE VIEW — TABLET */
+
+    .gallery-grid.tile-view {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 15px;
+
+        height: auto;
+
+    }
+
+
+    .gallery-grid.tile-view .gallery-item {
+
+        aspect-ratio: 1 / 1;
+
+    }
+
+
+    .gallery-layout-button {
+
+        right: 22px;
+
+        bottom: 96px;
+
+    }
+
+
+    .gallery-see-all {
+
+        right: 22px;
+
+        bottom: 164px;
+
+    }
+
+
+    .gallery-restore-button {
+
+        right: 22px;
+
+        bottom: 28px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    #site-header {
+
+        height: 64px;
+
+        padding:
+            0 16px;
+
+    }
+
+
+    .logo img {
+
+        max-height: 40px;
+
+    }
+
+
+    .header-icons {
+
+        display: block;
+
+    }
+
+
+    #menu {
+
+        position: absolute;
+
+        top: 64px;
+
+        left: 12px;
+
+        right: 12px;
+
+        transform: none;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 8px;
+
+        background:
+            rgba(190,216,233,.90);
+
+        backdrop-filter:
+            blur(18px)
+            saturate(130%);
+
+        -webkit-backdrop-filter:
+            blur(18px)
+            saturate(130%);
+
+        border:
+            1px solid
+            rgba(255,255,255,.50);
+
+        border-radius: 14px;
+
+        box-shadow:
+            0 18px 40px
+            rgba(70,100,120,.20);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transform:
+            translateY(-8px);
+
+        transition:
+
+            opacity .35s ease,
+
+            visibility .35s ease,
+
+            transform .5s
+            cubic-bezier(.16,1,.3,1);
+
+    }
+
+
+    #menu.show {
+
+        opacity: 1;
+
+        visibility: visible;
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    #menu a {
+
+        padding:
+            14px 15px;
+
+        font-size: 13px;
+
+        color: #173447;
+
+    }
+
+
+    #menu a::after {
+
+        display: none;
+
+    }
+
+
+    .gallery-intro {
+
+        padding:
+            115px
+            22px
+            42px;
+
+    }
+
+
+    .gallery-intro h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .gallery-intro p {
+
+        font-size: 14px;
+
+    }
+
+
+    .gallery-section {
+
+        padding:
+            30px
+            10px
+            80px;
+
+    }
+
+
+    .gallery-grid {
+
+        height: 1120px;
+
+    }
+
+
+    .gallery-item:nth-child(1) {
+
+        width: 72%;
+
+        height: 255px;
+
+        left: 1%;
+
+        top: 10px;
+
+    }
+
+
+    .gallery-item:nth-child(2) {
+
+        width: 68%;
+
+        height: 220px;
+
+        left: 27%;
+
+        top: 145px;
+
+    }
+
+
+    .gallery-item:nth-child(3) {
+
+        width: 70%;
+
+        height: 255px;
+
+        right: 1%;
+
+        top: 315px;
+
+    }
+
+
+    .gallery-item:nth-child(4) {
+
+        width: 58%;
+
+        height: 215px;
+
+        left: 1%;
+
+        top: 500px;
+
+    }
+
+
+    .gallery-item:nth-child(5) {
+
+        width: 70%;
+
+        height: 250px;
+
+        left: 27%;
+
+        top: 600px;
+
+    }
+
+
+    .gallery-item:nth-child(6) {
+
+        width: 60%;
+
+        height: 210px;
+
+        right: 1%;
+
+        top: 785px;
+
+    }
+
+
+    .gallery-item:nth-child(7) {
+
+        width: 55%;
+
+        height: 195px;
+
+        left: 3%;
+
+        top: 910px;
+
+    }
+
+
+    .gallery-item:nth-child(8) {
+
+        width: 62%;
+
+        height: 200px;
+
+        left: 30%;
+
+        top: 980px;
+
+    }
+
+
+    .gallery-title {
+
+        font-size: 14px;
+
+    }
+
+
+    .gallery-overlay {
+
+        opacity: 1;
+
+    }
+
+
+    /* TILE VIEW — MOBILE */
+
+    .gallery-grid.tile-view {
+
+        height: auto;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+    }
+
+
+    .gallery-grid.tile-view .gallery-item {
+
+        width: 100% !important;
+
+        height: auto !important;
+
+        aspect-ratio: 1 / 1;
+
+        border:
+            3px solid
+            rgba(255,255,255,.88);
+
+        border-radius: 10px;
+
+    }
+
+
+    .gallery-grid.tile-view .gallery-title {
+
+        font-size: 13px;
+
+    }
+
+
+    .gallery-grid.tile-view .gallery-overlay {
+
+        padding:
+            45px
+            12px
+            11px;
+
+    }
+
+
+    /* =====================================================
+       FLOATING BUTTONS — MOBILE
+       WhatsApp stays at bottom-right.
+       Picture/restore button moves above it.
+    ===================================================== */
+
+    .gallery-layout-button {
+
+        right: 18px;
+
+        bottom: 142px;
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 16px;
+
+    }
+
+
+    .gallery-see-all {
+
+        right: 12px;
+
+        bottom: 202px;
+
+        padding:
+            8px
+            11px;
+
+        border-radius: 12px;
+
+        font-size: 11px;
+
+    }
+
+
+    .gallery-restore-button {
+
+        right: 18px;
+
+        bottom: 78px;
+
+        width: 50px;
+
+        height: 50px;
+
+    }
+
+
+    .whatsapp-float {
+
+        right: 18px;
+
+        bottom: 18px;
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 23px;
+
+    }
+
+
+    .footer-content {
+
+        flex-direction: column;
+
+        gap: 35px;
+
+    }
+
+
+    .footer-links {
+
+        max-width: none;
+
+    }
+
+
+    .lightbox {
+
+        padding:
+            20px;
+
+    }
+
+
+    .lightbox-image {
+
+        max-width: 94vw;
+
+        max-height: 78vh;
+
+    }
+
+
+    .lightbox-prev,
+    .lightbox-next {
+
+        width: 44px;
+
+        height: 44px;
+
+    }
+
+
+    .lightbox-prev {
+
+        left: 10px;
+
+    }
+
+
+    .lightbox-next {
+
+        right: 10px;
+
+    }
+
+
+    .lightbox-close {
+
+        top: 12px;
+
+        right: 12px;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        transition-duration: .01ms !important;
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+    }
+
+}

@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | Szepred</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f4f0e6;
+    color: #26352d;
+    font-family: "Nunito", sans-serif;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 1000;
+
+    background: rgba(20, 45, 33, 0.72);
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    transition:
+        background .35s ease,
+        box-shadow .35s ease;
+}
+
+header.scrolled {
+
+    background:
+        rgba(15, 38, 28, 0.94);
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.16);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.logo img {
+
+    width: auto;
+
+    height: 40px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   DESKTOP MENU
+========================================================= */
+
+#menu {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 32px;
+
+    margin: 0;
+
+    z-index: 1;
+}
+
+#menu a {
+
+    position: relative;
+
+    padding: 0;
+
+    color:
+        rgba(255,255,255,.88);
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .6px;
+
+    white-space: nowrap;
+
+    border-radius: 0;
+
+    transition:
+        color .25s ease,
+        background .25s ease,
+        transform .25s ease;
+}
+
+#menu a:hover {
+
+    color: #fff;
+
+    background:
+        transparent;
+
+    transform:
+        translateY(-1px);
+}
+
+#menu a.active {
+
+    color: #fff;
+
+    background:
+        transparent;
+}
+
+
+/* =========================================================
+   MOBILE ICONS
+========================================================= */
+
+.header-icons {
+
+    display: none;
+
+    align-items: center;
+
+    gap: 18px;
+
+    color: #fff;
+
+    font-size: 20px;
+}
+
+.header-icons i {
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100vh;
+
+    min-height: 650px;
+
+    overflow: hidden;
+
+    background: #152b20;
+}
+
+
+/* HERO IMAGE */
+
+.hero-image {
+
+    position: absolute;
+
+    inset: -4%;
+
+    width: 108%;
+
+    height: 108%;
+
+    object-fit: cover;
+
+    transform:
+        scale(1.04);
+
+    transition:
+        transform 1.4s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+
+/* DARK GRADIENT */
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.40) 0%,
+            rgba(0,0,0,.05) 38%,
+            rgba(0,0,0,.68) 100%
+        );
+}
+
+
+/* HERO CONTENT */
+
+.hero-content {
+
+    position: absolute;
+
+    left: 8%;
+
+    bottom: 17%;
+
+    z-index: 2;
+
+    max-width: 900px;
+
+    color: #fff;
+
+    animation:
+        heroText .9s
+        .2s
+        both
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.hero-kicker {
+
+    margin-bottom: 22px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color:
+        rgba(255,255,255,.78);
+}
+
+.hero h1 {
+
+    font-family: "Lora", serif;
+
+    font-size:
+        clamp(65px, 10vw, 145px);
+
+    font-weight: 400;
+
+    line-height: .86;
+
+    letter-spacing: -5px;
+}
+
+.hero h1 span {
+
+    display: block;
+
+    color: #dfc582;
+
+    font-style: italic;
+}
+
+.hero-subtitle {
+
+    margin-top: 30px;
+
+    font-size: 18px;
+
+    font-weight: 300;
+
+    letter-spacing: .5px;
+}
+
+
+/* HERO SCROLL */
+
+.scroll-indicator {
+
+    position: absolute;
+
+    right: 7%;
+
+    bottom: 8%;
+
+    z-index: 3;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color:
+        rgba(255,255,255,.70);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.scroll-indicator span:last-child {
+
+    width: 1px;
+
+    height: 55px;
+
+    background:
+        rgba(255,255,255,.55);
+
+    animation:
+        scrollLine 1.8s
+        infinite;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+
+    padding:
+        150px 8%;
+
+    background:
+        #f4f0e6;
+}
+
+.intro-inner {
+
+    max-width: 1250px;
+
+    margin: auto;
+}
+
+.label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 45px;
+
+    color: #a88445;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+}
+
+.label::before {
+
+    content: "";
+
+    width: 38px;
+
+    height: 1px;
+
+    background: #a88445;
+}
+
+.intro-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.25fr
+        .75fr;
+
+    gap: 100px;
+
+    align-items: start;
+}
+
+.intro h2 {
+
+    max-width: 800px;
+
+    font-family: "Lora", serif;
+
+    font-size:
+        clamp(42px, 5.8vw, 78px);
+
+    font-weight: 400;
+
+    line-height: 1.03;
+
+    letter-spacing: -2px;
+}
+
+.intro h2 em {
+
+    color: #a88445;
+
+    font-style: italic;
+}
+
+.intro-text {
+
+    padding-top: 8px;
+}
+
+.intro-text p {
+
+    margin-bottom: 25px;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    color: #70756f;
+}
+
+
+/* =========================================================
+   IMAGE SECTION
+========================================================= */
+
+.image-section {
+
+    position: relative;
+
+    height: 780px;
+
+    margin: 0 5%;
+
+    overflow: hidden;
+
+    border-radius: 2px;
+}
+
+.image-section img {
+
+    position: absolute;
+
+    inset: -5%;
+
+    width: 110%;
+
+    height: 110%;
+
+    object-fit: cover;
+
+    transform:
+        scale(1.05);
+}
+
+.image-section::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.60),
+            rgba(0,0,0,.05) 70%
+        );
+}
+
+
+/* =========================================================
+   FLOATING CARD
+========================================================= */
+
+.story-card {
+
+    position: absolute;
+
+    left: 7%;
+
+    bottom: 9%;
+
+    z-index: 2;
+
+    width: 360px;
+
+    padding: 38px;
+
+    color: #fff;
+
+    background:
+        rgba(20,43,31,.78);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.22);
+}
+
+.story-number {
+
+    display: block;
+
+    margin-bottom: 45px;
+
+    color: #dfc582;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.story-card h3 {
+
+    margin-bottom: 16px;
+
+    font-family: "Lora", serif;
+
+    font-size: 42px;
+
+    font-weight: 400;
+}
+
+.story-card p {
+
+    color:
+        rgba(255,255,255,.70);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   PHILOSOPHY
+========================================================= */
+
+.philosophy {
+
+    padding:
+        170px 8%;
+
+    background:
+        #10281d;
+
+    color: #fff;
+}
+
+.philosophy-inner {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        80px 1fr;
+
+    gap: 70px;
+}
+
+.philosophy-number {
+
+    color: #dfc582;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+.philosophy h2 {
+
+    max-width: 850px;
+
+    margin-bottom: 35px;
+
+    font-family: "Lora", serif;
+
+    font-size:
+        clamp(48px, 7vw, 92px);
+
+    font-weight: 400;
+
+    line-height: .98;
+
+    letter-spacing: -3px;
+}
+
+.philosophy p {
+
+    max-width: 560px;
+
+    color:
+        rgba(255,255,255,.63);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   VALUES
+========================================================= */
+
+.values {
+
+    padding:
+        145px 7%;
+
+    background:
+        #e9e2d4;
+}
+
+.values-heading {
+
+    max-width: 800px;
+
+    margin:
+        0 auto 75px;
+
+    text-align: center;
+}
+
+.values-heading .label {
+
+    justify-content: center;
+}
+
+.values-heading h2 {
+
+    font-family: "Lora", serif;
+
+    font-size:
+        clamp(44px, 6vw, 75px);
+
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+.values-grid {
+
+    max-width: 1300px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.value {
+
+    min-height: 320px;
+
+    padding: 32px;
+
+    background:
+        rgba(255,255,255,.48);
+
+    border:
+        1px solid
+        rgba(20,50,35,.07);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+.value:hover {
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 25px 45px
+        rgba(20,50,35,.10);
+}
+
+.value-number {
+
+    display: block;
+
+    margin-bottom: 55px;
+
+    color: #a88445;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.value i {
+
+    margin-bottom: 25px;
+
+    color: #173c2a;
+
+    font-size: 25px;
+}
+
+.value h3 {
+
+    margin-bottom: 12px;
+
+    font-family: "Lora", serif;
+
+    font-size: 28px;
+
+    font-weight: 500;
+}
+
+.value p {
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FINAL HERO
+========================================================= */
+
+.final {
+
+    position: relative;
+
+    height: 720px;
+
+    overflow: hidden;
+}
+
+.final img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.final::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7,28,19,.76),
+            rgba(7,28,19,.18),
+            rgba(7,28,19,.45)
+        );
+}
+
+.final-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    height: 100%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 0 8%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    color: #fff;
+}
+
+.final-kicker {
+
+    margin-bottom: 25px;
+
+    color: #dfc582;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+.final h2 {
+
+    max-width: 800px;
+
+    margin-bottom: 42px;
+
+    font-family: "Lora", serif;
+
+    font-size:
+        clamp(55px, 8vw, 110px);
+
+    font-weight: 400;
+
+    line-height: .91;
+
+    letter-spacing: -4px;
+}
+
+.final-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding:
+        16px 25px;
+
+    border-radius: 50px;
+
+    background: #fff;
+
+    color: #173c2a;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+
+.final-button:hover {
+
+    transform:
+        translateX(6px);
+
+    background: #dfc582;
+}
+
+
+/* =====================================================
+   11. FOOTER
+   ABOUT PAGE — EXACTLY 50PX
+===================================================== */
+
+.footer {
+
+    width: 100%;
+
+    height: 50px;
+
+    min-height: 50px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #173c2a 0%,
+            #10281d 100%
+        );
+
+    border-top:
+        1px solid
+        rgba(223, 197, 130, 0.22);
+
+    box-shadow:
+        0 -8px 25px
+        rgba(20, 50, 35, 0.10);
+
+    box-sizing: border-box;
+}
+
+
+.footer-bottom {
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    text-align: center;
+
+    color:
+        rgba(255,255,255,0.68);
+
+    font-family:
+        "Nunito",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    letter-spacing: .4px;
+
+    line-height: 1;
+}
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp {
+
+    position: fixed;
+
+    right: 24px;
+
+    bottom: 24px;
+
+    z-index: 2000;
+
+    width: 54px;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #25d366;
+
+    color: #fff;
+
+    font-size: 26px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.20);
+
+    transition:
+        transform .3s ease;
+}
+
+.whatsapp:hover {
+
+    transform:
+        scale(1.08);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes heroText {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes scrollLine {
+
+    0%,
+    100% {
+
+        opacity: .3;
+
+        transform:
+            scaleY(.5);
+
+        transform-origin: top;
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scaleY(1);
+
+        transform-origin: top;
+    }
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    header {
+
+        height: 70px;
+
+        padding:
+            0 22px;
+    }
+
+
+    .header-icons {
+
+        display: flex;
+    }
+
+
+    /* =====================================================
+       MOBILE / TABLET POPUP MENU
+
+       CENTERED LIKE GALLERY / CONTACT
+       ABOUT US DARK GREEN COLOURS RETAINED
+    ===================================================== */
+
+    #menu {
+
+        position: absolute;
+
+        top:
+            calc(100% + 10px);
+
+        left: 50%;
+
+        right: auto;
+
+        width:
+            calc(100% - 30px);
+
+        max-width: none;
+
+        height: auto;
+
+        transform:
+            translateX(-50%);
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        padding: 10px;
+
+        margin: 0;
+
+        box-sizing: border-box;
+
+        background:
+            rgba(20,48,35,.97);
+
+        border:
+            1px solid
+            rgba(255,255,255,.12);
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 20px 50px
+            rgba(0,0,0,.25);
+
+        z-index: 1001;
+    }
+
+
+    #menu.show {
+
+        display: flex;
+    }
+
+
+    #menu a {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding:
+            13px 12px;
+
+        margin: 0;
+
+        text-align: center;
+
+        color:
+            rgba(255,255,255,.88);
+
+        border-radius: 10px;
+
+        transform: none;
+    }
+
+
+    #menu a:hover {
+
+        color:
+            #fff;
+
+        background:
+            rgba(255,255,255,.06);
+
+        transform: none;
+    }
+
+
+    #menu a.active {
+
+        color:
+            #fff;
+
+        background:
+            transparent;
+
+        box-shadow: none;
+    }
+
+
+    .intro-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+
+    .values-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .footer-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    header {
+
+        height: 64px;
+
+        padding:
+            0 17px;
+    }
+
+
+    .logo img {
+
+        height: 35px;
+    }
+
+
+    /*
+       IMPORTANT:
+       Do NOT change the mobile menu top position here.
+       It remains calculated from the header height.
+    */
+
+
+    .hero {
+
+        min-height: 620px;
+    }
+
+    .hero-content {
+
+        left: 7%;
+
+        right: 7%;
+
+        bottom: 16%;
+    }
+
+    .hero h1 {
+
+        font-size:
+            clamp(58px, 17vw, 90px);
+
+        letter-spacing: -3px;
+    }
+
+    .hero-subtitle {
+
+        font-size: 16px;
+    }
+
+    .scroll-indicator {
+
+        right: 7%;
+
+        bottom: 7%;
+    }
+
+    .intro {
+
+        padding:
+            100px 7%;
+    }
+
+    .intro h2 {
+
+        font-size:
+            clamp(40px, 12vw, 60px);
+
+        letter-spacing: -1.5px;
+    }
+
+    .intro-text p {
+
+        font-size: 15px;
+    }
+
+    .image-section {
+
+        height: 600px;
+
+        margin: 0;
+    }
+
+    .story-card {
+
+        left: 6%;
+
+        right: 6%;
+
+        bottom: 6%;
+
+        width: auto;
+
+        padding: 30px;
+    }
+
+    .story-card h3 {
+
+        font-size: 36px;
+    }
+
+    .philosophy {
+
+        padding:
+            110px 8%;
+    }
+
+    .philosophy-inner {
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .philosophy h2 {
+
+        font-size:
+            clamp(44px, 13vw, 65px);
+
+        letter-spacing: -2px;
+    }
+
+    .values {
+
+        padding:
+            100px 6%;
+    }
+
+    .values-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .value {
+
+        min-height: 270px;
+    }
+
+    .final {
+
+        height: 650px;
+    }
+
+    .final-content {
+
+        padding:
+            0 8%;
+    }
+
+    .final h2 {
+
+        font-size:
+            clamp(52px, 15vw, 78px);
+
+        letter-spacing: -2px;
+    }
+
+    .footer-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    footer {
+
+        padding:
+            60px 8% 25px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header id="site-header">
+
+    <div class="logo">
+
+        <a href="index.html">
+
+            <img src="logo.png"
+                 alt="Szepred">
+
+        </a>
+
+    </div>
+
+
+    <nav id="menu">
+
+        <a href="index.html">
+            HOME
+        </a>
+
+        <a href="experiences.html">
+            EXPERIENCES
+        </a>
+
+        <a href="packages.html">
+            PACKAGES
+        </a>
+
+        <a href="gallery.html">
+            GALLERY
+        </a>
+
+        <a href="about.html"
+           class="active">
+            ABOUT US
+        </a>
+
+        <a href="contact.html">
+            CONTACT
+        </a>
+
+    </nav>
+
+
+    <div class="header-icons">
+
+        <i class="fas fa-bars"
+           id="menu-btn">
+        </i>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero"
+         id="top">
+
+    <img class="hero-image"
+         src="img/about.jpg"
+         alt="Szepred travel">
+
+    <div class="hero-content">
+
+        <div class="hero-kicker">
+            THE SZEPRED JOURNEY
+        </div>
+
+        <h1>
+            Travel
+            <span>Beyond.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Discover places differently.
+        </p>
+
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        <span>SCROLL</span>
+
+        <span></span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+    <div class="intro-inner">
+
+        <div class="label">
+            WHO WE ARE
+        </div>
+
+
+        <div class="intro-grid">
+
+            <h2>
+                We believe the best
+                journeys are the ones
+                you <em>feel.</em>
+            </h2>
+
+
+            <div class="intro-text">
+
+                <p>
+                    Szepred was created around a simple idea:
+                    travel should be more than moving from one
+                    destination to another.
+                </p>
+
+                <p>
+                    It should be about discovering new places,
+                    meeting people, experiencing cultures and
+                    collecting moments that stay with you.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     IMAGE / STORY
+===================================================== -->
+
+<section class="image-section">
+
+    <img src="img/about-experience.jpg"
+         id="experience-image"
+         alt="Travel experience">
+
+
+    <div class="story-card">
+
+        <span class="story-number">
+            01
+        </span>
+
+        <h3>
+            Discover.
+        </h3>
+
+        <p>
+            Go beyond the obvious and experience
+            the character of every destination.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PHILOSOPHY
+===================================================== -->
+
+<section class="philosophy">
+
+    <div class="philosophy-inner">
+
+        <div class="philosophy-number">
+            02
+        </div>
+
+
+        <div>
+
+            <div class="label"
+                 style="color:#dfc582;">
+                OUR PHILOSOPHY
+            </div>
+
+            <h2>
+                Every destination
+                has a story.
+            </h2>
+
+            <p>
+                We want you to experience that story
+                rather than simply pass through it.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     VALUES
+===================================================== -->
+
+<section class="values">
+
+    <div class="values-heading">
+
+        <div class="label">
+            WHAT MATTERS TO US
+        </div>
+
+        <h2>
+            The way we travel matters.
+        </h2>
+
+    </div>
+
+
+    <div class="values-grid">
+
+
+        <article class="value">
+
+            <span class="value-number">
+                01
+            </span>
+
+            <i class="fas fa-compass"></i>
+
+            <h3>
+                Curiosity
+            </h3>
+
+            <p>
+                Always look beyond the familiar.
+            </p>
+
+        </article>
+
+
+        <article class="value">
+
+            <span class="value-number">
+                02
+            </span>
+
+            <i class="fas fa-earth-asia"></i>
+
+            <h3>
+                Authenticity
+            </h3>
+
+            <p>
+                Experience places as they really are.
+            </p>
+
+        </article>
+
+
+        <article class="value">
+
+            <span class="value-number">
+                03
+            </span>
+
+            <i class="fas fa-camera"></i>
+
+            <h3>
+                Memories
+            </h3>
+
+            <p>
+                Take home moments, not just photographs.
+            </p>
+
+        </article>
+
+
+        <article class="value">
+
+            <span class="value-number">
+                04
+            </span>
+
+            <i class="fas fa-heart"></i>
+
+            <h3>
+                Connection
+            </h3>
+
+            <p>
+                Travel brings people and cultures together.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final">
+
+    <img src="img/about-final.jpg"
+         alt="Travel destination">
+
+
+    <div class="final-content">
+
+        <div class="final-kicker">
+            YOUR NEXT STORY STARTS HERE
+        </div>
+
+        <h2>
+            Where will you
+            go next?
+        </h2>
+
+        <a href="experiences.html"
+           class="final-button">
+
+            Explore Tours
+
+            <i class="fas fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-bottom">
+        © 2026 Szepred. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     WHATSAPP
+===================================================== -->
+
+<a href="https://wa.me/48571993223"
+   class="whatsapp"
+   target="_blank"
+   aria-label="WhatsApp">
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>
+
+
+
+<script>
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuBtn =
+    document.getElementById("menu-btn");
+
+const menu =
+    document.getElementById("menu");
+
+
+if (menuBtn && menu) {
+
+    menuBtn.addEventListener("click", function(e) {
+
+        e.stopPropagation();
+
+        menu.classList.toggle("show");
+
+    });
+
+
+    document.addEventListener("click", function(e) {
+
+        if (
+            menu.classList.contains("show") &&
+            !menu.contains(e.target) &&
+            !menuBtn.contains(e.target)
+        ) {
+
+            menu.classList.remove("show");
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   HEADER ON SCROLL
+========================================================= */
+
+const header =
+    document.getElementById("site-header");
+
+
+window.addEventListener("scroll", function() {
+
+    if (window.scrollY > 50) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+}, {
+    passive: true
+});
+
+
+/* =========================================================
+   HERO MOUSE MOVEMENT
+========================================================= */
+
+const hero =
+    document.querySelector(".hero");
+
+const heroImage =
+    document.querySelector(".hero-image");
+
+
+if (hero && heroImage) {
+
+    hero.addEventListener("mousemove", function(e) {
+
+        if (window.innerWidth < 768) return;
+
+
+        const rect =
+            hero.getBoundingClientRect();
+
+
+        const x =
+            (e.clientX - rect.left) /
+            rect.width - .5;
+
+
+        const y =
+            (e.clientY - rect.top) /
+            rect.height - .5;
+
+
+        heroImage.style.transform =
+            `scale(1.04)
+             translate(${x * 12}px, ${y * 12}px)`;
+
+    });
+
+
+    hero.addEventListener("mouseleave", function() {
+
+        heroImage.style.transform =
+            "scale(1.04) translate(0,0)";
+
+    });
+
+}
+
+
+/* =========================================================
+   IMAGE PARALLAX
+========================================================= */
+
+const experienceImage =
+    document.getElementById("experience-image");
+
+
+const imageSection =
+    document.querySelector(".image-section");
+
+
+function updateParallax() {
+
+    if (!experienceImage || !imageSection) return;
+
+    if (window.innerWidth < 768) return;
+
+
+    const rect =
+        imageSection.getBoundingClientRect();
+
+
+    const screen =
+        window.innerHeight;
+
+
+    if (
+        rect.bottom > 0 &&
+        rect.top < screen
+    ) {
+
+        const progress =
+            (screen - rect.top) /
+            (screen + rect.height);
+
+
+        const movement =
+            (progress - .5) * 35;
+
+
+        experienceImage.style.transform =
+            `scale(1.05)
+             translateY(${movement}px)`;
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateParallax,
+    {
+        passive: true
+    }
+);
+
+
+/* =========================================================
+   SMALL 3D EFFECT ON VALUE CARDS
+========================================================= */
+
+const valueCards =
+    document.querySelectorAll(".value");
+
+
+valueCards.forEach(function(card) {
+
+    card.addEventListener("mousemove", function(e) {
+
+        if (window.innerWidth < 768) return;
+
+
+        const rect =
+            card.getBoundingClientRect();
+
+
+        const x =
+            e.clientX - rect.left;
+
+
+        const y =
+            e.clientY - rect.top;
+
+
+        const rotateY =
+            ((x / rect.width) - .5) * 4;
+
+
+        const rotateX =
+            ((y / rect.height) - .5) * -4;
+
+
+        card.style.transform =
+            `perspective(800px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)
+             translateY(-6px)`;
+
+    });
+
+
+    card.addEventListener("mouseleave", function() {
+
+        card.style.transform =
+            "perspective(800px) rotateX(0) rotateY(0) translateY(0)";
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>

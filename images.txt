@@ -1,0 +1,35 @@
+img/
+│
+├── destination1.jpg
+├── destination2.jpg
+├── destination3.jpg
+├── destination4.jpg
+├── destination5.jpg
+│
+├── tour1.jpg
+├── tour2.jpg
+├── tour3.jpg
+│
+├── confidence.jpg
+│
+├── category1.jpg
+├── category2.jpg
+├── category3.jpg
+├── category4.jpg
+├── category5.jpg
+│
+├── recommended1.jpg
+├── recommended2.jpg
+├── recommended3.jpg
+│
+├── video-banner.jpg
+│
+├── review1.jpg
+├── review2.jpg
+├── review3.jpg
+├── review4.jpg
+├── review5.jpg
+│
+├── article1.jpg
+├── article2.jpg
+└── article3.jpg

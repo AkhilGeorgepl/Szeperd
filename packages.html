@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>India Tour Packages | Szepred</title>
+
+    <meta
+        name="description"
+        content="Explore carefully designed India tour packages with Szepred."
+    >
+
+    <link
+        rel="stylesheet"
+        href="packages.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header id="site-header">
+
+
+    <div class="logo">
+
+        <a href="../index.html">
+
+            <img
+                src="../logo.png"
+                alt="Szepred Logo"
+            >
+
+        </a>
+
+    </div>
+
+
+    <nav id="menu">
+
+        <a href="../index.html">
+            HOME
+        </a>
+
+        <a href="../experiences.html">
+            EXPERIENCES
+        </a>
+
+        <a
+            href="packages.html"
+            class="active"
+        >
+            PACKAGES
+        </a>
+
+        <a href="../gallery.html">
+            GALLERY
+        </a>
+
+        <a href="../about.html">
+            ABOUT US
+        </a>
+
+        <a href="../contact.html">
+            CONTACT
+        </a>
+
+    </nav>
+
+
+    <div class="header-icons">
+
+        <i
+            class="fas fa-bars"
+            id="menu-btn"
+            aria-label="Open menu"
+            role="button"
+            tabindex="0"
+        ></i>
+
+    </div>
+
+
+</header>
+
+
+
+<main>
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="packages-hero">
+
+        <div class="packages-hero-content">
+
+            <span class="eyebrow">
+                DISCOVER INDIA
+            </span>
+
+            <h1>
+                Our Tour Packages
+            </h1>
+
+            <p>
+                Carefully designed journeys across India,
+                created to help you experience more than
+                just the famous places.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FILTERS
+         ===================================================== -->
+
+    <section class="packages-filters">
+
+
+        <div class="packages-filter">
+
+            <label for="category-filter">
+                Destination
+            </label>
+
+            <select id="category-filter">
+
+                <option value="all">
+                    All destinations
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="packages-filter">
+
+            <label for="duration-filter">
+                Duration
+            </label>
+
+            <select id="duration-filter">
+
+                <option value="all">
+                    All durations
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="reset-filters"
+        >
+            Reset
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PACKAGE GRID
+         ===================================================== -->
+
+    <section class="packages-section">
+
+
+        <div
+            id="packages-grid"
+            class="packages-grid"
+            aria-live="polite"
+        ></div>
+
+
+        <div
+            id="packages-empty"
+            class="packages-empty"
+            hidden
+        >
+
+            <h3>
+                No packages found
+            </h3>
+
+            <p>
+                Try changing your filters.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PACKAGE DETAIL
+         ===================================================== -->
+
+    <section
+        id="package-detail"
+        class="package-detail"
+        hidden
+    >
+
+
+        <button
+            type="button"
+            id="close-package-detail"
+            class="close-package-detail"
+            aria-label="Close package details"
+        >
+
+            <i class="fas fa-xmark"></i>
+
+        </button>
+
+
+        <div class="package-detail-inner">
+
+
+            <div class="package-detail-image">
+
+                <img
+                    id="detail-image"
+                    src=""
+                    alt=""
+                >
+
+            </div>
+
+
+            <div class="package-detail-content">
+
+
+                <span
+                    id="detail-category"
+                    class="eyebrow"
+                ></span>
+
+
+                <h2 id="detail-title"></h2>
+
+
+                <p
+                    id="detail-subtitle"
+                    class="package-detail-subtitle"
+                ></p>
+
+
+                <div class="package-detail-meta">
+
+
+                    <div>
+
+                        <i class="far fa-calendar"></i>
+
+                        <span id="detail-duration"></span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fas fa-location-dot"></i>
+
+                        <span id="detail-destinations"></span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fas fa-euro-sign"></i>
+
+                        <span id="detail-price"></span>
+
+                    </div>
+
+
+                </div>
+
+
+                <p
+                    id="detail-description"
+                    class="package-detail-description"
+                ></p>
+
+
+
+                <div class="detail-section">
+
+                    <h3>
+                        Highlights
+                    </h3>
+
+                    <ul
+                        id="detail-highlights"
+                        class="detail-list"
+                    ></ul>
+
+                </div>
+
+
+
+                <div class="detail-section">
+
+                    <h3>
+                        Itinerary
+                    </h3>
+
+                    <div
+                        id="detail-itinerary"
+                        class="detail-itinerary"
+                    ></div>
+
+                </div>
+
+
+
+                <div class="detail-columns">
+
+
+                    <div class="detail-section">
+
+                        <h3>
+                            Included
+                        </h3>
+
+                        <ul
+                            id="detail-included"
+                            class="detail-list"
+                        ></ul>
+
+                    </div>
+
+
+                    <div class="detail-section">
+
+                        <h3>
+                            Not Included
+                        </h3>
+
+                        <ul
+                            id="detail-not-included"
+                            class="detail-list"
+                        ></ul>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="package-detail-actions">
+
+                    <a
+                        href="../contact.html"
+                        class="package-enquiry-button"
+                    >
+                        Enquire About This Package
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-bottom">
+        © 2026 Szepred. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     WHATSAPP FLOATING BUTTON
+     ========================================================= -->
+
+<a
+    href="https://wa.me/48571993223"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat on WhatsApp"
+>
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>
+
+
+
+<script src="packages.js"></script>
+
+
+</body>
+
+</html>
