@@ -6,6 +6,7 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
 const lightboxTitle = document.getElementById("lightbox-title");
 const lightboxCounter = document.getElementById("lightbox-counter");
+
 const images = [];
 let currentIndex = 0;
 
@@ -15,8 +16,13 @@ if (menuButton && menu) {
     event.stopPropagation();
     menu.classList.toggle("show");
   });
+
   document.addEventListener("click", (event) => {
-    if (menu.classList.contains("show") && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+    if (
+      menu.classList.contains("show") &&
+      !menu.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
       menu.classList.remove("show");
     }
   });
@@ -24,78 +30,170 @@ if (menuButton && menu) {
 
 window.addEventListener("scroll", () => {
   const header = document.getElementById("site-header");
-  if (header) header.classList.toggle("scrolled", window.scrollY > 20);
+
+  if (header) {
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  }
 });
 
 function titleFor(filename) {
-  return filename.replace(/\.(jpg|jpeg|png|webp)$/i, "").replace(/[-_]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+  return filename
+    .replace(/\.(jpg|jpeg|png|webp)$/i, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function getImagePath(filename) {
+  return `gallery/${encodeURIComponent(filename)}`;
 }
 
 function renderGallery() {
+  if (!galleryGrid) return;
+
   galleryGrid.innerHTML = "";
+
   images.forEach((image, index) => {
     const item = document.createElement("article");
     item.className = "gallery-item visible";
+
     const title = titleFor(image);
-    item.innerHTML = `<img src="/gallery/${encodeURIComponent(image)}" alt="${title}" loading="${index < 6 ? "eager" : "lazy"}" /><div class="gallery-overlay"><span class="gallery-title">${title}</span></div>`;
+
+    item.innerHTML = `
+      <img
+        src="${getImagePath(image)}"
+        alt="${title}"
+        loading="${index < 6 ? "eager" : "lazy"}"
+      />
+      <div class="gallery-overlay">
+        <span class="gallery-title">${title}</span>
+      </div>
+    `;
+
     item.addEventListener("click", () => openLightbox(index));
+
     galleryGrid.appendChild(item);
   });
-  galleryStatus.classList.add("hidden");
+
+  if (galleryStatus) {
+    galleryStatus.classList.add("hidden");
+  }
 }
 
 function openLightbox(index) {
-  if (!images.length) return;
+  if (!images.length || !lightbox) return;
+
   currentIndex = index;
+
   updateLightbox();
+
   lightbox.classList.add("active");
   lightbox.setAttribute("aria-hidden", "false");
+
   document.body.classList.add("no-scroll");
 }
 
 function closeLightbox() {
+  if (!lightbox) return;
+
   lightbox.classList.remove("active");
   lightbox.setAttribute("aria-hidden", "true");
+
   document.body.classList.remove("no-scroll");
 }
 
 function updateLightbox() {
+  if (!images.length || !lightboxImage) return;
+
   const image = images[currentIndex];
   const title = titleFor(image);
-  lightboxImage.src = `/gallery/${encodeURIComponent(image)}`;
+
+  lightboxImage.src = getImagePath(image);
   lightboxImage.alt = title;
-  lightboxTitle.textContent = title;
-  lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+  if (lightboxTitle) {
+    lightboxTitle.textContent = title;
+  }
+
+  if (lightboxCounter) {
+    lightboxCounter.textContent =
+      `${currentIndex + 1} / ${images.length}`;
+  }
 }
 
 function moveLightbox(step) {
   if (!images.length) return;
-  currentIndex = (currentIndex + step + images.length) % images.length;
+
+  currentIndex =
+    (currentIndex + step + images.length) % images.length;
+
   updateLightbox();
 }
 
-document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
-document.getElementById("lightbox-prev").addEventListener("click", () => moveLightbox(-1));
-document.getElementById("lightbox-next").addEventListener("click", () => moveLightbox(1));
-lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
+const lightboxClose = document.getElementById("lightbox-close");
+const lightboxPrev = document.getElementById("lightbox-prev");
+const lightboxNext = document.getElementById("lightbox-next");
+
+if (lightboxClose) {
+  lightboxClose.addEventListener("click", closeLightbox);
+}
+
+if (lightboxPrev) {
+  lightboxPrev.addEventListener("click", () => moveLightbox(-1));
+}
+
+if (lightboxNext) {
+  lightboxNext.addEventListener("click", () => moveLightbox(1));
+}
+
+if (lightbox) {
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+}
+
 document.addEventListener("keydown", (event) => {
-  if (!lightbox.classList.contains("active")) return;
-  if (event.key === "Escape") closeLightbox();
-  if (event.key === "ArrowLeft") moveLightbox(-1);
-  if (event.key === "ArrowRight") moveLightbox(1);
+  if (!lightbox || !lightbox.classList.contains("active")) return;
+
+  if (event.key === "Escape") {
+    closeLightbox();
+  }
+
+  if (event.key === "ArrowLeft") {
+    moveLightbox(-1);
+  }
+
+  if (event.key === "ArrowRight") {
+    moveLightbox(1);
+  }
 });
 
-fetch("gallery-images.json", { cache: "no-store" })
+fetch("gallery-images.json", {
+  cache: "no-store"
+})
   .then((response) => {
-    if (!response.ok) throw new Error("Unable to load gallery-images.json");
+    if (!response.ok) {
+      throw new Error("Unable to load gallery-images.json");
+    }
+
     return response.json();
   })
   .then((fileNames) => {
-    if (!Array.isArray(fileNames) || !fileNames.length) throw new Error("No gallery images found");
+    if (!Array.isArray(fileNames) || !fileNames.length) {
+      throw new Error("No gallery images found");
+    }
+
     images.push(...fileNames);
+
     renderGallery();
   })
   .catch((error) => {
-    console.error(error);
-    galleryStatus.textContent = "Unable to load the gallery right now.";
+    console.error("Gallery error:", error);
+
+    if (galleryStatus) {
+      galleryStatus.textContent =
+        "Unable to load the gallery right now.";
+      galleryStatus.classList.remove("hidden");
+    }
   });
