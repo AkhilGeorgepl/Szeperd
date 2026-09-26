@@ -37,7 +37,7 @@ function renderGallery() {
     const item = document.createElement("article");
     item.className = "gallery-item visible";
     const title = titleFor(image);
-    item.innerHTML = `<img src="gallery/${encodeURIComponent(image)}" alt="${title}" loading="${index < 6 ? "eager" : "lazy"}" /><div class="gallery-overlay"><span class="gallery-title">${title}</span></div>`;
+    item.innerHTML = `<img src="/gallery/${encodeURIComponent(image)}" alt="${title}" loading="${index < 6 ? "eager" : "lazy"}" /><div class="gallery-overlay"><span class="gallery-title">${title}</span></div>`;
     item.addEventListener("click", () => openLightbox(index));
     galleryGrid.appendChild(item);
   });
@@ -62,7 +62,7 @@ function closeLightbox() {
 function updateLightbox() {
   const image = images[currentIndex];
   const title = titleFor(image);
-  lightboxImage.src = `gallery/${encodeURIComponent(image)}`;
+  lightboxImage.src = `/gallery/${encodeURIComponent(image)}`;
   lightboxImage.alt = title;
   lightboxTitle.textContent = title;
   lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
