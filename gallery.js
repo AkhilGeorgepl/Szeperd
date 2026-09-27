@@ -1,507 +1,883 @@
+const GALLERY_FOLDER = "gallery/";
+const GALLERY_LIST_URL = "gallery-list.php";
+
 const galleryGrid = document.getElementById("gallery-grid");
 const galleryStatus = document.getElementById("gallery-status");
 
-const menuButton = document.getElementById("menu-btn");
+const header = document.getElementById("site-header");
+const menuBtn = document.getElementById("menu-btn");
 const menu = document.getElementById("menu");
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
 const lightboxTitle = document.getElementById("lightbox-title");
-const lightboxCounter = document.getElementById("lightbox-counter");
-
 const lightboxClose = document.getElementById("lightbox-close");
 const lightboxPrev = document.getElementById("lightbox-prev");
 const lightboxNext = document.getElementById("lightbox-next");
+const lightboxCounter = document.getElementById("lightbox-counter");
 
-/* Gallery layout controls */
-const layoutButton = document.getElementById("gallery-layout-button");
-const seeAllLabel = document.getElementById("gallery-see-all");
-const restoreButton = document.getElementById("gallery-restore-button");
 
-const images = [];
-let currentIndex = 0;
+/* =========================================================
+   GALLERY BUTTONS
+   ========================================================= */
+
+const restoreButton = document.createElement("button");
+
+restoreButton.type = "button";
+
+restoreButton.className = "gallery-restore-button";
+
+restoreButton.setAttribute(
+    "aria-label",
+    "Bring previous photo back to front"
+);
+
+restoreButton.setAttribute(
+    "title",
+    "Bring previous photo back to front"
+);
+
+restoreButton.innerHTML =
+    '<i class="fas fa-rotate-left"></i>';
+
+document.body.appendChild(restoreButton);
+
+
+/* =========================================================
+   LAYOUT SWITCH BUTTON
+   ========================================================= */
+
+const layoutButton = document.createElement("button");
+
+layoutButton.type = "button";
+
+layoutButton.className = "gallery-layout-button";
+
+layoutButton.setAttribute(
+    "aria-label",
+    "Switch to square tile view"
+);
+
+layoutButton.setAttribute(
+    "title",
+    "Switch to square tile view"
+);
+
+layoutButton.innerHTML =
+    '<i class="fas fa-table-cells-large"></i>';
+
+document.body.appendChild(layoutButton);
+
+
+/* =========================================================
+   SEE ALL LABEL
+   ========================================================= */
+
+const seeAllLabel = document.createElement("div");
+
+seeAllLabel.className = "gallery-see-all";
+
+seeAllLabel.innerHTML =
+    'See all <span>Click here</span>';
+
+document.body.appendChild(seeAllLabel);
+
+
+/* =========================================================
+   GALLERY STATE
+   ========================================================= */
+
+let galleryImages = [];
+
+let currentImageIndex = 0;
+
+let frontPhotoIndex = 0;
+
+let sentBackPhotos = [];
 
 
 /* =========================================================
    MOBILE MENU
-========================================================= */
+   ========================================================= */
 
-if (menuButton && menu) {
-  menuButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+if (menuBtn && menu) {
 
-    const isOpen = menu.classList.toggle("show");
+    menuBtn.addEventListener("click", function(e) {
 
-    menuButton.setAttribute(
-      "aria-expanded",
-      isOpen ? "true" : "false"
-    );
-  });
+        e.preventDefault();
 
-  document.addEventListener("click", (event) => {
-    if (
-      menu.classList.contains("show") &&
-      !menu.contains(event.target) &&
-      !menuButton.contains(event.target)
-    ) {
-      menu.classList.remove("show");
-      menuButton.setAttribute("aria-expanded", "false");
-    }
-  });
+        e.stopPropagation();
+
+        menu.classList.toggle("show");
+
+    });
+
 }
 
 
-/* =========================================================
-   HEADER SCROLL EFFECT
-========================================================= */
+document.addEventListener("click", function(e) {
 
-window.addEventListener("scroll", () => {
-  const header = document.getElementById("site-header");
+    if (!menu || !menuBtn) return;
 
-  if (header) {
-    header.classList.toggle(
-      "scrolled",
-      window.scrollY > 20
-    );
-  }
+    if (
+        menu.classList.contains("show") &&
+        !menu.contains(e.target) &&
+        !menuBtn.contains(e.target)
+    ) {
+
+        menu.classList.remove("show");
+
+    }
+
 });
 
 
 /* =========================================================
-   IMAGE PATH
-========================================================= */
+   HEADER SCROLL
+   ========================================================= */
 
-function getImagePath(filename) {
-  return `gallery/${encodeURIComponent(filename)}`;
+window.addEventListener("scroll", function() {
+
+    if (!header) return;
+
+    if (window.scrollY > 20) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =========================================================
+   CREATE READABLE PHOTO TITLE
+   ========================================================= */
+
+function createReadableTitle(filename) {
+
+    return filename
+
+        .replace(/\.(jpg|jpeg)$/i, "")
+
+        .replace(/[-_]+/g, " ")
+
+        .replace(/\s+/g, " ")
+
+        .trim()
+
+        .replace(/\b\w/g, function(char) {
+
+            return char.toUpperCase();
+
+        });
+
 }
 
 
 /* =========================================================
-   IMAGE TITLE
-========================================================= */
+   CREATE GALLERY ITEM
+   ========================================================= */
 
-function titleFor(filename) {
-  return filename
-    .replace(/\.(jpg|jpeg|png|webp)$/i, "")
-    .replace(/[-_]+/g, " ")
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
+function createGalleryItem(imageData, index) {
+
+    const article = document.createElement("article");
+
+    article.className = "gallery-item";
+
+    article.dataset.index = index;
+
+    article.dataset.title = imageData.title;
 
 
-/* =========================================================
-   RENDER GALLERY
-========================================================= */
+    const image = document.createElement("img");
 
-function renderGallery() {
-  if (!galleryGrid) return;
+    image.src = imageData.url;
 
-  galleryGrid.innerHTML = "";
+    image.alt = imageData.title;
 
-  images.forEach((image, index) => {
-    const item = document.createElement("article");
+    image.loading = index < 6 ? "eager" : "lazy";
 
-    item.className = "gallery-item visible";
+    image.decoding = "async";
 
-    const title = titleFor(image);
 
-    const imageElement = document.createElement("img");
+    image.addEventListener("load", function() {
 
-    imageElement.src = getImagePath(image);
-    imageElement.alt = title;
+        article.classList.add("loaded");
 
-    imageElement.loading =
-      index < 6 ? "eager" : "lazy";
-
-    imageElement.addEventListener("load", () => {
-      item.classList.add("loaded");
     });
 
-    imageElement.addEventListener("error", () => {
-      console.error(
-        "Unable to load gallery image:",
-        image
-      );
-
-      item.classList.add("image-error");
-    });
 
     const overlay = document.createElement("div");
 
     overlay.className = "gallery-overlay";
 
-    const titleElement = document.createElement("span");
 
-    titleElement.className = "gallery-title";
-    titleElement.textContent = title;
+    const title = document.createElement("span");
 
-    overlay.appendChild(titleElement);
+    title.className = "gallery-title";
 
-    item.appendChild(imageElement);
-    item.appendChild(overlay);
+    title.textContent = imageData.title;
 
-    item.addEventListener("click", () => {
-      openLightbox(index);
+
+    overlay.appendChild(title);
+
+    article.appendChild(image);
+
+    article.appendChild(overlay);
+
+
+    /*
+
+       BOTH COLLAGE AND TILE MODE:
+
+       Clicking any photo opens the lightbox.
+
+    */
+
+    article.addEventListener("click", function() {
+
+        openLightbox(index);
+
     });
 
-    galleryGrid.appendChild(item);
-  });
 
-  if (galleryStatus) {
-    galleryStatus.classList.add("hidden");
-  }
+    return article;
+
 }
 
 
 /* =========================================================
-   GALLERY LAYOUT TOGGLE
-========================================================= */
+   UPDATE COLLAGE ORDER
+   ========================================================= */
 
-function updateLayoutButton() {
-  if (!layoutButton || !galleryGrid) return;
+function updateCollageOrder() {
 
-  const isAligned =
-    galleryGrid.classList.contains("tile-view");
+    const items =
+        galleryGrid.querySelectorAll(".gallery-item");
 
-  if (isAligned) {
 
-    /* Button remains visible */
+    items.forEach(function(item, index) {
 
-    layoutButton.style.opacity = "1";
-    layoutButton.style.pointerEvents = "auto";
+        item.classList.toggle(
+            "front-photo",
+            index === frontPhotoIndex
+        );
 
-    layoutButton.setAttribute(
-      "aria-label",
-      "Restore collage"
-    );
 
-    layoutButton.setAttribute(
-      "title",
-      "Restore collage"
-    );
+        item.classList.toggle(
+            "sent-back",
+            sentBackPhotos.includes(index)
+        );
 
-    layoutButton.innerHTML =
-      '<i class="fas fa-layer-group"></i>';
+    });
 
-    /* Change the message */
 
-    if (seeAllLabel) {
-      seeAllLabel.textContent = "Restore collage";
-      seeAllLabel.setAttribute(
-        "aria-hidden",
-        "false"
-      );
+    if (sentBackPhotos.length > 0) {
+
+        restoreButton.classList.add("visible");
+
+    } else {
+
+        restoreButton.classList.remove("visible");
+
     }
 
-    /* Show restore button */
-
-    if (restoreButton) {
-      restoreButton.classList.add("visible");
-      restoreButton.style.opacity = "1";
-      restoreButton.style.pointerEvents = "auto";
-    }
-
-  } else {
-
-    /* Button remains visible */
-
-    layoutButton.style.opacity = "1";
-    layoutButton.style.pointerEvents = "auto";
-
-    layoutButton.setAttribute(
-      "aria-label",
-      "Align pictures"
-    );
-
-    layoutButton.setAttribute(
-      "title",
-      "Align pictures"
-    );
-
-    layoutButton.innerHTML =
-      '<i class="fas fa-grip"></i>';
-
-    /* Change the message */
-
-    if (seeAllLabel) {
-      seeAllLabel.textContent = "Align pictures";
-      seeAllLabel.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-    }
-
-    /* Hide restore button */
-
-    if (restoreButton) {
-      restoreButton.classList.remove("visible");
-      restoreButton.style.opacity = "0";
-      restoreButton.style.pointerEvents = "none";
-    }
-  }
 }
 
 
 /* =========================================================
-   TOGGLE BETWEEN COLLAGE AND ALIGNED GRID
-========================================================= */
+   PHOTO CLICK — COLLAGE MODE
+   ========================================================= */
+
+/*
+
+   Kept in the file because the collage state system
+   still exists and may be used by the gallery layout.
+
+*/
+
+function handlePhotoClick(index) {
+
+    if (index === frontPhotoIndex) {
+
+        sendPhotoBack(index);
+
+        return;
+
+    }
+
+
+    frontPhotoIndex = index;
+
+
+    sentBackPhotos =
+        sentBackPhotos.filter(function(item) {
+
+            return item !== index;
+
+        });
+
+
+    updateCollageOrder();
+
+}
+
+
+/* =========================================================
+   SEND FRONT PHOTO BACK
+   ========================================================= */
+
+function sendPhotoBack(index) {
+
+    if (!sentBackPhotos.includes(index)) {
+
+        sentBackPhotos.push(index);
+
+    }
+
+
+    let nextIndex = null;
+
+
+    for (
+        let i = 0;
+        i < galleryImages.length;
+        i++
+    ) {
+
+        if (!sentBackPhotos.includes(i)) {
+
+            nextIndex = i;
+
+            break;
+
+        }
+
+    }
+
+
+    if (nextIndex === null) {
+
+        sentBackPhotos = [];
+
+        nextIndex =
+            (index + 1) % galleryImages.length;
+
+    }
+
+
+    frontPhotoIndex = nextIndex;
+
+
+    updateCollageOrder();
+
+}
+
+
+/* =========================================================
+   RESTORE PREVIOUS PHOTO
+   ========================================================= */
+
+function restorePreviousPhoto() {
+
+    if (sentBackPhotos.length === 0) {
+
+        return;
+
+    }
+
+
+    const previousIndex =
+        sentBackPhotos.pop();
+
+
+    frontPhotoIndex =
+        previousIndex;
+
+
+    updateCollageOrder();
+
+}
+
+
+restoreButton.addEventListener(
+    "click",
+    function(e) {
+
+        e.stopPropagation();
+
+        restorePreviousPhoto();
+
+    }
+);
+
+
+/* =========================================================
+   SWITCH BETWEEN COLLAGE / TILE VIEW
+   ========================================================= */
 
 function toggleGalleryLayout() {
-  if (!galleryGrid) return;
 
-  galleryGrid.classList.toggle("tile-view");
+    const tileView =
+        galleryGrid.classList.toggle("tile-view");
 
-  updateLayoutButton();
+
+    if (tileView) {
+
+        /* =========================================
+           TILE VIEW
+        ========================================= */
+
+        layoutButton.innerHTML =
+            '<i class="fas fa-images"></i>';
+
+
+        layoutButton.setAttribute(
+            "aria-label",
+            "Switch to collage view"
+        );
+
+
+        layoutButton.setAttribute(
+            "title",
+            "Switch to collage view"
+        );
+
+
+        restoreButton.classList.remove(
+            "visible"
+        );
+
+
+    } else {
+
+        /* =========================================
+           COLLAGE VIEW
+        ========================================= */
+
+        layoutButton.innerHTML =
+            '<i class="fas fa-table-cells-large"></i>';
+
+
+        layoutButton.setAttribute(
+            "aria-label",
+            "Switch to square tile view"
+        );
+
+
+        layoutButton.setAttribute(
+            "title",
+            "Switch to square tile view"
+        );
+
+
+        updateCollageOrder();
+
+    }
+
 }
 
 
+layoutButton.addEventListener(
+    "click",
+    function(e) {
+
+        e.stopPropagation();
+
+        toggleGalleryLayout();
+
+    }
+);
+
+
 /* =========================================================
-   RESTORE COLLAGE
-========================================================= */
+   LOAD GALLERY
+   ========================================================= */
 
-function restoreCollage() {
-  if (!galleryGrid) return;
+async function loadGallery() {
 
-  galleryGrid.classList.remove("tile-view");
+    try {
 
-  updateLayoutButton();
+        const response =
+            await fetch(
+                GALLERY_LIST_URL,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load gallery list."
+            );
+
+        }
+
+
+        const files =
+            await response.json();
+
+
+        if (
+            !Array.isArray(files) ||
+            files.length === 0
+        ) {
+
+            galleryStatus.textContent =
+                "No gallery images found.";
+
+            return;
+
+        }
+
+
+        galleryImages =
+            files.map(function(filename) {
+
+                return {
+
+                    filename: filename,
+
+                    title:
+                        createReadableTitle(filename),
+
+                    url:
+                        GALLERY_FOLDER +
+                        encodeURIComponent(filename)
+
+                };
+
+            });
+
+
+        galleryGrid.innerHTML = "";
+
+
+        galleryImages.forEach(
+            function(imageData, index) {
+
+                const item =
+                    createGalleryItem(
+                        imageData,
+                        index
+                    );
+
+
+                galleryGrid.appendChild(item);
+
+
+                requestAnimationFrame(
+                    function() {
+
+                        item.classList.add(
+                            "visible"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        galleryStatus.classList.add(
+            "hidden"
+        );
+
+
+        updateCollageOrder();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        galleryStatus.textContent =
+            "Unable to load the gallery right now.";
+
+    }
+
 }
-
-
-/* =========================================================
-   LAYOUT BUTTON
-========================================================= */
-
-if (layoutButton) {
-  layoutButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    toggleGalleryLayout();
-  });
-}
-
-
-/* =========================================================
-   RESTORE BUTTON
-========================================================= */
-
-if (restoreButton) {
-  restoreButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    restoreCollage();
-  });
-}
-
-
-/* =========================================================
-   INITIAL LAYOUT
-========================================================= */
-
-updateLayoutButton();
 
 
 /* =========================================================
    LIGHTBOX
-========================================================= */
+   ========================================================= */
 
 function openLightbox(index) {
-  if (!images.length || !lightbox) return;
 
-  currentIndex = index;
+    if (!galleryImages.length) {
 
-  updateLightbox();
+        return;
 
-  lightbox.classList.add("active");
+    }
 
-  lightbox.setAttribute(
-    "aria-hidden",
-    "false"
-  );
 
-  document.body.classList.add("no-scroll");
+    currentImageIndex = index;
+
+
+    updateLightboxImage();
+
+
+    lightbox.classList.add("active");
+
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.classList.add(
+        "no-scroll"
+    );
+
 }
 
 
 function closeLightbox() {
-  if (!lightbox) return;
 
-  lightbox.classList.remove("active");
+    lightbox.classList.remove(
+        "active"
+    );
 
-  lightbox.setAttribute(
-    "aria-hidden",
-    "true"
-  );
 
-  document.body.classList.remove("no-scroll");
+    lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.classList.remove(
+        "no-scroll"
+    );
+
 }
 
 
-function updateLightbox() {
-  if (!images.length || !lightboxImage) return;
+function updateLightboxImage() {
 
-  const image = images[currentIndex];
+    const imageData =
+        galleryImages[currentImageIndex];
 
-  const title = titleFor(image);
 
-  lightboxImage.src = getImagePath(image);
+    lightboxImage.src =
+        imageData.url;
 
-  lightboxImage.alt = title;
 
-  if (lightboxTitle) {
-    lightboxTitle.textContent = title;
-  }
+    lightboxImage.alt =
+        imageData.title;
 
-  if (lightboxCounter) {
+
+    lightboxTitle.textContent =
+        imageData.title;
+
+
     lightboxCounter.textContent =
-      `${currentIndex + 1} / ${images.length}`;
-  }
+        `${currentImageIndex + 1} / ${galleryImages.length}`;
+
 }
 
 
-function moveLightbox(step) {
-  if (!images.length) return;
+/* =========================================================
+   LIGHTBOX PREVIOUS
+   ========================================================= */
 
-  currentIndex =
-    (currentIndex + step + images.length) %
-    images.length;
+function showPreviousImage() {
 
-  updateLightbox();
+    if (!galleryImages.length) {
+
+        return;
+
+    }
+
+
+    currentImageIndex =
+        (
+            currentImageIndex -
+            1 +
+            galleryImages.length
+        ) %
+        galleryImages.length;
+
+
+    updateLightboxImage();
+
+}
+
+
+/* =========================================================
+   LIGHTBOX NEXT
+   ========================================================= */
+
+function showNextImage() {
+
+    if (!galleryImages.length) {
+
+        return;
+
+    }
+
+
+    currentImageIndex =
+        (
+            currentImageIndex +
+            1
+        ) %
+        galleryImages.length;
+
+
+    updateLightboxImage();
+
 }
 
 
 /* =========================================================
    LIGHTBOX BUTTONS
-========================================================= */
+   ========================================================= */
 
-if (lightboxClose) {
-  lightboxClose.addEventListener(
+lightboxClose.addEventListener(
     "click",
     closeLightbox
-  );
-}
+);
 
-if (lightboxPrev) {
-  lightboxPrev.addEventListener(
-    "click",
-    () => moveLightbox(-1)
-  );
-}
 
-if (lightboxNext) {
-  lightboxNext.addEventListener(
+lightboxPrev.addEventListener(
     "click",
-    () => moveLightbox(1)
-  );
-}
+    showPreviousImage
+);
+
+
+lightboxNext.addEventListener(
+    "click",
+    showNextImage
+);
 
 
 /* =========================================================
-   CLOSE LIGHTBOX BY CLICKING OUTSIDE
-========================================================= */
+   CLICK OUTSIDE LIGHTBOX
+   ========================================================= */
 
-if (lightbox) {
-  lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) {
-      closeLightbox();
+lightbox.addEventListener(
+    "click",
+    function(e) {
+
+        if (e.target === lightbox) {
+
+            closeLightbox();
+
+        }
+
     }
-  });
-}
+);
 
 
 /* =========================================================
    KEYBOARD CONTROLS
-========================================================= */
+   ========================================================= */
 
-document.addEventListener("keydown", (event) => {
-  if (
-    !lightbox ||
-    !lightbox.classList.contains("active")
-  ) {
-    return;
-  }
+document.addEventListener(
+    "keydown",
+    function(e) {
 
-  if (event.key === "Escape") {
-    closeLightbox();
-  }
+        if (
+            !lightbox.classList.contains(
+                "active"
+            )
+        ) {
 
-  if (event.key === "ArrowLeft") {
-    moveLightbox(-1);
-  }
+            return;
 
-  if (event.key === "ArrowRight") {
-    moveLightbox(1);
-  }
-});
+        }
+
+
+        if (e.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+
+        if (e.key === "ArrowLeft") {
+
+            showPreviousImage();
+
+        }
+
+
+        if (e.key === "ArrowRight") {
+
+            showNextImage();
+
+        }
+
+    }
+);
 
 
 /* =========================================================
-   LOAD IMAGES FROM YOUR EXISTING PHP
-========================================================= */
+   MOBILE SWIPE
+   ========================================================= */
 
-/*
-   IMPORTANT:
-   Keep your existing PHP exactly as it is.
+let touchStartX = 0;
 
-   This assumes the PHP file is named:
-   gallery.php
-*/
+let touchEndX = 0;
 
-fetch("gallery.php", {
-  cache: "no-store"
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(
-        "Unable to load gallery.php"
-      );
+
+lightbox.addEventListener(
+    "touchstart",
+    function(e) {
+
+        touchStartX =
+            e.changedTouches[0].screenX;
+
     }
+);
 
-    return response.json();
-  })
 
-  .then((fileNames) => {
+lightbox.addEventListener(
+    "touchend",
+    function(e) {
 
-    if (
-      !Array.isArray(fileNames) ||
-      !fileNames.length
-    ) {
-      throw new Error(
-        "No gallery images found"
-      );
+        touchEndX =
+            e.changedTouches[0].screenX;
+
+
+        const difference =
+            touchEndX - touchStartX;
+
+
+        if (
+            Math.abs(difference) < 50
+        ) {
+
+            return;
+
+        }
+
+
+        if (difference < 0) {
+
+            showNextImage();
+
+        } else {
+
+            showPreviousImage();
+
+        }
+
     }
+);
 
-    /*
-      PHP returns filenames such as:
 
-      01.jpg
-      02.jpg
-      03.jpg
+/* =========================================================
+   START GALLERY
+   ========================================================= */
 
-      We use them directly.
-    */
-
-    images.push(...fileNames);
-
-    renderGallery();
-
-    updateLayoutButton();
-  })
-
-  .catch((error) => {
-    console.error(
-      "Gallery error:",
-      error
-    );
-
-    if (galleryStatus) {
-      galleryStatus.textContent =
-        "Unable to load the gallery right now.";
-
-      galleryStatus.classList.remove(
-        "hidden"
-      );
-    }
-  });
+loadGallery();
