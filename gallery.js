@@ -1,5 +1,8 @@
 const GALLERY_FOLDER = "gallery/";
-const GALLERY_LIST_URL = "gallery-list.php";
+const GALLERY_LIST_URLS = [
+    "gallery-list.php",
+    "gallery-images.json"
+];
 
 const galleryGrid = document.getElementById("gallery-grid");
 const galleryStatus = document.getElementById("gallery-status");
@@ -290,7 +293,7 @@ function updateCollageOrder() {
 
 
 /* =========================================================
-   PHOTO CLICK — COLLAGE MODE
+   PHOTO CLICK ï¿½ COLLAGE MODE
    ========================================================= */
 
 /*
@@ -502,16 +505,54 @@ async function loadGallery() {
 
     try {
 
-        const response =
-            await fetch(
-                GALLERY_LIST_URL,
-                {
-                    cache: "no-store"
+        let files = null;
+
+
+        for (const url of GALLERY_LIST_URLS) {
+
+            try {
+
+                const response =
+                    await fetch(
+                        url,
+                        {
+                            cache: "no-store"
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    continue;
+
                 }
-            );
 
 
-        if (!response.ok) {
+                const data =
+                    await response.json();
+
+
+                if (Array.isArray(data)) {
+
+                    files = data;
+
+                    break;
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    `Unable to load gallery list from ${url}.`,
+                    error
+                );
+
+            }
+
+        }
+
+
+        if (!Array.isArray(files)) {
 
             throw new Error(
                 "Unable to load gallery list."
@@ -520,14 +561,7 @@ async function loadGallery() {
         }
 
 
-        const files =
-            await response.json();
-
-
-        if (
-            !Array.isArray(files) ||
-            files.length === 0
-        ) {
+        if (files.length === 0) {
 
             galleryStatus.textContent =
                 "No gallery images found.";
