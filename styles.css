@@ -899,7 +899,7 @@ and (orientation:landscape) {
     background-size:
         100% 600px;
 
-    opacity: 1;
+    opacity: var(--forest-opacity, 1);
 
     pointer-events: none;
 

@@ -1235,11 +1235,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    /* =====================================================
-   HERO SCROLL TRANSITION
-   FADE + BLUR + SLIGHT ZOOM
-   LAPTOP + TABLET ONLY
-   MOBILE UNCHANGED
+   /* =====================================================
+   SMOOTH SCROLL PAGE TRANSITION
+   INTEGRATED CINEMATIC PAGE TRANSITION
+   DESKTOP + TABLET
 ===================================================== */
 
 if (window.matchMedia("(min-width: 768px)").matches) {
@@ -1248,107 +1247,336 @@ if (window.matchMedia("(min-width: 768px)").matches) {
         document.querySelector(".hero-section");
 
     const heroContent =
-        document.querySelector(
-            ".hero-section .content"
+        document.querySelector(".hero-section .content");
+
+
+    const svgLayers =
+        document.querySelectorAll(
+            ".hero-section .back-2, " +
+            ".hero-section .back-3, " +
+            ".hero-section .back-4, " +
+            ".hero-section .back-5, " +
+            ".hero-section .cloud"
         );
 
-    const featuredPackages =
+
+    const nextSection =
         document.querySelector(
             ".featured-packages-section"
         );
 
 
-    if (
-        heroSection &&
-        heroContent &&
-        featuredPackages
-    ) {
+    /* ==========================================
+       ALL SECTIONS USING CINEMATIC SCROLL
+    ========================================== */
 
-        let heroFadeTicking = false;
+   const lowerSections =
+    document.querySelectorAll(
+        ".featured-packages-section, " +
+        ".experiences-section, " +
+        ".why-choose-section, " +
+        ".reviews-section, " +
+        ".final-cta-section"
+    );
 
 
-        function updateHeroTransition() {
+   if (heroSection) {
+
+    let ticking = false;
+    let snapTriggered = false;
+
+    /*
+     * Prevents the page transition
+     * from triggering repeatedly.
+     */
+
+
+
+        function clamp(value, min, max) {
+
+            return Math.max(
+                min,
+                Math.min(
+                    max,
+                    value
+                )
+            );
+
+        }
+
+
+        function updatePageTransition() {
 
             const heroHeight =
                 heroSection.offsetHeight;
+
 
             const scrollY =
                 window.scrollY;
 
 
-            const fadeStart =
-                heroHeight * 0.05;
+            if (!heroHeight) {
+
+                ticking = false;
+
+                return;
+
+            }   
 
 
-            const transitionDistance =
-                heroHeight * 0.75;
+            /* ==========================================
+               MAIN HERO TRANSITION
+            ========================================== */
+
+            const TRANSITION_PERCENT = 0.90;
+
+
+            const triggerPoint =
+                heroHeight *
+                TRANSITION_PERCENT;
 
 
             let progress =
-                (scrollY - fadeStart) /
-                transitionDistance;
+                scrollY /
+                triggerPoint;
 
 
             progress =
-                Math.max(
+                clamp(
+                    progress,
                     0,
-                    Math.min(
-                        1,
-                        progress
-                    )
+                    1
                 );
 
 
-            const easedProgress =
+            /* ==========================================
+               SMOOTH CINEMATIC EASING
+            ========================================== */
+
+            const eased =
                 progress *
                 progress *
                 (3 - 2 * progress);
 
 
-            const opacity =
-                1 - easedProgress;
+            /* ==========================================
+               HERO CONTENT FADE
+            ========================================== */
+
+            if (heroContent) {
+
+                heroContent.style.opacity =
+                    String(
+                        1 - eased
+                    );
 
 
-            const scale =
-                1 +
-                (easedProgress * 0.04);
+                heroContent.style.filter =
+                    `blur(${eased * 6}px)`;
 
 
-            const blur =
-                easedProgress * 7;
+                heroContent.style.transform =
+                    `scale(${1 + eased * 0.03})`;
+
+            }
 
 
-            heroContent.style.opacity =
-                opacity.toFixed(3);
+            /* ==========================================
+               SVG FADE
+               0–75%   = FULLY VISIBLE
+               75–100% = FADE OUT
+            ========================================== */
+
+            const SVG_FADE_START = 0.75;
 
 
-            heroContent.style.filter =
-                `blur(${blur.toFixed(2)}px)`;
+            const svgFadeProgress =
+                clamp(
+                    (
+                        (scrollY / heroHeight) -
+                        SVG_FADE_START
+                    ) /
+                    (1 - SVG_FADE_START),
+                    0,
+                    1
+                );
 
 
-            heroContent.style.transform =
-                `scale(${scale.toFixed(4)})`;
+            const svgEased =
+                svgFadeProgress *
+                svgFadeProgress *
+                (3 - 2 * svgFadeProgress);
 
 
-            heroFadeTicking = false;
+            svgLayers.forEach(layer => {
+
+    layer.style.opacity =
+        String(
+            1 - svgEased
+        );
+
+    layer.style.transform =
+        `translateY(${svgEased * -40}px)`;
+
+});
+
+
+if (nextSection) {
+
+    nextSection.style.setProperty(
+        "--forest-opacity",
+        String(1 - svgEased)
+    );
+
+}
+
+
+
+
+
+            /* ==========================================
+               CINEMATIC SECTION POSITION
+            ========================================== */
+
+            lowerSections.forEach(section => {
+
+                /*
+                 * Featured Packages keeps the
+                 * existing hero transition.
+                 */
+
+               if (
+    section === nextSection
+) {
+
+    const sectionTop =
+        section.getBoundingClientRect().top;
+
+    const startPoint =
+        window.innerHeight * 0.90;
+
+    const endPoint =
+        window.innerHeight * 0.35;
+
+    let sectionProgress =
+        (
+            startPoint -
+            sectionTop
+        ) /
+        (
+            startPoint -
+            endPoint
+        );
+
+    sectionProgress =
+        clamp(
+            sectionProgress,
+            0,
+            1
+        );
+
+    const sectionEased =
+        sectionProgress *
+        sectionProgress *
+        (3 - 2 * sectionProgress);
+
+    const START_OFFSET = 60;
+
+    const moveY =
+        START_OFFSET *
+        (1 - sectionEased);
+
+    section.style.transform =
+        `translateY(${moveY}px)`;
+
+    return;
+
+}
+
+
+                /*
+                 * Sections below Featured Packages.
+                 *
+                 * They begin moving when they
+                 * enter the lower part of viewport.
+                 */
+
+                const sectionTop =
+                    section.getBoundingClientRect().top;
+
+
+                const startPoint =
+                    window.innerHeight * 0.90;
+
+
+                const endPoint =
+                    window.innerHeight * 0.35;
+
+
+                let sectionProgress =
+                    (
+                        startPoint -
+                        sectionTop
+                    ) /
+                    (
+                        startPoint -
+                        endPoint
+                    );
+
+
+                sectionProgress =
+                    clamp(
+                        sectionProgress,
+                        0,
+                        1
+                    );
+
+
+                const sectionEased =
+                    sectionProgress *
+                    sectionProgress *
+                    (3 - 2 * sectionProgress);
+
+
+                const START_OFFSET = 60;
+
+
+                const moveY =
+                    START_OFFSET *
+                    (1 - sectionEased);
+
+
+                section.style.transform =
+                    `translateY(${moveY}px)`;
+
+            });
+
+
+            ticking = false;
 
         }
 
+
+        /* ==============================================
+           SINGLE SCROLL CONTROLLER
+        ============================================== */
 
         window.addEventListener(
             "scroll",
             () => {
 
-                if (heroFadeTicking) {
+                if (ticking) {
+
                     return;
+
                 }
 
 
-                heroFadeTicking = true;
+                ticking = true;
 
 
                 requestAnimationFrame(
-                    updateHeroTransition
+                    updatePageTransition
                 );
 
             },
@@ -1358,11 +1586,26 @@ if (window.matchMedia("(min-width: 768px)").matches) {
         );
 
 
-        updateHeroTransition();
+        /* ==============================================
+           RESIZE
+        ============================================== */
+
+        window.addEventListener(
+            "resize",
+            updatePageTransition
+        );
+
+
+        /* ==============================================
+           INITIAL STATE
+        ============================================== */
+
+        updatePageTransition();
 
     }
 
 }
+
     /* =====================================================
        CURSOR LIGHT TRAIL
     ===================================================== */
