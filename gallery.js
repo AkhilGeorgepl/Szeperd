@@ -198,7 +198,14 @@ function createGalleryItem(imageData, index) {
 
     const image = document.createElement("img");
 
-    image.src = imageData.url;
+    function markImageLoaded() {
+
+        article.classList.add("loaded");
+
+    }
+
+
+    image.addEventListener("load", markImageLoaded);
 
     image.alt = imageData.title;
 
@@ -206,12 +213,17 @@ function createGalleryItem(imageData, index) {
 
     image.decoding = "async";
 
+    image.src = imageData.url;
 
-    image.addEventListener("load", function() {
 
-        article.classList.add("loaded");
+    if (
+        image.complete &&
+        image.naturalWidth > 0
+    ) {
 
-    });
+        markImageLoaded();
+
+    }
 
 
     const overlay = document.createElement("div");
