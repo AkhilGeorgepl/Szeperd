@@ -130,12 +130,18 @@ async function loadJsonList(url) {
     }
 
     const data = await response.json();
+    const files =
+        Array.isArray(data)
+            ? data
+            : Array.isArray(data.images)
+                ? data.images
+                : null;
 
-    if (!Array.isArray(data)) {
+    if (!Array.isArray(files)) {
         throw new Error(`Invalid gallery data from ${url}`);
     }
 
-    return normaliseFiles(data);
+    return normaliseFiles(files);
 }
 
 async function loadDirectoryList(url) {
@@ -387,6 +393,20 @@ function updateGalleryHeight() {
 }
 
 function updateLayoutButton() {
+    if (!layoutToggle || !galleryGrid) {
+        return;
+    }
+
+    if (window.innerWidth <= 900) {
+        layoutToggle.disabled = true;
+        layoutToggle.setAttribute("aria-pressed", "false");
+        layoutToggle.innerHTML =
+            '<i class="fas fa-mobile-screen-button"></i><span>Mobile layout</span>';
+        return;
+    }
+
+    layoutToggle.disabled = false;
+
     const aligned = galleryGrid.classList.contains("aligned");
     layoutToggle.setAttribute("aria-pressed", String(aligned));
     layoutToggle.innerHTML = aligned
@@ -487,13 +507,21 @@ if (layoutToggle && galleryGrid) {
     updateLayoutButton();
 
     layoutToggle.addEventListener("click", function() {
+        if (window.innerWidth <= 900) {
+            updateLayoutButton();
+            return;
+        }
+
         galleryGrid.classList.toggle("aligned");
         updateLayoutButton();
         updateGalleryHeight();
     });
 }
 
-window.addEventListener("resize", updateGalleryHeight);
+window.addEventListener("resize", function() {
+    updateGalleryHeight();
+    updateLayoutButton();
+});
 
 if (lightboxClose) {
     lightboxClose.addEventListener("click", closeLightbox);
