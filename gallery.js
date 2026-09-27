@@ -35,6 +35,8 @@ let currentImageIndex = 0;
 let revealTimer = null;
 let touchStartX = 0;
 let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
 
 const COLLAGE_PATTERN = [
     { top: 20, left: "2%", rotation: -6 },
@@ -106,6 +108,19 @@ function normaliseFiles(files) {
         .filter(Boolean);
 }
 
+function safelyDecodePath(path) {
+    try {
+        return path
+            .split("/")
+            .map(function(segment) {
+                return decodeURIComponent(segment);
+            })
+            .join("/");
+    } catch (error) {
+        return null;
+    }
+}
+
 async function loadJsonList(url) {
     const response = await fetch(url, { cache: "no-store" });
 
@@ -139,18 +154,53 @@ async function loadDirectoryList(url) {
     const parser = new DOMParser();
     const documentNode = parser.parseFromString(html, "text/html");
     const links = Array.from(documentNode.querySelectorAll("a"));
+    const listingUrl = new URL(url, window.location.href);
+    const listingPath = listingUrl.pathname.endsWith("/")
+        ? listingUrl.pathname
+        : `${listingUrl.pathname}/`;
 
     const files = links
         .map(function(link) {
             return link.getAttribute("href") || "";
         })
         .map(function(href) {
-            return decodeURIComponent(
-                href
-                    .split("?")[0]
-                    .split("#")[0]
-                    .replace(/^.*\//, "")
-            );
+            if (!href || href.startsWith("#")) {
+                return null;
+            }
+
+            let resolvedUrl;
+
+            try {
+                resolvedUrl = new URL(href, listingUrl);
+            } catch (error) {
+                return null;
+            }
+
+            if (resolvedUrl.origin !== listingUrl.origin) {
+                return null;
+            }
+
+            if (
+                !resolvedUrl.pathname.startsWith(
+                    listingPath
+                )
+            ) {
+                return null;
+            }
+
+            const relativePath =
+                resolvedUrl.pathname.slice(
+                    listingPath.length
+                );
+
+            if (
+                !relativePath ||
+                relativePath.endsWith("/")
+            ) {
+                return null;
+            }
+
+            return safelyDecodePath(relativePath);
         });
 
     return normaliseFiles(files);
@@ -188,7 +238,12 @@ function buildImageData(files) {
             filename,
             title: createReadableTitle(filename),
             caption: createReadableTitle(filename),
-            url: `${GALLERY_FOLDER}${encodeURIComponent(filename)}`
+            url: `${GALLERY_FOLDER}${filename
+                .split("/")
+                .map(function(segment) {
+                    return encodeURIComponent(segment);
+                })
+                .join("/")}`
         };
     });
 }
@@ -427,21 +482,33 @@ if (lightbox) {
             closeLightbox();
         }
     });
+}
 
-    lightbox.addEventListener("touchstart", function(event) {
+if (lightboxImage) {
+    lightboxImage.addEventListener("touchstart", function(event) {
         touchStartX = event.changedTouches[0].screenX;
+        touchStartY = event.changedTouches[0].screenY;
     }, { passive: true });
 
-    lightbox.addEventListener("touchend", function(event) {
+    lightboxImage.addEventListener("touchend", function(event) {
         touchEndX = event.changedTouches[0].screenX;
+        touchEndY = event.changedTouches[0].screenY;
 
-        const difference = touchEndX - touchStartX;
+        const horizontalDifference =
+            touchEndX - touchStartX;
 
-        if (Math.abs(difference) < 50) {
+        const verticalDifference =
+            touchEndY - touchStartY;
+
+        if (
+            Math.abs(horizontalDifference) < 50 ||
+            Math.abs(horizontalDifference) <=
+            Math.abs(verticalDifference)
+        ) {
             return;
         }
 
-        if (difference < 0) {
+        if (horizontalDifference < 0) {
             showNextImage();
             return;
         }
