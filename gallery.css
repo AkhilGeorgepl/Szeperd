@@ -270,6 +270,13 @@ main {
     box-shadow: 0 28px 45px rgba(33, 42, 38, 0.18);
 }
 
+.gallery-item:focus-visible {
+    outline: 3px solid rgba(154, 123, 47, 0.7);
+    outline-offset: 6px;
+    transform: translateY(-10px) rotate(var(--rotation, 0deg)) scale(1.02);
+    box-shadow: 0 28px 45px rgba(33, 42, 38, 0.18);
+}
+
 .gallery-grid.aligned .gallery-item {
     position: relative;
     top: auto !important;
@@ -285,6 +292,10 @@ main {
 }
 
 .gallery-grid.aligned .gallery-item:hover {
+    transform: translateY(-6px) rotate(0deg) scale(1.02);
+}
+
+.gallery-grid.aligned .gallery-item:focus-visible {
     transform: translateY(-6px) rotate(0deg) scale(1.02);
 }
 

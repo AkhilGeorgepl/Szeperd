@@ -229,7 +229,7 @@ async function loadGalleryFiles() {
         }
     }
 
-    throw new Error("No gallery images could be loaded.");
+    return [];
 }
 
 function buildImageData(files) {
@@ -275,6 +275,12 @@ function createGalleryItem(imageData, index) {
     const article = document.createElement("article");
     article.className = "gallery-item";
     article.dataset.index = index;
+    article.tabIndex = 0;
+    article.setAttribute("role", "button");
+    article.setAttribute(
+        "aria-label",
+        `Open ${imageData.caption}`
+    );
 
     applyCollagePosition(article, index);
 
@@ -307,6 +313,16 @@ function createGalleryItem(imageData, index) {
 
     article.addEventListener("click", function() {
         openLightbox(index);
+    });
+
+    article.addEventListener("keydown", function(event) {
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+            event.preventDefault();
+            openLightbox(index);
+        }
     });
 
     return article;
