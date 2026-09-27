@@ -1235,7 +1235,134 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    /* =====================================================
+   HERO SCROLL TRANSITION
+   FADE + BLUR + SLIGHT ZOOM
+   LAPTOP + TABLET ONLY
+   MOBILE UNCHANGED
+===================================================== */
 
+if (window.matchMedia("(min-width: 768px)").matches) {
+
+    const heroSection =
+        document.querySelector(".hero-section");
+
+    const heroContent =
+        document.querySelector(
+            ".hero-section .content"
+        );
+
+    const featuredPackages =
+        document.querySelector(
+            ".featured-packages-section"
+        );
+
+
+    if (
+        heroSection &&
+        heroContent &&
+        featuredPackages
+    ) {
+
+        let heroFadeTicking = false;
+
+
+        function updateHeroTransition() {
+
+            const heroHeight =
+                heroSection.offsetHeight;
+
+            const scrollY =
+                window.scrollY;
+
+
+            const fadeStart =
+                heroHeight * 0.05;
+
+
+            const transitionDistance =
+                heroHeight * 0.75;
+
+
+            let progress =
+                (scrollY - fadeStart) /
+                transitionDistance;
+
+
+            progress =
+                Math.max(
+                    0,
+                    Math.min(
+                        1,
+                        progress
+                    )
+                );
+
+
+            const easedProgress =
+                progress *
+                progress *
+                (3 - 2 * progress);
+
+
+            const opacity =
+                1 - easedProgress;
+
+
+            const scale =
+                1 +
+                (easedProgress * 0.04);
+
+
+            const blur =
+                easedProgress * 7;
+
+
+            heroContent.style.opacity =
+                opacity.toFixed(3);
+
+
+            heroContent.style.filter =
+                `blur(${blur.toFixed(2)}px)`;
+
+
+            heroContent.style.transform =
+                `scale(${scale.toFixed(4)})`;
+
+
+            heroFadeTicking = false;
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (heroFadeTicking) {
+                    return;
+                }
+
+
+                heroFadeTicking = true;
+
+
+                requestAnimationFrame(
+                    updateHeroTransition
+                );
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        updateHeroTransition();
+
+    }
+
+}
     /* =====================================================
        CURSOR LIGHT TRAIL
     ===================================================== */

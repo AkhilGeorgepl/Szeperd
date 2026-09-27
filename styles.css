@@ -292,11 +292,22 @@ header {
 
 nav {
 
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
     display: flex;
 
     align-items: center;
+    justify-content: center;
 
-    gap: 35px;
+    gap: 32px;
+
+    z-index: 1;
 }
 
 nav a {
@@ -311,10 +322,13 @@ nav a {
 
     letter-spacing: .6px;
 
+    white-space: nowrap;
+
     cursor: pointer;
 
     transition:
-        var(--transition);
+        color .35s ease,
+        transform .25s ease;
 }
 
 nav a:hover,
@@ -324,31 +338,35 @@ nav a.active {
         var(--turquoise-dark);
 }
 
+nav a:hover {
+
+    transform:
+        translateY(-1px);
+}
+
 nav a::after {
     display: none;
 }
-
-
 /* =====================================================
    STICKY STATE
    POSITION DOES NOT CHANGE
+   SAME GLASS LOOK WHILE SCROLLING
 ===================================================== */
 
 header.sticky {
 
     background:
-        rgba(255,255,255,.70);
+        rgba(255,255,255,.30);
 
     backdrop-filter:
-        blur(16px);
+        blur(10px);
 
     -webkit-backdrop-filter:
-        blur(16px);
+        blur(10px);
 
     box-shadow:
-        0 4px 24px rgba(7,95,92,.10);
+        none;
 }
-
 .header-icons {
 
     display: flex;
@@ -848,24 +866,49 @@ and (orientation:landscape) {
 
 .featured-packages-section {
 
-    background:
-        radial-gradient(
-            circle at 12% 15%,
-            rgba(22,184,176,.13),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 85%,
-            rgba(125,227,220,.12),
-            transparent 30%
-        ),
-        linear-gradient(
-            180deg,
-            #dff5f3 0%,
-            #e9f9f7 50%,
-            #dcefed 100%
-        );
+    position: relative;
+
+    z-index: 30;
+
+    isolation: isolate;
+
+    background-color: transparent;
 }
+
+
+.featured-packages-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 600px;
+
+    background-image:
+        url("img/whiteforest.svg");
+
+    background-repeat: no-repeat;
+
+    background-position:
+        center top;
+
+    background-size:
+        100% 600px;
+
+    opacity: 1;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    transition:
+        opacity 0.8s ease;
+}
+
 
 
 /* =====================================================
@@ -887,7 +930,6 @@ and (orientation:landscape) {
 
     gap: 28px;
 }
-
 
 /* =====================================================
    PACKAGE CARD
@@ -4274,7 +4316,27 @@ nav a:focus-visible,
         3px;
 }
 
+/* =====================================================
+   HERO ? FEATURED PACKAGES
+   SCROLL SLIDE-OVER
+   LAPTOP + TABLET ONLY
+   MOBILE UNCHANGED
+===================================================== */
 
+@media (min-width: 768px) {
+
+    .hero-section {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .featured-packages-section {
+        position: relative;
+        z-index: 30;
+    }
+
+}
 /* =====================================================
    END OF SZEPERD HOMEPAGE CSS
 ===================================================== */

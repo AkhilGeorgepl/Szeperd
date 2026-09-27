@@ -247,40 +247,34 @@ button {
 }
 
 
-#menu a::after {
+#menu a {
+    position: relative;
 
-    content: "";
+    color: #173447;
 
-    position: absolute;
+    text-decoration: none;
 
-    left: 0;
-    bottom: -7px;
+    font-size: 13px;
 
-    width: 0;
+    font-weight: 700;
 
-    height: 2px;
+    letter-spacing: .6px;
 
-    background: var(--gold);
+    white-space: nowrap;
 
     transition:
-        width .4s cubic-bezier(.22,.61,.36,1);
+        color .35s ease;
+}
 
+
+#menu a::after {
+    display: none;
 }
 
 
 #menu a:hover,
 #menu a.active {
-
     color: var(--gold);
-
-}
-
-
-#menu a:hover::after,
-#menu a.active::after {
-
-    width: 100%;
-
 }
 
 
