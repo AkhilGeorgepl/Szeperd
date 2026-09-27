@@ -265,11 +265,6 @@ main {
     transform: translateY(0) rotate(var(--rotation, 0deg)) scale(1);
 }
 
-.gallery-item:hover {
-    transform: translateY(-10px) rotate(var(--rotation, 0deg)) scale(1.02);
-    box-shadow: 0 28px 45px rgba(33, 42, 38, 0.18);
-}
-
 .gallery-item:focus-visible {
     outline: 3px solid rgba(154, 123, 47, 0.7);
     outline-offset: 6px;
@@ -291,12 +286,19 @@ main {
     transform: translateY(0) rotate(0deg) scale(1);
 }
 
-.gallery-grid.aligned .gallery-item:hover {
+.gallery-grid.aligned .gallery-item:focus-visible {
     transform: translateY(-6px) rotate(0deg) scale(1.02);
 }
 
-.gallery-grid.aligned .gallery-item:focus-visible {
-    transform: translateY(-6px) rotate(0deg) scale(1.02);
+@media (hover: hover) and (pointer: fine) {
+    .gallery-item:hover {
+        transform: translateY(-10px) rotate(var(--rotation, 0deg)) scale(1.02);
+        box-shadow: 0 28px 45px rgba(33, 42, 38, 0.18);
+    }
+
+    .gallery-grid.aligned .gallery-item:hover {
+        transform: translateY(-6px) rotate(0deg) scale(1.02);
+    }
 }
 
 .gallery-photo {

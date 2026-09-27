@@ -37,6 +37,7 @@ let touchStartX = 0;
 let touchEndX = 0;
 let touchStartY = 0;
 let touchEndY = 0;
+let lastFocusedTrigger = null;
 
 const COLLAGE_PATTERN = [
     { top: 20, left: "2%", rotation: -6 },
@@ -312,7 +313,7 @@ function createGalleryItem(imageData, index) {
     article.appendChild(caption);
 
     article.addEventListener("click", function() {
-        openLightbox(index);
+        openLightbox(index, article);
     });
 
     article.addEventListener("keydown", function(event) {
@@ -321,7 +322,7 @@ function createGalleryItem(imageData, index) {
             event.key === " "
         ) {
             event.preventDefault();
-            openLightbox(index);
+            openLightbox(index, article);
         }
     });
 
@@ -406,16 +407,21 @@ function updateLightboxImage() {
     lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
 }
 
-function openLightbox(index) {
+function openLightbox(index, triggerElement) {
     if (!galleryImages.length || !lightbox) {
         return;
     }
 
     currentImageIndex = index;
+    lastFocusedTrigger = triggerElement || null;
     updateLightboxImage();
     lightbox.classList.add("active");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("no-scroll");
+
+    if (lightboxClose) {
+        lightboxClose.focus();
+    }
 }
 
 function closeLightbox() {
@@ -426,6 +432,11 @@ function closeLightbox() {
     lightbox.classList.remove("active");
     lightbox.setAttribute("aria-hidden", "true");
     document.body.classList.remove("no-scroll");
+
+    if (lastFocusedTrigger) {
+        lastFocusedTrigger.focus();
+        lastFocusedTrigger = null;
+    }
 }
 
 function showPreviousImage() {
@@ -450,6 +461,10 @@ async function loadGallery() {
     if (!galleryGrid || !galleryStatus) {
         return;
     }
+
+    clearInterval(revealTimer);
+    revealTimer = null;
+    galleryGrid.innerHTML = "";
 
     try {
         const files = await loadGalleryFiles();
