@@ -1,12 +1,12 @@
 const GALLERY_FOLDER = "gallery/";
 const GALLERY_SOURCES = [
     {
-        type: "json",
-        url: "gallery-list.php"
-    },
-    {
         type: "directory",
         url: GALLERY_FOLDER
+    },
+    {
+        type: "json",
+        url: "gallery-list.php"
     },
     {
         type: "json",
@@ -35,6 +35,21 @@ let currentImageIndex = 0;
 let revealTimer = null;
 let touchStartX = 0;
 let touchEndX = 0;
+
+const COLLAGE_PATTERN = [
+    { top: 20, left: "2%", rotation: -6 },
+    { top: 84, left: "28%", rotation: 4 },
+    { top: 14, right: "5%", rotation: -3 },
+    { top: 320, left: "12%", rotation: 6 },
+    { top: 400, left: "40%", rotation: -5 },
+    { top: 320, right: "8%", rotation: 5 },
+    { top: 680, left: "4%", rotation: -4 },
+    { top: 720, left: "34%", rotation: 3 },
+    { top: 650, right: "6%", rotation: -2 }
+];
+
+const COLLAGE_ROW_OFFSET = 1080;
+const COLLAGE_BASE_HEIGHT = 1120;
 
 if (menuBtn && menu) {
     menuBtn.addEventListener("click", function(event) {
@@ -80,10 +95,13 @@ function createReadableTitle(filename) {
 function normaliseFiles(files) {
     return files
         .filter(function(file) {
-            return typeof file === "string" && /\.(jpg|jpeg|png|webp)$/i.test(file);
+            return typeof file === "string";
         })
         .map(function(file) {
             return file.trim();
+        })
+        .filter(function(file) {
+            return /\.(jpg|jpeg|png|webp)$/i.test(file);
         })
         .filter(Boolean);
 }
@@ -175,10 +193,35 @@ function buildImageData(files) {
     });
 }
 
+function applyCollagePosition(item, index) {
+    const pattern =
+        COLLAGE_PATTERN[
+            index % COLLAGE_PATTERN.length
+        ];
+
+    const row =
+        Math.floor(
+            index / COLLAGE_PATTERN.length
+        );
+
+    item.style.top =
+        `${pattern.top + (row * COLLAGE_ROW_OFFSET)}px`;
+
+    item.style.left = pattern.left || "auto";
+    item.style.right = pattern.right || "auto";
+
+    item.style.setProperty(
+        "--rotation",
+        `${pattern.rotation}deg`
+    );
+}
+
 function createGalleryItem(imageData, index) {
     const article = document.createElement("article");
     article.className = "gallery-item";
     article.dataset.index = index;
+
+    applyCollagePosition(article, index);
 
     const photo = document.createElement("div");
     photo.className = "gallery-photo";
@@ -241,7 +284,34 @@ function renderGallery() {
         galleryGrid.appendChild(createGalleryItem(imageData, index));
     });
 
+    updateGalleryHeight();
     revealGalleryItems();
+}
+
+function updateGalleryHeight() {
+    if (!galleryGrid) {
+        return;
+    }
+
+    if (
+        galleryGrid.classList.contains("aligned") ||
+        window.innerWidth <= 900
+    ) {
+        galleryGrid.style.minHeight = "0";
+        return;
+    }
+
+    const rows =
+        Math.max(
+            1,
+            Math.ceil(
+                galleryImages.length /
+                COLLAGE_PATTERN.length
+            )
+        );
+
+    galleryGrid.style.minHeight =
+        `${COLLAGE_BASE_HEIGHT + ((rows - 1) * COLLAGE_ROW_OFFSET)}px`;
 }
 
 function updateLayoutButton() {
@@ -333,8 +403,11 @@ if (layoutToggle && galleryGrid) {
     layoutToggle.addEventListener("click", function() {
         galleryGrid.classList.toggle("aligned");
         updateLayoutButton();
+        updateGalleryHeight();
     });
 }
+
+window.addEventListener("resize", updateGalleryHeight);
 
 if (lightboxClose) {
     lightboxClose.addEventListener("click", closeLightbox);
