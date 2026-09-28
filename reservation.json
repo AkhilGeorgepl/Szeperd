@@ -1,0 +1,309 @@
+{
+  "form": {
+    "title": "Reserve Your Package",
+    "subtitle": "Please provide your details and preferences. We will review your request and contact you to confirm availability and the next steps.",
+
+    "information": {
+      "title": "Before You Reserve",
+      "text": "Submitting this form sends a reservation request to Szeperd. Your reservation is not confirmed until Szeperd has reviewed your request, confirmed availability and sent you a reservation confirmation.",
+      "important": "Please make sure that the information you provide is accurate and complete."
+    },
+
+    "selectedPackage": {
+      "label": "Selected Package"
+    },
+
+    "sections": {
+      "travellerDetails": "Traveller Details",
+      "travelPreferences": "Travel Preferences",
+      "additionalInformation": "Additional Information",
+      "declarations": "Declarations & Agreements"
+    },
+
+    "fields": [
+      {
+        "id": "firstName",
+        "label": "First Name",
+        "type": "text",
+        "placeholder": "Enter your first name",
+        "required": true
+      },
+      {
+        "id": "lastName",
+        "label": "Last Name",
+        "type": "text",
+        "placeholder": "Enter your last name",
+        "required": true
+      },
+      {
+        "id": "email",
+        "label": "Email Address",
+        "type": "email",
+        "placeholder": "Enter your email address",
+        "required": true
+      },
+      {
+        "id": "confirmEmail",
+        "label": "Confirm Email Address",
+        "type": "email",
+        "placeholder": "Re-enter your email address",
+        "required": true
+      },
+      {
+        "id": "phone",
+        "label": "Phone Number",
+        "type": "tel",
+        "placeholder": "Enter your phone number",
+        "required": true
+      },
+      {
+        "id": "dateOfBirth",
+        "label": "Date of Birth",
+        "type": "date",
+        "required": true
+      },
+      {
+        "id": "countryOfResidence",
+        "label": "Country of Residence",
+        "type": "text",
+        "placeholder": "Enter your country of residence",
+        "required": true
+      }
+    ],
+
+    "options": [
+      {
+        "id": "singleRoom",
+        "label": "I would like a single room",
+        "type": "checkbox",
+        "required": false
+      },
+      {
+        "id": "sharedRoom",
+        "label": "I am willing to share a room where applicable",
+        "type": "checkbox",
+        "required": false
+      },
+      {
+        "id": "travelInsurance",
+        "label": "I have or intend to arrange suitable travel insurance",
+        "type": "checkbox",
+        "required": false
+      }
+    ],
+
+    "notes": [
+      {
+        "id": "accommodationNotes",
+        "title": "Accommodation Preferences",
+        "placeholder": "Please tell us about your accommodation preferences or requirements.",
+        "helperText": "For example: room preference, bed preference, accessibility requirements or room-sharing requests.",
+        "type": "textarea",
+        "required": false
+      },
+      {
+        "id": "mealNotes",
+        "title": "Food / Meal Requirements",
+        "placeholder": "Please tell us about any food preferences, allergies or dietary requirements.",
+        "helperText": "For example: vegetarian, vegan, allergies, religious dietary requirements or other meal preferences.",
+        "type": "textarea",
+        "required": false
+      },
+      {
+        "id": "healthAccessibilityNotes",
+        "title": "Health, Mobility or Accessibility Requirements",
+        "placeholder": "Please tell us about anything that may be important for us to know when arranging your trip.",
+        "helperText": "Please provide only information that is relevant to your participation in the selected package.",
+        "type": "textarea",
+        "required": false
+      },
+      {
+        "id": "specialRequests",
+        "title": "Other Requests",
+        "placeholder": "Is there anything else you would like us to know?",
+        "helperText": "You can use this space for special requests or other information related to your reservation.",
+        "type": "textarea",
+        "required": false
+      }
+    ],
+
+    "declarations": [
+      {
+        "id": "informationAccuracy",
+        "label": "I confirm that the information I have provided is accurate and complete.",
+        "required": true
+      },
+      {
+        "id": "reservationUnderstanding",
+        "label": "I understand that submitting this form is a reservation request and does not by itself confirm my reservation.",
+        "required": true
+      },
+      {
+        "id": "termsAcceptance",
+        "label": "I have read and accept the Szeperd Terms & Conditions.",
+        "required": true,
+        "link": "terms.html",
+        "linkText": "Read Terms & Conditions"
+      },
+      {
+        "id": "privacyAcceptance",
+        "label": "I have read the Szeperd Privacy Policy and understand how my personal data will be processed.",
+        "required": true,
+        "link": "privacy.html",
+        "linkText": "Read Privacy Policy"
+      }
+    ],
+
+    "submitButton": "Send Reservation Request",
+
+    "backButton": "Back to Packages",
+
+    "validationMessages": {
+      "required": "Please complete all required fields.",
+      "invalidEmail": "Please enter a valid email address.",
+      "emailMismatch": "Email addresses do not match.",
+      "submissionError": "Something went wrong. Please try again later.",
+      "loadingError": "Unable to load the reservation information."
+    },
+
+    "successMessage": "Thank you. Your reservation request has been received. We will review your request and contact you regarding availability and confirmation."
+  },
+
+  "bookingInformation": {
+    "title": "Reservation Information",
+
+    "reservationProcess": {
+      "title": "How the Reservation Process Works",
+      "steps": [
+        "Select your preferred package.",
+        "Complete and submit the reservation request form.",
+        "Szeperd reviews your request and checks availability.",
+        "Szeperd contacts you with availability, pricing and payment information where applicable.",
+        "Your reservation becomes confirmed after the required confirmation steps and payment have been completed."
+      ]
+    },
+
+    "payment": {
+      "title": "Payment",
+      "text": "A deposit or full payment may be required to confirm your reservation. The amount, payment deadline and available payment methods will be communicated to you before your reservation is confirmed.",
+      "nearDeparture": "For reservations made shortly before the scheduled departure date, Szeperd may require full payment before confirming the reservation."
+    },
+
+    "cancellation": {
+      "title": "Cancellation",
+      "text": "Cancellation requests should be submitted to Szeperd in writing. Any applicable cancellation charges will depend on the time of cancellation and the costs already committed for the reservation.",
+      "modelPolicy": {
+        "note": "The following cancellation schedule is a model and must be reviewed and approved by the client before publication.",
+        "moreThan60Days": "More than 60 days before departure: the deposit may be retained and any remaining eligible amount may be refunded.",
+        "31To60Days": "31–60 days before departure: up to 50% of the total package price may be retained.",
+        "30DaysOrLess": "30 days or less before departure: up to 100% of the package price may be retained.",
+        "noShow": "No-show or failure to participate after the scheduled departure: no refund may be available for unused services."
+      }
+    }
+  },
+
+  "termsAndConditions": {
+    "title": "Szeperd Terms & Conditions",
+    "version": "Draft 1.0",
+    "status": "Client review required",
+
+    "introduction": "These Terms & Conditions describe the general conditions that may apply to reservations made through Szeperd. They are provided as a draft for client review and should be adapted to the actual services, payment arrangements and applicable law before publication.",
+
+    "sections": [
+      {
+        "title": "1. Reservation Request",
+        "text": "Submitting a reservation form through the Szeperd website constitutes a request to reserve the selected package. A reservation is not confirmed until Szeperd has reviewed the request, confirmed availability and sent written confirmation to the client."
+      },
+      {
+        "title": "2. Traveller Information",
+        "text": "The client must provide accurate and complete information when making a reservation. The client is responsible for checking that names, dates, contact information and other details supplied to Szeperd are correct."
+      },
+      {
+        "title": "3. Payment and Confirmation",
+        "text": "A deposit or full payment may be required to secure a reservation. The applicable amount and payment deadline will be communicated to the client before confirmation. A reservation becomes confirmed only after the required confirmation conditions and payment have been completed."
+      },
+      {
+        "title": "4. Prices and Included Services",
+        "text": "The price and services included in each package will be described on the relevant package page or reservation confirmation. Services that are not specifically listed as included are not included in the package price."
+      },
+      {
+        "title": "5. Cancellation by the Client",
+        "text": "The client may request cancellation of a reservation in writing. Applicable cancellation charges may depend on the time of cancellation, the package selected and costs already committed by Szeperd or its suppliers. The cancellation conditions applicable to a specific reservation will be communicated to the client before confirmation."
+      },
+      {
+        "title": "6. Cancellation or Changes by Szeperd",
+        "text": "Szeperd will make reasonable efforts to operate each package as described. However, circumstances such as weather, transportation disruption, supplier changes, government restrictions, safety concerns or other circumstances beyond Szeperd's reasonable control may require changes or cancellation."
+      },
+      {
+        "title": "7. Changes Requested by the Client",
+        "text": "Requests to change travel dates, accommodation, room arrangements, activities or other services are subject to availability and may result in additional charges. Any additional costs will be communicated before the requested change is confirmed."
+      },
+      {
+        "title": "8. Accommodation",
+        "text": "Accommodation is subject to availability and will be provided according to the package description. Requests for specific rooms, beds, locations or room-sharing arrangements are preferences and cannot be guaranteed unless specifically confirmed in writing."
+      },
+      {
+        "title": "9. Meals and Special Requirements",
+        "text": "Clients should inform Szeperd of dietary requirements, allergies, accessibility requirements or other important needs as early as possible. Szeperd will make reasonable efforts to communicate these requirements to relevant suppliers, but specific arrangements may be subject to availability."
+      },
+      {
+        "title": "10. Passports, Visas and Travel Documents",
+        "text": "The client is responsible for ensuring that they have valid passports, visas, permits and other documents required for their journey. Where applicable, Szeperd may provide general travel information, but the client remains responsible for checking the requirements applicable to their nationality and circumstances."
+      },
+      {
+        "title": "11. Travel Insurance",
+        "text": "Clients are strongly encouraged to obtain appropriate travel insurance covering, where relevant, medical expenses, cancellation, interruption, baggage and other travel risks."
+      },
+      {
+        "title": "12. Health, Mobility and Accessibility",
+        "text": "The client is responsible for informing Szeperd of any health, mobility, accessibility or other requirements that may reasonably affect participation in the selected package. Certain activities may have specific requirements, which will be communicated where applicable."
+      },
+      {
+        "title": "13. Itinerary Changes",
+        "text": "The published itinerary describes the planned experience. Szeperd may make reasonable changes when necessary because of weather, local conditions, transportation, supplier availability, safety or other operational circumstances. Where reasonably possible, Szeperd will provide an alternative of comparable nature."
+      },
+      {
+        "title": "14. Client Conduct",
+        "text": "Clients are expected to behave respectfully toward guides, other travellers, local communities, accommodation providers and other service providers. Szeperd may take appropriate action where a client's behaviour creates a serious safety risk, causes significant disruption or seriously affects other participants."
+      },
+      {
+        "title": "15. Personal Belongings",
+        "text": "Clients are responsible for their personal belongings and valuables during the trip. Szeperd is not responsible for loss, theft or damage except where liability cannot legally be excluded."
+      },
+      {
+        "title": "16. Complaints",
+        "text": "Any issue arising during the trip should be reported to Szeperd or the relevant local representative as soon as reasonably possible so that an opportunity can be given to resolve the matter. Formal complaints should be submitted in writing within the applicable period."
+      },
+      {
+        "title": "17. Circumstances Beyond Our Control",
+        "text": "Szeperd will not be responsible for failure or delay caused by circumstances beyond its reasonable control, including natural disasters, severe weather, epidemics, government restrictions, war, civil unrest, strikes, transportation disruption or similar events, subject to applicable law."
+      },
+      {
+        "title": "18. Personal Data",
+        "text": "Personal information provided during the reservation process will be processed for purposes related to handling the reservation, communicating with the client and providing the booked services, in accordance with the Szeperd Privacy Policy and applicable data-protection law."
+      },
+      {
+        "title": "19. Applicable Law",
+        "text": "These Terms & Conditions and the relationship between Szeperd and the client will be governed by the applicable law specified by Szeperd. Any mandatory consumer rights applicable to the client will remain unaffected."
+      },
+      {
+        "title": "20. Changes to These Terms",
+        "text": "Szeperd may update these Terms & Conditions from time to time. The version applicable to a reservation will be the version provided or made available to the client at the time the reservation is confirmed, unless otherwise required by law."
+      }
+    ]
+  },
+
+  "privacy": {
+    "title": "Privacy Notice",
+    "shortText": "The personal information submitted through this reservation form will be used to process your reservation request, communicate with you and provide the requested travel services.",
+    "fullPolicyLink": "privacy.html"
+  },
+
+  "footer": {
+    "copyright": "© 2026 Szeperd. All Rights Reserved."
+  },
+
+  "contact": {
+    "whatsapp": "+48571993223"
+  }
+}

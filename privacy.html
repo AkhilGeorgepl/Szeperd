@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Szeperd Privacy Policy</title>
+
+    <link
+        rel="stylesheet"
+        href="reservation.css"
+    >
+
+    <style>
+
+        /* =========================================
+           PRIVACY PAGE
+        ========================================= */
+
+        #privacy-title {
+            font-size: 2rem;
+            line-height: 1.25;
+            font-weight: 600;
+        }
+
+        #privacy-version,
+        #privacy-status,
+        #privacy-text {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .policy-section h2 {
+            font-size: 1.25rem;
+            line-height: 1.4;
+            margin: 0 0 0.75rem;
+            font-weight: 600;
+        }
+
+        .policy-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+    <div class="main-nav">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Szeperd
+        </a>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="packages.html">
+                Packages
+            </a>
+
+            <a href="aboutus.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<main class="reservation-page">
+
+    <div class="reservation-window">
+
+        <div class="reservation-inner">
+
+
+            <div class="reservation-header">
+
+                <p
+                    class="reservation-eyebrow"
+                >
+                    Szeperd
+                </p>
+
+
+                <h1 id="privacy-title">
+                    Privacy Policy
+                </h1>
+
+
+                <p
+                    id="privacy-version"
+                    class="reservation-subtitle"
+                ></p>
+
+            </div>
+
+
+
+            <section class="reservation-information">
+
+                <p
+                    id="privacy-status"
+                ></p>
+
+
+                <p
+                    id="privacy-text"
+                ></p>
+
+            </section>
+
+
+
+            <section
+                id="privacy-content"
+                class="reservation-section"
+            ></section>
+
+
+
+            <div class="reservation-actions">
+
+                <a
+                    href="reservation.html"
+                    class="reservation-back-button"
+                >
+                    Back to Reservation
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <p id="footer-copyright">
+        © 2026 Szeperd. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        try {
+
+            const response =
+                await fetch(
+                    "reservation.json",
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load reservation.json"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            const privacy =
+                data.privacy;
+
+
+            if (!privacy) {
+
+                throw new Error(
+                    "Privacy Policy data not found."
+                );
+
+            }
+
+
+            /*
+             * Page title
+             */
+
+            document.title =
+                privacy.title ||
+                "Szeperd Privacy Policy";
+
+
+            /*
+             * Main title
+             */
+
+            const title =
+                document.getElementById(
+                    "privacy-title"
+                );
+
+
+            if (title) {
+
+                title.textContent =
+                    privacy.title ||
+                    "Szeperd Privacy Policy";
+
+            }
+
+
+            /*
+             * Version
+             */
+
+            const version =
+                document.getElementById(
+                    "privacy-version"
+                );
+
+
+            if (
+                version &&
+                privacy.version
+            ) {
+
+                version.textContent =
+                    privacy.version;
+
+            }
+
+
+            /*
+             * Status
+             */
+
+            const status =
+                document.getElementById(
+                    "privacy-status"
+                );
+
+
+            if (
+                status &&
+                privacy.status
+            ) {
+
+                status.textContent =
+                    privacy.status;
+
+            }
+
+
+            /*
+             * Privacy introduction / short text
+             */
+
+            const text =
+                document.getElementById(
+                    "privacy-text"
+                );
+
+
+            if (text) {
+
+                text.textContent =
+                    privacy.introduction ||
+                    privacy.shortText ||
+                    "";
+
+            }
+
+
+            /*
+             * Privacy Policy sections
+             */
+
+            const content =
+                document.getElementById(
+                    "privacy-content"
+                );
+
+
+            if (content) {
+
+                content.innerHTML = "";
+
+
+                if (
+                    Array.isArray(
+                        privacy.sections
+                    )
+                ) {
+
+                    privacy.sections.forEach(
+                        function (section) {
+
+                            if (!section) {
+                                return;
+                            }
+
+
+                            const article =
+                                document.createElement(
+                                    "article"
+                                );
+
+
+                            article.className =
+                                "policy-section";
+
+
+                            const heading =
+                                document.createElement(
+                                    "h2"
+                                );
+
+
+                            heading.textContent =
+                                section.title ||
+                                "";
+
+
+                            const paragraph =
+                                document.createElement(
+                                    "p"
+                                );
+
+
+                            paragraph.textContent =
+                                section.text ||
+                                "";
+
+
+                            article.appendChild(
+                                heading
+                            );
+
+
+                            article.appendChild(
+                                paragraph
+                            );
+
+
+                            content.appendChild(
+                                article
+                            );
+
+                        }
+                    );
+
+                }
+
+            }
+
+
+            /*
+             * Footer
+             */
+
+            const footer =
+                document.getElementById(
+                    "footer-copyright"
+                );
+
+
+            if (
+                footer &&
+                data.footer &&
+                data.footer.copyright
+            ) {
+
+                footer.textContent =
+                    data.footer.copyright;
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Privacy Policy error:",
+                error
+            );
+
+
+            const content =
+                document.getElementById(
+                    "privacy-content"
+                );
+
+
+            if (content) {
+
+                content.innerHTML =
+                    "<p>Unable to load the Privacy Policy. Please try again later.</p>";
+
+            }
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

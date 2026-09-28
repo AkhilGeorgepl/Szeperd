@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Szeperd | Coming Soon</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           ROOT
+        ===================================================== */
+
+        :root {
+
+            --green: #173c2a;
+            --green-dark: #10291d;
+            --green-soft: #27543d;
+
+            --gold: #d99a32;
+            --gold-light: #f1c66b;
+
+            --orange: #c97820;
+
+            --cream: #fff8ec;
+            --cream-soft: #f8eddc;
+
+            --text: #26352d;
+            --muted: #6d685f;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            color: var(--text);
+
+            font-family:
+                Nunito,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Helvetica Neue",
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffaf1 0%,
+                    #fff8ec 48%,
+                    #f8eddc 100%
+                );
+
+        }
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .coming-page {
+
+            position: relative;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 100px 25px 60px;
+
+            overflow: hidden;
+
+        }
+
+
+        /* =====================================================
+           BACKGROUND DECORATION
+        ===================================================== */
+
+        .blob {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            filter: blur(80px);
+
+            pointer-events: none;
+
+            opacity: 0.25;
+
+        }
+
+
+        .blob-one {
+
+            width: 380px;
+            height: 380px;
+
+            top: -170px;
+            left: -130px;
+
+            background: var(--gold);
+
+        }
+
+
+        .blob-two {
+
+            width: 420px;
+            height: 420px;
+
+            right: -180px;
+            bottom: -200px;
+
+            background: var(--green-soft);
+
+        }
+
+
+        .blob-three {
+
+            width: 220px;
+            height: 220px;
+
+            left: 15%;
+            bottom: 10%;
+
+            background: var(--orange);
+
+            opacity: 0.10;
+
+        }
+
+
+        /* =====================================================
+           CONTENT CARD
+        ===================================================== */
+
+        .coming-card {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: min(780px, 100%);
+
+            padding:
+                65px 55px 60px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.62);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.72);
+
+            border-radius: 32px;
+
+            box-shadow:
+                0 30px 80px
+                rgba(16, 41, 29, 0.14);
+
+            backdrop-filter: blur(24px);
+
+            -webkit-backdrop-filter: blur(24px);
+
+        }
+
+
+        /* =====================================================
+           LITTLE SIGN
+        ===================================================== */
+
+        .construction-sign {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 22px;
+
+            padding:
+                9px 15px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(217, 154, 50, 0.12);
+
+            border:
+                1px solid
+                rgba(217, 154, 50, 0.25);
+
+            color: var(--orange);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.8px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .construction-sign i {
+
+            font-size: 12px;
+
+        }
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
+
+        .coming-card h1 {
+
+            margin: 0;
+
+            color: var(--green);
+
+            font-family:
+                Nunito,
+                sans-serif;
+
+            font-size:
+                clamp(48px, 8vw, 82px);
+
+            line-height: 0.95;
+
+            font-weight: 800;
+
+            letter-spacing: -3px;
+
+        }
+
+
+        .coming-card h1 span {
+
+            display: block;
+
+            margin-top: 8px;
+
+            color: var(--orange);
+
+            font-family:
+                "Great Vibes",
+                cursive;
+
+            font-size:
+                clamp(55px, 9vw, 90px);
+
+            font-weight: 400;
+
+            line-height: 1;
+
+            letter-spacing: 0;
+
+        }
+
+
+        /* =====================================================
+           FUNNY MESSAGE
+        ===================================================== */
+
+        .funny-message {
+
+            max-width: 600px;
+
+            margin:
+                30px auto 0;
+
+            color: var(--muted);
+
+            font-size: 17px;
+
+            line-height: 1.75;
+
+        }
+
+
+        .funny-message strong {
+
+            color: var(--green);
+
+        }
+
+
+        /* =====================================================
+           PROGRESS
+        ===================================================== */
+
+        .progress-area {
+
+            max-width: 450px;
+
+            margin:
+                35px auto 0;
+
+        }
+
+
+        .progress-label {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 9px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 10px;
+
+            overflow: hidden;
+
+            border-radius: 999px;
+
+            background:
+                rgba(23, 60, 42, 0.10);
+
+        }
+
+
+        .progress-fill {
+
+            width: 73%;
+
+            height: 100%;
+
+            border-radius: 999px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--green),
+                    var(--gold),
+                    var(--orange)
+                );
+
+            animation:
+                progress-wiggle 3s ease-in-out infinite;
+
+        }
+
+
+        @keyframes progress-wiggle {
+
+            0%,
+            100% {
+                width: 71%;
+            }
+
+            50% {
+                width: 76%;
+            }
+
+        }
+
+
+        /* =====================================================
+           FUNNY STATUS
+        ===================================================== */
+
+        .status {
+
+            margin-top: 28px;
+
+            color: var(--green);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        .status .dot {
+
+            display: inline-block;
+
+            width: 8px;
+            height: 8px;
+
+            margin-right: 7px;
+
+            border-radius: 50%;
+
+            background: var(--gold);
+
+            box-shadow:
+                0 0 0 5px
+                rgba(217, 154, 50, 0.12);
+
+            animation:
+                pulse 1.6s ease-in-out infinite;
+
+        }
+
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(0.65);
+                opacity: 0.55;
+            }
+
+        }
+
+
+        /* =====================================================
+           HOME BUTTON
+        ===================================================== */
+
+        .home-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            margin-top: 32px;
+
+            min-height: 48px;
+
+            padding:
+                0 22px;
+
+            border:
+                1px solid var(--green);
+
+            border-radius: 12px;
+
+            background:
+                var(--green);
+
+            color: #fff;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+
+        }
+
+
+        .home-button:hover {
+
+            background: var(--orange);
+
+            border-color: var(--orange);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =====================================================
+           FOOTNOTE
+        ===================================================== */
+
+        .footnote {
+
+            margin-top: 32px;
+
+            color:
+                rgba(38, 53, 45, 0.55);
+
+            font-size: 11px;
+
+        }
+
+
+        .footnote span {
+
+            color: var(--orange);
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           FLOATING DECORATIVE ELEMENTS
+        ===================================================== */
+
+        .floating {
+
+            position: absolute;
+
+            z-index: 1;
+
+            color:
+                rgba(23, 60, 42, 0.12);
+
+            pointer-events: none;
+
+        }
+
+
+        .floating.one {
+
+            top: 17%;
+
+            left: 9%;
+
+            font-size: 38px;
+
+            transform:
+                rotate(-18deg);
+
+        }
+
+
+        .floating.two {
+
+            right: 9%;
+
+            top: 22%;
+
+            font-size: 42px;
+
+            transform:
+                rotate(15deg);
+
+        }
+
+
+        .floating.three {
+
+            left: 10%;
+
+            bottom: 17%;
+
+            font-size: 28px;
+
+            transform:
+                rotate(10deg);
+
+        }
+
+
+        .floating.four {
+
+            right: 12%;
+
+            bottom: 13%;
+
+            font-size: 35px;
+
+            transform:
+                rotate(-12deg);
+
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .coming-page {
+
+                padding:
+                    90px 20px 45px;
+
+            }
+
+
+            .coming-card {
+
+                padding:
+                    50px 30px 45px;
+
+                border-radius: 26px;
+
+            }
+
+
+            .funny-message {
+
+                font-size: 15px;
+
+                line-height: 1.7;
+
+            }
+
+
+            .floating {
+
+                opacity: 0.5;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 480px) {
+
+            .coming-page {
+
+                padding:
+                    70px 14px 30px;
+
+            }
+
+
+            .coming-card {
+
+                padding:
+                    42px 20px 38px;
+
+                border-radius: 22px;
+
+            }
+
+
+            .construction-sign {
+
+                font-size: 9px;
+
+                letter-spacing: 1.3px;
+
+            }
+
+
+            .coming-card h1 {
+
+                font-size: 46px;
+
+                letter-spacing: -2px;
+
+            }
+
+
+            .coming-card h1 span {
+
+                font-size: 60px;
+
+            }
+
+
+            .funny-message {
+
+                margin-top: 24px;
+
+                font-size: 14px;
+
+            }
+
+
+            .progress-area {
+
+                margin-top: 28px;
+
+            }
+
+
+            .home-button {
+
+                width: 100%;
+
+            }
+
+
+            .floating {
+
+                display: none;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration: 0.01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                transition-duration: 0.01ms !important;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="coming-page">
+
+
+        <!-- Background decoration -->
+
+        <div class="blob blob-one"></div>
+
+        <div class="blob blob-two"></div>
+
+        <div class="blob blob-three"></div>
+
+
+        <!-- Funny floating icons -->
+
+        <div class="floating one">
+            <i class="fa-solid fa-compass"></i>
+        </div>
+
+        <div class="floating two">
+            <i class="fa-solid fa-map"></i>
+        </div>
+
+        <div class="floating three">
+            <i class="fa-solid fa-plane"></i>
+        </div>
+
+        <div class="floating four">
+            <i class="fa-solid fa-location-dot"></i>
+        </div>
+
+
+        <!-- Main card -->
+
+        <section class="coming-card">
+
+
+            <div class="construction-sign">
+
+                <i class="fa-solid fa-person-digging"></i>
+
+                Expedition in progress
+
+            </div>
+
+
+            <h1>
+
+                Coming
+
+                <span>Soon</span>
+
+            </h1>
+
+
+            <p class="funny-message">
+
+                We would tell you what's coming...
+
+                <br>
+
+                <strong>
+                    but then we'd have to actually finish building it.
+                </strong>
+
+                😅
+
+                <br><br>
+
+                Our developers, designers and one extremely confused
+                cup of coffee are currently working on it.
+
+            </p>
+
+
+            <div class="progress-area">
+
+                <div class="progress-label">
+
+                    <span>
+                        Absolutely official progress
+                    </span>
+
+                    <span>
+                        73%*
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="status">
+
+                <span class="dot"></span>
+
+                Currently pretending everything is under control.
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="home-button"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                Take Me Home
+
+            </a>
+
+
+            <p class="footnote">
+
+                *The 73% number is completely scientific.
+
+                <span>We promise.</span>
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

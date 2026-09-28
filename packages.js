@@ -1,5 +1,5 @@
 /* =========================================================
-   SZEPRED — PACKAGES PAGE JAVASCRIPT
+   Szeperd — PACKAGES PAGE JAVASCRIPT
    ========================================================= */
 
 (() => {
@@ -9,7 +9,7 @@
 
     /* =====================================================
        ELEMENTS
-       ===================================================== */
+    ===================================================== */
 
     const packagesGrid =
         document.getElementById("packages-grid");
@@ -38,24 +38,29 @@
     const menu =
         document.getElementById("menu");
 
+    const reserveButton =
+        document.getElementById("reserve-package-button");
+
 
     /* =====================================================
-       DATA
-       ===================================================== */
+       STATE
+    ===================================================== */
 
     let packages = [];
 
     let filteredPackages = [];
 
+    let selectedPackage = null;
+
 
     /* =====================================================
-       BASIC SAFETY CHECK
-       ===================================================== */
+       SAFETY CHECK
+    ===================================================== */
 
     if (!packagesGrid) {
 
         console.error(
-            "Szepred Packages: #packages-grid was not found."
+            "Szeperd Packages: #packages-grid was not found."
         );
 
         return;
@@ -64,54 +69,15 @@
 
 
     /* =====================================================
-       MENU
-       ===================================================== */
-
-    if (menuButton && menu) {
-
-        menuButton.addEventListener("click", (event) => {
-
-            event.stopPropagation();
-
-            menu.classList.toggle("show");
-
-        });
-
-
-        document.addEventListener("click", (event) => {
-
-            if (
-                !menu.contains(event.target) &&
-                !menuButton.contains(event.target)
-            ) {
-
-                menu.classList.remove("show");
-
-            }
-
-        });
-
-
-        menu.querySelectorAll("a").forEach((link) => {
-
-            link.addEventListener("click", () => {
-
-                menu.classList.remove("show");
-
-            });
-
-        });
-
-    }
-
-
-    /* =====================================================
-       ESCAPE HTML
-       ===================================================== */
+       HELPERS
+    ===================================================== */
 
     function escapeHtml(value) {
 
-        if (value === null || value === undefined) {
+        if (
+            value === null ||
+            value === undefined
+        ) {
 
             return "";
 
@@ -127,10 +93,6 @@
     }
 
 
-    /* =====================================================
-       NORMALIZE VALUE
-       ===================================================== */
-
     function normalize(value) {
 
         return String(value || "")
@@ -140,9 +102,172 @@
     }
 
 
+    function getArray(value) {
+
+        if (Array.isArray(value)) {
+
+            return value;
+
+        }
+
+        return [];
+
+    }
+
+
     /* =====================================================
-       INITIAL LOAD
-       ===================================================== */
+       MOBILE MENU
+    ===================================================== */
+
+    function closeMobileMenu() {
+
+        if (!menu || !menuButton) {
+
+            return;
+
+        }
+
+        menu.classList.remove("show");
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+
+    if (menuButton && menu) {
+
+        menuButton.addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+                const isOpen =
+                    menu.classList.toggle("show");
+
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    !menu.contains(event.target) &&
+                    !menuButton.contains(event.target)
+                ) {
+
+                    closeMobileMenu();
+
+                }
+
+            }
+        );
+
+
+        menu.querySelectorAll("a").forEach(
+            (link) => {
+
+                link.addEventListener(
+                    "click",
+                    closeMobileMenu
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       SCROLL TO TOP BUTTON
+    ===================================================== */
+
+    const scrollTopButton =
+        document.createElement("button");
+
+    scrollTopButton.type =
+        "button";
+
+    scrollTopButton.className =
+        "scroll-top-button";
+
+    scrollTopButton.setAttribute(
+        "aria-label",
+        "Scroll to top"
+    );
+
+    scrollTopButton.setAttribute(
+        "title",
+        "Scroll to top"
+    );
+
+    scrollTopButton.innerHTML =
+        '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
+
+    document.body.appendChild(
+        scrollTopButton
+    );
+
+
+    function updateScrollTopButton() {
+
+        if (
+            window.scrollY > 400
+        ) {
+
+            scrollTopButton.classList.add(
+                "show"
+            );
+
+        } else {
+
+            scrollTopButton.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateScrollTopButton,
+        {
+            passive: true
+        }
+    );
+
+
+    scrollTopButton.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+    updateScrollTopButton();
+
+
+    /* =====================================================
+       LOAD PACKAGES
+    ===================================================== */
 
     loadPackages();
 
@@ -155,9 +280,12 @@
         try {
 
             const response =
-                await fetch("packages.json", {
-                    cache: "no-cache"
-                });
+                await fetch(
+                    "packages.json",
+                    {
+                        cache: "no-cache"
+                    }
+                );
 
 
             if (!response.ok) {
@@ -182,12 +310,13 @@
             }
 
 
-            packages = data.filter(
-                packageItem =>
-                    packageItem &&
-                    packageItem.id &&
-                    packageItem.title
-            );
+            packages =
+                data.filter(
+                    packageItem =>
+                        packageItem &&
+                        packageItem.id &&
+                        packageItem.title
+                );
 
 
             if (!packages.length) {
@@ -201,9 +330,12 @@
 
             populateFilters();
 
-            filteredPackages = [...packages];
+            filteredPackages =
+                [...packages];
 
-            renderPackages(filteredPackages);
+            renderPackages(
+                filteredPackages
+            );
 
             handleUrlPackage();
 
@@ -211,7 +343,7 @@
         } catch (error) {
 
             console.error(
-                "Szepred Packages Error:",
+                "Szeperd Packages Error:",
                 error
             );
 
@@ -223,72 +355,53 @@
 
 
     /* =====================================================
-       LOADING STATE
-       ===================================================== */
+       LOADING
+    ===================================================== */
 
     function showLoading() {
 
         packagesGrid.innerHTML = `
-            <div class="packages-loading"
-                 style="
-                    grid-column: 1 / -1;
-                    text-align: center;
-                    padding: 70px 20px;
-                    color: #6d685f;
-                 ">
-                <p>Loading tour packages...</p>
+
+            <div class="packages-loading">
+
+                <p>
+                    Loading tour packages...
+                </p>
+
             </div>
+
         `;
-
-        if (emptyState) {
-
-            emptyState.hidden = true;
-
-        }
 
     }
 
 
     /* =====================================================
-       ERROR STATE
-       ===================================================== */
+       ERROR
+    ===================================================== */
 
     function showLoadError(error) {
 
         packagesGrid.innerHTML = `
-            <div class="packages-load-error"
-                 style="
-                    grid-column: 1 / -1;
-                    text-align: center;
-                    padding: 60px 20px;
-                 ">
 
-                <h3 style="
-                    margin-bottom: 12px;
-                    color: #173c2a;
-                    font-family: Georgia, 'Times New Roman', serif;
-                    font-size: 28px;
-                ">
+            <div class="packages-load-error">
+
+                <h3>
                     Packages could not be loaded
                 </h3>
 
-                <p style="
-                    margin-bottom: 10px;
-                    color: #6d685f;
-                    line-height: 1.6;
-                ">
-                    Please check that <strong>packages.json</strong>
-                    is in the same folder as packages.html.
+                <p>
+                    Please check that
+                    <strong>packages.json</strong>
+                    is in the same folder as
+                    packages.html.
                 </p>
 
-                <p style="
-                    color: #9a7560;
-                    font-size: 13px;
-                ">
+                <p>
                     ${escapeHtml(error.message)}
                 </p>
 
             </div>
+
         `;
 
         if (emptyState) {
@@ -301,8 +414,8 @@
 
 
     /* =====================================================
-       POPULATE FILTERS
-       ===================================================== */
+       FILTERS
+    ===================================================== */
 
     function populateFilters() {
 
@@ -311,31 +424,43 @@
             const categories = [
                 ...new Set(
                     packages
-                        .map(item => item.category)
+                        .map(
+                            item => item.category
+                        )
                         .filter(Boolean)
                 )
             ].sort();
 
 
             categoryFilter.innerHTML = `
+
                 <option value="all">
                     All destinations
                 </option>
+
             `;
 
 
-            categories.forEach(category => {
+            categories.forEach(
+                category => {
 
-                const option =
-                    document.createElement("option");
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
 
-                option.value = category;
+                    option.value =
+                        category;
 
-                option.textContent = category;
+                    option.textContent =
+                        category;
 
-                categoryFilter.appendChild(option);
+                    categoryFilter.appendChild(
+                        option
+                    );
 
-            });
+                }
+            );
 
         }
 
@@ -345,44 +470,58 @@
             const durations = [
                 ...new Set(
                     packages
-                        .map(item => item.duration)
+                        .map(
+                            item => item.duration
+                        )
                         .filter(Boolean)
                 )
             ];
 
 
-            durations.sort((a, b) => {
+            durations.sort(
+                (a, b) => {
 
-                const daysA =
-                    parseInt(a, 10) || 0;
+                    const daysA =
+                        parseInt(a, 10) || 0;
 
-                const daysB =
-                    parseInt(b, 10) || 0;
+                    const daysB =
+                        parseInt(b, 10) || 0;
 
-                return daysA - daysB;
+                    return daysA - daysB;
 
-            });
+                }
+            );
 
 
             durationFilter.innerHTML = `
+
                 <option value="all">
                     All durations
                 </option>
+
             `;
 
 
-            durations.forEach(duration => {
+            durations.forEach(
+                duration => {
 
-                const option =
-                    document.createElement("option");
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
 
-                option.value = duration;
+                    option.value =
+                        duration;
 
-                option.textContent = duration;
+                    option.textContent =
+                        duration;
 
-                durationFilter.appendChild(option);
+                    durationFilter.appendChild(
+                        option
+                    );
 
-            });
+                }
+            );
 
         }
 
@@ -391,7 +530,7 @@
 
     /* =====================================================
        FILTER EVENTS
-       ===================================================== */
+    ===================================================== */
 
     if (categoryFilter) {
 
@@ -421,14 +560,16 @@
 
                 if (categoryFilter) {
 
-                    categoryFilter.value = "all";
+                    categoryFilter.value =
+                        "all";
 
                 }
 
 
                 if (durationFilter) {
 
-                    durationFilter.value = "all";
+                    durationFilter.value =
+                        "all";
 
                 }
 
@@ -445,47 +586,57 @@
 
         const selectedCategory =
             categoryFilter
-                ? normalize(categoryFilter.value)
+                ? normalize(
+                    categoryFilter.value
+                )
                 : "all";
 
 
         const selectedDuration =
             durationFilter
-                ? normalize(durationFilter.value)
+                ? normalize(
+                    durationFilter.value
+                )
                 : "all";
 
 
         filteredPackages =
-            packages.filter(packageItem => {
+            packages.filter(
+                packageItem => {
 
-                const categoryMatches =
-                    selectedCategory === "all" ||
-                    normalize(packageItem.category) ===
-                    selectedCategory;
-
-
-                const durationMatches =
-                    selectedDuration === "all" ||
-                    normalize(packageItem.duration) ===
-                    selectedDuration;
+                    const categoryMatches =
+                        selectedCategory === "all" ||
+                        normalize(
+                            packageItem.category
+                        ) === selectedCategory;
 
 
-                return (
-                    categoryMatches &&
-                    durationMatches
-                );
+                    const durationMatches =
+                        selectedDuration === "all" ||
+                        normalize(
+                            packageItem.duration
+                        ) === selectedDuration;
 
-            });
+
+                    return (
+                        categoryMatches &&
+                        durationMatches
+                    );
+
+                }
+            );
 
 
-        renderPackages(filteredPackages);
+        renderPackages(
+            filteredPackages
+        );
 
     }
 
 
     /* =====================================================
-       RENDER PACKAGES
-       ===================================================== */
+       RENDER CARDS
+    ===================================================== */
 
     function renderPackages(packageList) {
 
@@ -512,21 +663,24 @@
         }
 
 
-        packageList.forEach((packageItem) => {
+        packageList.forEach(
+            packageItem => {
 
-            const card =
-                createPackageCard(packageItem);
+                packagesGrid.appendChild(
+                    createPackageCard(
+                        packageItem
+                    )
+                );
 
-            packagesGrid.appendChild(card);
-
-        });
+            }
+        );
 
     }
 
 
     /* =====================================================
        CREATE PACKAGE CARD
-       ===================================================== */
+    ===================================================== */
 
     function createPackageCard(packageItem) {
 
@@ -534,13 +688,14 @@
             document.createElement("article");
 
 
-        card.className = "package-card";
+        card.className =
+            "package-card";
 
 
         const highlights =
-            Array.isArray(packageItem.highlights)
-                ? packageItem.highlights
-                : [];
+            getArray(
+                packageItem.highlights
+            );
 
 
         const highlightsHtml =
@@ -561,9 +716,15 @@
         const status =
             packageItem.status
                 ? `
+
                     <span class="package-card-status">
-                        ${escapeHtml(packageItem.status)}
+
+                        ${escapeHtml(
+                            packageItem.status
+                        )}
+
                     </span>
+
                   `
                 : "";
 
@@ -574,7 +735,9 @@
 
                 <img
                     src="${escapeHtml(image)}"
-                    alt="${escapeHtml(packageItem.title)}"
+                    alt="${escapeHtml(
+                        packageItem.title
+                    )}"
                     loading="lazy"
                 >
 
@@ -585,39 +748,66 @@
 
             <div class="package-card-content">
 
+
                 <div class="package-card-category">
-                    ${escapeHtml(packageItem.category || "")}
+
+                    ${escapeHtml(
+                        packageItem.category || ""
+                    )}
+
                 </div>
 
 
                 <h2>
-                    ${escapeHtml(packageItem.title)}
+
+                    ${escapeHtml(
+                        packageItem.title
+                    )}
+
                 </h2>
 
 
                 <p class="package-card-subtitle">
-                    ${escapeHtml(packageItem.subtitle || "")}
+
+                    ${escapeHtml(
+                        packageItem.subtitle || ""
+                    )}
+
                 </p>
 
 
                 <div class="package-card-meta">
 
+
                     <div>
+
                         <i class="far fa-calendar"></i>
 
                         <span>
-                            ${escapeHtml(packageItem.duration || "")}
+
+                            ${escapeHtml(
+                                packageItem.duration || ""
+                            )}
+
                         </span>
+
                     </div>
 
 
                     <div>
+
                         <i class="fas fa-location-dot"></i>
 
                         <span>
-                            ${escapeHtml(packageItem.destinations || "")}
+
+                            ${escapeHtml(
+                                packageItem.destinations || ""
+                            )}
+
                         </span>
+
                     </div>
+
 
                 </div>
 
@@ -625,9 +815,15 @@
                 ${
                     highlightsHtml
                         ? `
-                            <ul class="package-card-highlights">
+
+                            <ul
+                                class="package-card-highlights"
+                            >
+
                                 ${highlightsHtml}
+
                             </ul>
+
                           `
                         : ""
                 }
@@ -635,18 +831,35 @@
 
                 <div class="package-card-bottom">
 
+
                     <div class="package-card-price">
 
-                        <span class="package-card-price-label">
+                        <span
+                            class="package-card-price-label"
+                        >
                             From
                         </span>
 
-                        <span class="package-card-price-value">
-                            ${escapeHtml(packageItem.price || "")}
+
+                        <span
+                            class="package-card-price-value"
+                        >
+
+                            ${escapeHtml(
+                                packageItem.price || ""
+                            )}
+
                         </span>
 
-                        <span class="package-card-price-note">
-                            ${escapeHtml(packageItem.priceNote || "")}
+
+                        <span
+                            class="package-card-price-note"
+                        >
+
+                            ${escapeHtml(
+                                packageItem.priceNote || ""
+                            )}
+
                         </span>
 
                     </div>
@@ -655,16 +868,23 @@
                     <button
                         type="button"
                         class="view-package-button"
-                        data-package-id="${escapeHtml(packageItem.id)}"
+                        data-package-id="${escapeHtml(
+                            packageItem.id
+                        )}"
                     >
                         View Package
                     </button>
 
+
                 </div>
 
+
             </div>
+
         `;
 
+
+        /* IMAGE ERROR */
 
         const imageElement =
             card.querySelector("img");
@@ -676,7 +896,8 @@
                 "error",
                 () => {
 
-                    imageElement.style.display = "none";
+                    imageElement.style.display =
+                        "none";
 
                     const imageContainer =
                         imageElement.closest(
@@ -696,6 +917,8 @@
 
         }
 
+
+        /* OPEN DETAIL */
 
         const viewButton =
             card.querySelector(
@@ -725,8 +948,8 @@
 
 
     /* =====================================================
-       OPEN PACKAGE DETAIL
-       ===================================================== */
+       OPEN DETAIL
+    ===================================================== */
 
     function openPackageDetail(packageItem) {
 
@@ -737,42 +960,77 @@
         }
 
 
+        selectedPackage =
+            packageItem;
+
+
         const detailImage =
-            document.getElementById("detail-image");
+            document.getElementById(
+                "package-detail-image"
+            );
 
         const detailCategory =
-            document.getElementById("detail-category");
+            document.getElementById(
+                "package-detail-category"
+            );
 
         const detailTitle =
-            document.getElementById("detail-title");
+            document.getElementById(
+                "package-detail-title"
+            );
 
         const detailSubtitle =
-            document.getElementById("detail-subtitle");
+            document.getElementById(
+                "package-detail-subtitle"
+            );
 
         const detailDuration =
-            document.getElementById("detail-duration");
+            document.getElementById(
+                "package-detail-duration"
+            );
 
         const detailDestinations =
-            document.getElementById("detail-destinations");
+            document.getElementById(
+                "package-detail-destinations"
+            );
 
         const detailPrice =
-            document.getElementById("detail-price");
+            document.getElementById(
+                "package-detail-price"
+            );
 
         const detailDescription =
-            document.getElementById("detail-description");
+            document.getElementById(
+                "package-detail-description"
+            );
 
         const detailHighlights =
-            document.getElementById("detail-highlights");
+            document.getElementById(
+                "package-detail-highlights"
+            );
+
+        const detailDestinationsList =
+            document.getElementById(
+                "package-detail-destinations-list"
+            );
 
         const detailItinerary =
-            document.getElementById("detail-itinerary");
+            document.getElementById(
+                "package-detail-itinerary"
+            );
 
         const detailIncluded =
-            document.getElementById("detail-included");
+            document.getElementById(
+                "package-detail-included"
+            );
 
         const detailNotIncluded =
-            document.getElementById("detail-not-included");
+            document.getElementById(
+                "package-detail-not-included"
+            );
 
+
+        /* IMAGE */
 
         if (detailImage) {
 
@@ -784,6 +1042,8 @@
 
         }
 
+
+        /* TEXT */
 
         if (detailCategory) {
 
@@ -841,94 +1101,31 @@
         }
 
 
-        /* -----------------------------------------------
-           HIGHLIGHTS
-           ----------------------------------------------- */
+        /* HIGHLIGHTS */
 
-        if (detailHighlights) {
-
-            detailHighlights.innerHTML = "";
-
-
-            const highlights =
-                Array.isArray(packageItem.highlights)
-                    ? packageItem.highlights
-                    : [];
+        populateList(
+            detailHighlights,
+            packageItem.highlights
+        );
 
 
-            highlights.forEach(item => {
+        /* DESTINATIONS */
 
-                const li =
-                    document.createElement("li");
-
-                li.textContent = item;
-
-                detailHighlights.appendChild(li);
-
-            });
-
-        }
+        populateDestinations(
+            detailDestinationsList,
+            packageItem.destinations
+        );
 
 
-        /* -----------------------------------------------
-           ITINERARY
-           ----------------------------------------------- */
+        /* ITINERARY */
 
-        if (detailItinerary) {
-
-            detailItinerary.innerHTML = "";
-
-
-            const itinerary =
-                Array.isArray(packageItem.itinerary)
-                    ? packageItem.itinerary
-                    : [];
+        renderItinerary(
+            detailItinerary,
+            packageItem.itinerary
+        );
 
 
-            itinerary.forEach(day => {
-
-                const item =
-                    document.createElement("div");
-
-
-                item.className =
-                    "itinerary-item";
-
-
-                const dayNumber =
-                    day.day
-                        ? `Day ${day.day}`
-                        : "";
-
-
-                item.innerHTML = `
-
-                    <strong>
-                        ${escapeHtml(dayNumber)}
-                        ${
-                            day.title
-                                ? ` — ${escapeHtml(day.title)}`
-                                : ""
-                        }
-                    </strong>
-
-                    <p>
-                        ${escapeHtml(day.description || "")}
-                    </p>
-
-                `;
-
-
-                detailItinerary.appendChild(item);
-
-            });
-
-        }
-
-
-        /* -----------------------------------------------
-           INCLUDED
-           ----------------------------------------------- */
+        /* INCLUDED */
 
         populateList(
             detailIncluded,
@@ -936,9 +1133,7 @@
         );
 
 
-        /* -----------------------------------------------
-           NOT INCLUDED
-           ----------------------------------------------- */
+        /* NOT INCLUDED */
 
         populateList(
             detailNotIncluded,
@@ -946,31 +1141,27 @@
         );
 
 
-        /* -----------------------------------------------
-           ENQUIRY LINK
-           ----------------------------------------------- */
+        /* RESERVATION */
 
-        const enquiryButton =
-            packageDetail.querySelector(
-                ".package-enquiry-button"
-            );
+        if (reserveButton) {
 
-
-        if (enquiryButton) {
-
-            enquiryButton.href =
-                `../contact.html?package=${encodeURIComponent(
+            reserveButton.href =
+                `reservation.html?package=${encodeURIComponent(
                     packageItem.id
                 )}`;
 
         }
 
 
-        /* -----------------------------------------------
-           SHOW DETAIL
-           ----------------------------------------------- */
+        /* SHOW */
 
         packageDetail.hidden = false;
+
+
+        /*
+         * IMPORTANT:
+         * Do NOT disable body scrolling here.
+         */
 
         packageDetail.scrollIntoView({
             behavior: "smooth",
@@ -978,24 +1169,21 @@
         });
 
 
-        document.body.style.overflow = "hidden";
-
-
-        /*
-         * Remove the URL package parameter when opening
-         * from a normal card click.
-         */
-
-        updateUrl(packageItem.id);
+        updateUrl(
+            packageItem.id
+        );
 
     }
 
 
     /* =====================================================
-       POPULATE DETAIL LIST
-       ===================================================== */
+       POPULATE LIST
+    ===================================================== */
 
-    function populateList(element, items) {
+    function populateList(
+        element,
+        items
+    ) {
 
         if (!element) {
 
@@ -1007,30 +1195,232 @@
         element.innerHTML = "";
 
 
-        if (!Array.isArray(items)) {
+        const list =
+            getArray(items);
+
+
+        list.forEach(
+            item => {
+
+                const li =
+                    document.createElement(
+                        "li"
+                    );
+
+                li.textContent =
+                    typeof item === "object"
+                        ? (
+                            item.title ||
+                            item.name ||
+                            item.description ||
+                            ""
+                        )
+                        : item;
+
+                element.appendChild(li);
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       DESTINATIONS
+    ===================================================== */
+
+    function populateDestinations(
+        element,
+        destinations
+    ) {
+
+        if (!element) {
 
             return;
 
         }
 
 
-        items.forEach(item => {
+        element.innerHTML = "";
 
-            const li =
-                document.createElement("li");
 
-            li.textContent = item;
+        let items = [];
 
-            element.appendChild(li);
 
-        });
+        if (Array.isArray(destinations)) {
+
+            items =
+                destinations;
+
+        } else if (
+            typeof destinations === "string"
+        ) {
+
+            items =
+                destinations
+                    .split(",")
+                    .map(
+                        item =>
+                            item.trim()
+                    )
+                    .filter(Boolean);
+
+        }
+
+
+        items.forEach(
+            destination => {
+
+                const item =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                item.className =
+                    "detail-destination-item";
+
+
+                item.textContent =
+                    typeof destination === "object"
+                        ? (
+                            destination.name ||
+                            destination.title ||
+                            ""
+                        )
+                        : destination;
+
+
+                element.appendChild(
+                    item
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       ITINERARY
+    ===================================================== */
+
+    function renderItinerary(
+        element,
+        itinerary
+    ) {
+
+        if (!element) {
+
+            return;
+
+        }
+
+
+        element.innerHTML = "";
+
+
+        const items =
+            getArray(itinerary);
+
+
+        items.forEach(
+            day => {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "itinerary-item";
+
+
+                if (
+                    typeof day === "string"
+                ) {
+
+                    item.innerHTML = `
+
+                        <p>
+                            ${escapeHtml(day)}
+                        </p>
+
+                    `;
+
+                    element.appendChild(
+                        item
+                    );
+
+                    return;
+
+                }
+
+
+                const dayNumber =
+                    day.day
+                        ? `Day ${escapeHtml(day.day)}`
+                        : "";
+
+
+                const title =
+                    day.title
+                        ? escapeHtml(day.title)
+                        : "";
+
+
+                const description =
+                    day.description
+                        ? escapeHtml(
+                            day.description
+                        )
+                        : "";
+
+
+                item.innerHTML = `
+
+                    <strong>
+
+                        ${dayNumber}
+
+                        ${
+                            title
+                                ? ` — ${title}`
+                                : ""
+                        }
+
+                    </strong>
+
+
+                    ${
+                        description
+                            ? `
+
+                                <p>
+                                    ${description}
+                                </p>
+
+                              `
+                            : ""
+                    }
+
+                `;
+
+
+                element.appendChild(
+                    item
+                );
+
+            }
+        );
 
     }
 
 
     /* =====================================================
        CLOSE DETAIL
-       ===================================================== */
+    ===================================================== */
 
     if (closePackageDetail) {
 
@@ -1053,14 +1443,18 @@
 
         packageDetail.hidden = true;
 
-        document.body.style.overflow = "";
+        selectedPackage = null;
 
 
         const url =
-            new URL(window.location.href);
+            new URL(
+                window.location.href
+            );
 
 
-        url.searchParams.delete("package");
+        url.searchParams.delete(
+            "package"
+        );
 
 
         window.history.replaceState(
@@ -1075,20 +1469,28 @@
 
 
     /* =====================================================
-       ESC KEY
-       ===================================================== */
+       ESCAPE KEY
+    ===================================================== */
 
     document.addEventListener(
         "keydown",
-        (event) => {
+        event => {
 
             if (
-                event.key === "Escape" &&
-                packageDetail &&
-                !packageDetail.hidden
+                event.key === "Escape"
             ) {
 
-                closeDetail();
+                if (
+                    packageDetail &&
+                    !packageDetail.hidden
+                ) {
+
+                    closeDetail();
+
+                }
+
+
+                closeMobileMenu();
 
             }
 
@@ -1098,7 +1500,7 @@
 
     /* =====================================================
        URL PACKAGE
-       ===================================================== */
+    ===================================================== */
 
     function handleUrlPackage() {
 
@@ -1127,31 +1529,34 @@
             );
 
 
-        if (packageItem) {
+        if (!packageItem) {
 
-            /*
-             * Wait until the page has rendered before
-             * opening the detail section.
-             */
+            return;
 
-            setTimeout(() => {
+        }
+
+
+        setTimeout(
+            () => {
 
                 openPackageDetail(
                     packageItem
                 );
 
-            }, 50);
-
-        }
+            },
+            50
+        );
 
     }
 
 
     /* =====================================================
        UPDATE URL
-       ===================================================== */
+    ===================================================== */
 
-    function updateUrl(packageId) {
+    function updateUrl(
+        packageId
+    ) {
 
         if (!packageId) {
 
@@ -1161,7 +1566,9 @@
 
 
         const url =
-            new URL(window.location.href);
+            new URL(
+                window.location.href
+            );
 
 
         url.searchParams.set(

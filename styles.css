@@ -1,6 +1,6 @@
 /* =====================================================
    SZEPERD HOMEPAGE
-   COMPLETE CLEAN CSS — TURQUOISE GLASS VERSION
+   COMPLETE CLEAN CSS ï¿½ TURQUOISE GLASS VERSION
 
    IMPORTANT:
    - Parallax hero preserved
@@ -2038,6 +2038,21 @@ and (orientation:landscape) {
    REVIEW PHOTO
 ===================================================== */
 
+.review-photo {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+.review-photo .review-avatar,
 .review-card > .review-avatar {
 
     position: absolute !important;
@@ -2071,7 +2086,7 @@ and (orientation:landscape) {
         transform .6s ease;
 }
 
-.review-card:hover > .review-avatar {
+.review-card:hover .review-avatar {
 
     transform:
         scale(1.06);
@@ -2504,7 +2519,7 @@ and (orientation:landscape) {
 
 /* =====================================================
    11. FOOTER
-   FINAL — EXACTLY 50PX
+   FINAL ï¿½ EXACTLY 50PX
 ===================================================== */
 
 .footer {
@@ -2560,41 +2575,53 @@ and (orientation:landscape) {
 
     position: fixed;
 
-    right: 25px;
-    bottom: 25px;
+    right: 24px;
 
-    width: 55px;
-    height: 55px;
+    bottom: 24px;
+
+    z-index: 2000;
+
+    width: 54px;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 
     border-radius: 50%;
 
     background:
-        #25D366;
+        #25d366;
 
-    color: white;
+    color:
+        #fff;
 
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    font-size: 30px;
+    font-size:
+        26px;
 
     text-decoration: none;
 
     box-shadow:
-        0 6px 20px rgba(0,0,0,.25);
-
-    z-index: 9999;
+        0 8px 25px
+        rgba(0,0,0,.20);
 
     transition:
-        var(--transition);
+        transform .3s ease;
 }
 
 .whatsapp-float:hover {
 
     transform:
-        scale(1.1);
+        scale(1.08);
+}
+
+.whatsapp-float:hover {
+
+    transform:
+        scale(1.08);
 }
 
 .floating-social {
@@ -3814,10 +3841,74 @@ and (orientation:landscape) {
             22px;
     }
 
+    .review-photo {
+
+        position:
+            absolute;
+
+        inset:
+            0;
+
+        width:
+            100%;
+
+        height:
+            100%;
+
+        overflow:
+            hidden;
+
+        z-index:
+            0;
+    }
+
+    .review-photo .review-avatar,
+    .review-card > .review-avatar {
+
+        position:
+            absolute !important;
+
+        inset:
+            0 !important;
+
+        width:
+            100% !important;
+
+        height:
+            100% !important;
+
+        max-width:
+            none !important;
+
+        max-height:
+            none !important;
+
+        object-fit:
+            cover !important;
+
+        object-position:
+            center top !important;
+
+        opacity:
+            1 !important;
+
+        visibility:
+            visible !important;
+
+        z-index:
+            0 !important;
+
+        pointer-events:
+            none;
+    }
+
     .review-content {
 
         padding:
             0 24px 24px;
+
+        z-index:
+            2;
     }
 
     .review-content h3 {
@@ -3953,23 +4044,7 @@ and (orientation:landscape) {
             16px;
     }
 
-    .whatsapp-float {
 
-        width:
-            50px;
-
-        height:
-            50px;
-
-        right:
-            20px;
-
-        bottom:
-            20px;
-
-        font-size:
-            26px;
-    }
 
     .cursor-trail {
 
@@ -4163,14 +4238,7 @@ and (orientation:landscape) {
             15px;
     }
 
-    .whatsapp-float {
 
-        right:
-            15px;
-
-        bottom:
-            15px;
-    }
 }
 
 
@@ -4324,6 +4392,13 @@ nav a:focus-visible,
 ===================================================== */
 
 @media (min-width: 768px) {
+
+    html {
+        scroll-behavior: smooth;
+
+    }
+
+   
 
     .hero-section {
         position: sticky;

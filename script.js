@@ -70,7 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
         rainContainer.appendChild(drop);
 
         setTimeout(() => {
-            drop.remove();
+
+            if (drop.parentNode) {
+                drop.remove();
+            }
+
         }, duration * 1000);
 
     }
@@ -115,61 +119,39 @@ document.addEventListener("DOMContentLoaded", function () {
     /* =====================================================
        HOME REVIEWS
        reviews.json
-       
-       Expected fields:
-       name
-       photo
-       review
     ===================================================== */
 
     const homeReviews =
-        document.querySelector(
-            "#home-reviews"
-        );
+        document.querySelector("#home-reviews");
 
 
     function initializeReviewSlider() {
 
         const slider =
-            document.querySelector(
-                ".review-slider"
-            );
+            document.querySelector(".review-slider");
 
         const next =
-            document.querySelector(
-                ".right-arrow"
-            );
+            document.querySelector(".right-arrow");
 
         const prev =
-            document.querySelector(
-                ".left-arrow"
-            );
+            document.querySelector(".left-arrow");
 
         const wrapper =
-            document.querySelector(
-                ".review-wrapper"
-            );
+            document.querySelector(".review-wrapper");
 
         const dotsContainer =
-            document.querySelector(
-                ".review-dots"
-            );
+            document.querySelector(".review-dots");
 
         let reviewIndex = 0;
 
 
-        if (
-            !slider ||
-            !wrapper
-        ) {
+        if (!slider || !wrapper) {
             return;
         }
 
 
         const cards =
-            slider.querySelectorAll(
-                ".review-card"
-            );
+            slider.querySelectorAll(".review-card");
 
 
         if (!cards.length) {
@@ -201,21 +183,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 return 0;
             }
 
-
             const gap =
                 parseFloat(
                     getComputedStyle(slider).gap
                 ) || 0;
 
-
             const totalWidth =
                 cards.length * cw -
                 gap;
 
-
             const visibleWidth =
                 wrapper.clientWidth;
-
 
             const maxMove =
                 Math.max(
@@ -223,7 +201,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     totalWidth -
                     visibleWidth
                 );
-
 
             return Math.max(
                 0,
@@ -241,9 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
             dotsContainer.innerHTML = "";
-
 
             const count =
                 maxReviewIndex() + 1;
@@ -256,22 +231,17 @@ document.addEventListener("DOMContentLoaded", function () {
             ) {
 
                 const dot =
-                    document.createElement(
-                        "span"
-                    );
-
+                    document.createElement("span");
 
                 dot.setAttribute(
                     "role",
                     "button"
                 );
 
-
                 dot.setAttribute(
                     "aria-label",
                     `Show review slide ${i + 1}`
                 );
-
 
                 dot.addEventListener(
                     "click",
@@ -284,10 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 );
 
-
-                dotsContainer.appendChild(
-                    dot
-                );
+                dotsContainer.appendChild(dot);
 
             }
 
@@ -300,12 +267,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
             const dots =
-                dotsContainer.querySelectorAll(
-                    "span"
-                );
-
+                dotsContainer.querySelectorAll("span");
 
             dots.forEach(
                 (dot, index) => {
@@ -326,11 +289,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const cw =
                 cardWidth();
 
-
             if (!cw) {
                 return;
             }
-
 
             const max =
                 maxReviewIndex();
@@ -339,7 +300,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (reviewIndex < 0) {
                 reviewIndex = 0;
             }
-
 
             if (reviewIndex > max) {
                 reviewIndex = max;
@@ -355,11 +315,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     getComputedStyle(slider).gap
                 ) || 0;
 
-
             const totalWidth =
                 cards.length * cw -
                 gap;
-
 
             const maxMove =
                 Math.max(
@@ -372,7 +330,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (move > maxMove) {
                 move = maxMove;
             }
-
 
             if (move < 0) {
                 move = 0;
@@ -400,7 +357,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     const max =
                         maxReviewIndex();
-
 
                     if (
                         reviewIndex <
@@ -464,7 +420,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-
                 startX =
                     event.touches[0].clientX;
 
@@ -489,13 +444,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-
                 const endX =
                     event.changedTouches[0].clientX;
 
                 const endY =
                     event.changedTouches[0].clientY;
-
 
                 const differenceX =
                     startX - endX;
@@ -509,21 +462,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     Math.abs(differenceY)
                 ) {
 
-                    if (
-                        differenceX > 50
-                    ) {
+                    if (differenceX > 50) {
 
                         reviewIndex++;
 
                     }
-                    else if (
-                        differenceX < -50
-                    ) {
+                    else if (differenceX < -50) {
 
                         reviewIndex--;
 
                     }
-
 
                     updateSlider();
 
@@ -547,10 +495,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "resize",
             () => {
 
-                clearTimeout(
-                    resizeTimer
-                );
-
+                clearTimeout(resizeTimer);
 
                 resizeTimer =
                     setTimeout(
@@ -601,7 +546,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 homeReviews.innerHTML = "";
 
-
                 const reviewList =
                     Array.isArray(reviews)
                         ? reviews
@@ -612,10 +556,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     review => {
 
                         const card =
-                            document.createElement(
-                                "div"
-                            );
-
+                            document.createElement("div");
 
                         card.className =
                             "review-card";
@@ -623,12 +564,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         card.innerHTML = `
 
-                            <img
-                                src="${review.photo || ""}"
-                                alt="${review.name || "Traveller"}"
-                                class="review-avatar"
-                                loading="lazy"
-                            >
+                            <div class="review-photo">
+
+                                <img
+                                    src="${review.photo || ""}"
+                                    alt="${review.name || "Traveller"}"
+                                    class="review-avatar"
+                                    loading="eager"
+                                    decoding="async"
+                                >
+
+                            </div>
 
                             <div class="review-content">
 
@@ -645,9 +591,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         `;
 
 
-                        homeReviews.appendChild(
-                            card
-                        );
+                        homeReviews.appendChild(card);
 
                     }
                 );
@@ -671,33 +615,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        HOMEPAGE PACKAGES
-       
        packages.json
-
-       FIRST 3 PACKAGES ONLY
-
-       Uses the actual packages.json fields:
-       id
-       title
-       subtitle
-       category
-       duration
-       price
-       priceNote
-       image
-       status
-       description
-       destinations
-       highlights
-       itinerary
-       included
-       notIncluded
+       FIRST 3 PACKAGES
     ===================================================== */
 
     const homePackages =
-        document.querySelector(
-            "#home-packages"
-        );
+        document.querySelector("#home-packages");
 
 
     if (homePackages) {
@@ -722,12 +645,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 homePackages.innerHTML = "";
 
-
-                /*
-                 * Only the first 3 objects
-                 * from packages.json.
-                 */
-
                 const packageList =
                     Array.isArray(packages)
                         ? packages.slice(0, 3)
@@ -738,55 +655,38 @@ document.addEventListener("DOMContentLoaded", function () {
                     pkg => {
 
                         const card =
-                            document.createElement(
-                                "article"
-                            );
-
+                            document.createElement("article");
 
                         card.className =
                             "package-card";
 
 
-                        /*
-                         * Use the exact fields
-                         * from packages.json.
-                         */
-
                         const title =
                             pkg.title || "";
-
 
                         const subtitle =
                             pkg.subtitle || "";
 
-
                         const category =
                             pkg.category || "";
-
 
                         const duration =
                             pkg.duration || "";
 
-
                         const price =
                             pkg.price || "";
-
 
                         const priceNote =
                             pkg.priceNote || "";
 
-
                         const image =
                             pkg.image || "";
-
 
                         const status =
                             pkg.status || "";
 
-
                         const description =
                             pkg.description || "";
-
 
                         const destinations =
                             pkg.destinations || "";
@@ -920,11 +820,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                                     <a
-                                        href="package-details.html?id=${encodeURIComponent(pkg.id || "")}"
-                                        class="package-btn"
-                                    >
-                                        View Package
-                                    </a>
+    href="packages.html?package=${encodeURIComponent(pkg.id || "")}"
+    class="package-btn"
+>
+    View Package
+</a>
 
                                 </div>
 
@@ -933,9 +833,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         `;
 
 
-                        homePackages.appendChild(
-                            card
-                        );
+                        homePackages.appendChild(card);
 
                     }
                 );
@@ -956,17 +854,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        EXPERIENCES
-       
-       KEEP USING experiences.json
-       
-       This section is intentionally separate
-       from packages.json.
+       experiences.json
+       FIRST 4 EXPERIENCES
     ===================================================== */
 
     const homeExperiences =
-        document.querySelector(
-            "#home-experiences"
-        );
+        document.querySelector("#home-experiences");
 
 
     if (homeExperiences) {
@@ -991,7 +884,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 homeExperiences.innerHTML = "";
 
-
                 const experienceList =
                     Array.isArray(experiences)
                         ? experiences.slice(0, 4)
@@ -1002,10 +894,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     experience => {
 
                         const card =
-                            document.createElement(
-                                "article"
-                            );
-
+                            document.createElement("article");
 
                         card.className =
                             "experience-card";
@@ -1057,9 +946,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         `;
 
 
-                        homeExperiences.appendChild(
-                            card
-                        );
+                        homeExperiences.appendChild(card);
 
                     }
                 );
@@ -1084,9 +971,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     if (
-        window.matchMedia(
-            "(pointer:fine)"
-        ).matches
+        window.matchMedia("(pointer:fine)").matches
     ) {
 
         const content =
@@ -1186,9 +1071,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     if (
-        window.matchMedia(
-            "(pointer:coarse)"
-        ).matches
+        window.matchMedia("(pointer:coarse)").matches
     ) {
 
         const layers =
@@ -1209,7 +1092,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     const tiltX =
                         (event.gamma || 0) / 45;
-
 
                     const tiltY =
                         (event.beta || 0) / 45;
@@ -1235,376 +1117,312 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-   /* =====================================================
-   SMOOTH SCROLL PAGE TRANSITION
-   INTEGRATED CINEMATIC PAGE TRANSITION
-   DESKTOP + TABLET
-===================================================== */
 
-if (window.matchMedia("(min-width: 768px)").matches) {
+    /* =====================================================
+       CINEMATIC HERO TRANSITION
+       DESKTOP + TABLET ONLY
 
-    const heroSection =
-        document.querySelector(".hero-section");
+       IMPORTANT:
+       This does NOT control page scrolling.
+    ===================================================== */
 
-    const heroContent =
-        document.querySelector(".hero-section .content");
+    if (
+        window.matchMedia("(min-width: 768px)").matches
+    ) {
 
-
-    const svgLayers =
-        document.querySelectorAll(
-            ".hero-section .back-2, " +
-            ".hero-section .back-3, " +
-            ".hero-section .back-4, " +
-            ".hero-section .back-5, " +
-            ".hero-section .cloud"
-        );
+        const heroSection =
+            document.querySelector(".hero-section");
 
 
-    const nextSection =
-        document.querySelector(
-            ".featured-packages-section"
-        );
-
-
-    /* ==========================================
-       ALL SECTIONS USING CINEMATIC SCROLL
-    ========================================== */
-
-   const lowerSections =
-    document.querySelectorAll(
-        ".featured-packages-section, " +
-        ".experiences-section, " +
-        ".why-choose-section, " +
-        ".reviews-section, " +
-        ".final-cta-section"
-    );
-
-
-   if (heroSection) {
-
-    let ticking = false;
-    let snapTriggered = false;
-
-    /*
-     * Prevents the page transition
-     * from triggering repeatedly.
-     */
-
-
-
-        function clamp(value, min, max) {
-
-            return Math.max(
-                min,
-                Math.min(
-                    max,
-                    value
-                )
+        const heroContent =
+            document.querySelector(
+                ".hero-section .content"
             );
 
-        }
+
+        const svgLayers =
+            document.querySelectorAll(
+                ".hero-section .back-2," +
+                ".hero-section .back-3," +
+                ".hero-section .back-4," +
+                ".hero-section .back-5," +
+                ".hero-section .cloud"
+            );
 
 
-        function updatePageTransition() {
-
-            const heroHeight =
-                heroSection.offsetHeight;
-
-
-            const scrollY =
-                window.scrollY;
+        const nextSection =
+            document.querySelector(
+                ".featured-packages-section"
+            );
 
 
-            if (!heroHeight) {
-
-                ticking = false;
-
-                return;
-
-            }   
-
-
-            /* ==========================================
-               MAIN HERO TRANSITION
-            ========================================== */
-
-            const TRANSITION_PERCENT = 0.90;
+        const lowerSections =
+            document.querySelectorAll(
+                ".featured-packages-section," +
+                ".experiences-section," +
+                ".why-choose-section," +
+                ".reviews-section," +
+                ".final-cta-section"
+            );
 
 
-            const triggerPoint =
-                heroHeight *
-                TRANSITION_PERCENT;
+        if (heroSection) {
+
+            let ticking = false;
 
 
-            let progress =
-                scrollY /
-                triggerPoint;
+            function clamp(
+                value,
+                min,
+                max
+            ) {
 
-
-            progress =
-                clamp(
-                    progress,
-                    0,
-                    1
+                return Math.max(
+                    min,
+                    Math.min(
+                        max,
+                        value
+                    )
                 );
-
-
-            /* ==========================================
-               SMOOTH CINEMATIC EASING
-            ========================================== */
-
-            const eased =
-                progress *
-                progress *
-                (3 - 2 * progress);
-
-
-            /* ==========================================
-               HERO CONTENT FADE
-            ========================================== */
-
-            if (heroContent) {
-
-                heroContent.style.opacity =
-                    String(
-                        1 - eased
-                    );
-
-
-                heroContent.style.filter =
-                    `blur(${eased * 6}px)`;
-
-
-                heroContent.style.transform =
-                    `scale(${1 + eased * 0.03})`;
 
             }
 
 
-            /* ==========================================
-               SVG FADE
-               0–75%   = FULLY VISIBLE
-               75–100% = FADE OUT
-            ========================================== */
+            function easeInOut(t) {
 
-            const SVG_FADE_START = 0.75;
-
-
-            const svgFadeProgress =
-                clamp(
-                    (
-                        (scrollY / heroHeight) -
-                        SVG_FADE_START
-                    ) /
-                    (1 - SVG_FADE_START),
-                    0,
-                    1
+                return (
+                    t *
+                    t *
+                    (3 - 2 * t)
                 );
 
-
-            const svgEased =
-                svgFadeProgress *
-                svgFadeProgress *
-                (3 - 2 * svgFadeProgress);
+            }
 
 
-            svgLayers.forEach(layer => {
+            function updatePageTransition() {
 
-    layer.style.opacity =
-        String(
-            1 - svgEased
-        );
-
-    layer.style.transform =
-        `translateY(${svgEased * -40}px)`;
-
-});
+                const heroHeight =
+                    heroSection.offsetHeight;
 
 
-if (nextSection) {
-
-    nextSection.style.setProperty(
-        "--forest-opacity",
-        String(1 - svgEased)
-    );
-
-}
+                const scrollY =
+                    window.scrollY;
 
 
+                if (!heroHeight) {
 
-
-
-            /* ==========================================
-               CINEMATIC SECTION POSITION
-            ========================================== */
-
-            lowerSections.forEach(section => {
-
-                /*
-                 * Featured Packages keeps the
-                 * existing hero transition.
-                 */
-
-               if (
-    section === nextSection
-) {
-
-    const sectionTop =
-        section.getBoundingClientRect().top;
-
-    const startPoint =
-        window.innerHeight * 0.90;
-
-    const endPoint =
-        window.innerHeight * 0.35;
-
-    let sectionProgress =
-        (
-            startPoint -
-            sectionTop
-        ) /
-        (
-            startPoint -
-            endPoint
-        );
-
-    sectionProgress =
-        clamp(
-            sectionProgress,
-            0,
-            1
-        );
-
-    const sectionEased =
-        sectionProgress *
-        sectionProgress *
-        (3 - 2 * sectionProgress);
-
-    const START_OFFSET = 60;
-
-    const moveY =
-        START_OFFSET *
-        (1 - sectionEased);
-
-    section.style.transform =
-        `translateY(${moveY}px)`;
-
-    return;
-
-}
-
-
-                /*
-                 * Sections below Featured Packages.
-                 *
-                 * They begin moving when they
-                 * enter the lower part of viewport.
-                 */
-
-                const sectionTop =
-                    section.getBoundingClientRect().top;
-
-
-                const startPoint =
-                    window.innerHeight * 0.90;
-
-
-                const endPoint =
-                    window.innerHeight * 0.35;
-
-
-                let sectionProgress =
-                    (
-                        startPoint -
-                        sectionTop
-                    ) /
-                    (
-                        startPoint -
-                        endPoint
-                    );
-
-
-                sectionProgress =
-                    clamp(
-                        sectionProgress,
-                        0,
-                        1
-                    );
-
-
-                const sectionEased =
-                    sectionProgress *
-                    sectionProgress *
-                    (3 - 2 * sectionProgress);
-
-
-                const START_OFFSET = 60;
-
-
-                const moveY =
-                    START_OFFSET *
-                    (1 - sectionEased);
-
-
-                section.style.transform =
-                    `translateY(${moveY}px)`;
-
-            });
-
-
-            ticking = false;
-
-        }
-
-
-        /* ==============================================
-           SINGLE SCROLL CONTROLLER
-        ============================================== */
-
-        window.addEventListener(
-            "scroll",
-            () => {
-
-                if (ticking) {
+                    ticking = false;
 
                     return;
 
                 }
 
 
-                ticking = true;
+                /* -----------------------------------------
+                   HERO FADE
+                ----------------------------------------- */
+
+                const TRANSITION_PERCENT =
+                    0.90;
 
 
-                requestAnimationFrame(
-                    updatePageTransition
+                const triggerPoint =
+                    heroHeight *
+                    TRANSITION_PERCENT;
+
+
+                let progress =
+                    scrollY /
+                    triggerPoint;
+
+
+                progress =
+                    clamp(
+                        progress,
+                        0,
+                        1
+                    );
+
+
+                const eased =
+                    easeInOut(progress);
+
+
+                if (heroContent) {
+
+                    heroContent.style.opacity =
+                        String(1 - eased);
+
+
+                    heroContent.style.filter =
+                        `blur(${eased * 6}px)`;
+
+
+                    heroContent.style.transform =
+                        `scale(${1 + eased * 0.03})`;
+
+                }
+
+
+                /* -----------------------------------------
+                   SVG FADE
+                ----------------------------------------- */
+
+                const SVG_FADE_START =
+                    0.75;
+
+
+                const svgFadeProgress =
+                    clamp(
+                        (
+                            (scrollY / heroHeight) -
+                            SVG_FADE_START
+                        ) /
+                        (1 - SVG_FADE_START),
+                        0,
+                        1
+                    );
+
+
+                const svgEased =
+                    easeInOut(
+                        svgFadeProgress
+                    );
+
+
+                svgLayers.forEach(
+                    layer => {
+
+                        layer.style.opacity =
+                            String(
+                                1 - svgEased
+                            );
+
+
+                        layer.style.transform =
+                            `translateY(${svgEased * -40}px)`;
+
+                    }
                 );
 
-            },
-            {
-                passive: true
+
+                /* -----------------------------------------
+                   FOREST OPACITY
+                ----------------------------------------- */
+
+                if (nextSection) {
+
+                    nextSection.style.setProperty(
+                        "--forest-opacity",
+                        String(1 - svgEased)
+                    );
+
+                }
+
+
+                /* -----------------------------------------
+                   SECTION ENTRANCE
+                   
+                   This is ONLY visual.
+                   It does NOT lock scrolling.
+                ----------------------------------------- */
+
+                lowerSections.forEach(
+                    section => {
+
+                        const sectionTop =
+                            section.getBoundingClientRect().top;
+
+
+                        const startPoint =
+                            window.innerHeight * 0.90;
+
+
+                        const endPoint =
+                            window.innerHeight * 0.35;
+
+
+                        let sectionProgress =
+                            (
+                                startPoint -
+                                sectionTop
+                            ) /
+                            (
+                                startPoint -
+                                endPoint
+                            );
+
+
+                        sectionProgress =
+                            clamp(
+                                sectionProgress,
+                                0,
+                                1
+                            );
+
+
+                        const sectionEased =
+                            easeInOut(
+                                sectionProgress
+                            );
+
+
+                        const START_OFFSET =
+                            60;
+
+
+                        const moveY =
+                            START_OFFSET *
+                            (1 - sectionEased);
+
+
+                        section.style.transform =
+                            `translateY(${moveY}px)`;
+
+                    }
+                );
+
+
+                ticking = false;
+
             }
-        );
 
 
-        /* ==============================================
-           RESIZE
-        ============================================== */
+            window.addEventListener(
+                "scroll",
+                () => {
 
-        window.addEventListener(
-            "resize",
-            updatePageTransition
-        );
+                    if (ticking) {
+                        return;
+                    }
 
 
-        /* ==============================================
-           INITIAL STATE
-        ============================================== */
+                    ticking = true;
 
-        updatePageTransition();
+
+                    requestAnimationFrame(
+                        updatePageTransition
+                    );
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            window.addEventListener(
+                "resize",
+                updatePageTransition
+            );
+
+
+            updatePageTransition();
+
+        }
 
     }
 
-}
 
     /* =====================================================
        CURSOR LIGHT TRAIL
@@ -1662,27 +1480,27 @@ if (nextSection) {
             );
 
 
-        if (loader) {
-
-            setTimeout(
-                () => {
-
-                    loader.classList.add(
-                        "hide"
-                    );
-
-                },
-                500
-            );
-
+        if (!loader) {
+            return;
         }
+
+
+        setTimeout(
+            () => {
+
+                loader.classList.add(
+                    "hide"
+                );
+
+            },
+            500
+        );
 
     }
 
 
     if (
-        document.readyState ===
-        "complete"
+        document.readyState === "complete"
     ) {
 
         hideLoader();
@@ -1851,16 +1669,10 @@ if (nextSection) {
 
 
             if (
-                searchOverlay.classList.contains(
-                    "active"
-                ) &&
-                !searchOverlay.contains(
-                    event.target
-                ) &&
+                searchOverlay.classList.contains("active") &&
+                !searchOverlay.contains(event.target) &&
                 currentSearchBtn &&
-                !currentSearchBtn.contains(
-                    event.target
-                )
+                !currentSearchBtn.contains(event.target)
             ) {
 
                 searchOverlay.classList.remove(
@@ -1902,15 +1714,9 @@ if (nextSection) {
 
 
             if (
-                currentMenu.classList.contains(
-                    "show"
-                ) &&
-                !currentMenu.contains(
-                    event.target
-                ) &&
-                !currentMenuBtn.contains(
-                    event.target
-                )
+                currentMenu.classList.contains("show") &&
+                !currentMenu.contains(event.target) &&
+                !currentMenuBtn.contains(event.target)
             ) {
 
                 currentMenu.classList.remove(
@@ -1925,7 +1731,7 @@ if (nextSection) {
 
     /* =====================================================
        LIGHTNING EFFECT
-       Safe if lightning elements exist
+       Safe if lightning element exists
     ===================================================== */
 
     const lightning =
@@ -1940,8 +1746,7 @@ if (nextSection) {
             () => {
 
                 if (
-                    Math.random() >
-                    0.75
+                    Math.random() > 0.75
                 ) {
 
                     lightning.classList.add(

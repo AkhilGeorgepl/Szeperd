@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Reserve your Szeperd travel package."
+    >
+
+    <title>Szeperd | Reservation</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Reservation CSS -->
+    <link
+        rel="stylesheet"
+        href="reservation.css"
+    >
+</head>
+
+<body>
+
+   <!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a
+            href="index.html"
+            class="site-logo"
+            aria-label="Szeperd Home"
+        >
+            <img
+                src="logo.png"
+                alt="Szeperd"
+            >
+        </a>
+
+        <nav
+            class="main-nav"
+            aria-label="Main navigation"
+        >
+
+            <a href="index.html">HOME</a>
+            <a href="experiences.html">EXPERIENCES</a>
+            <a href="packages.html">PACKAGES</a>
+            <a href="gallery.html">GALLERY</a>
+            <a href="about.html">ABOUT US</a>
+            <a href="contact.html">CONTACT</a>
+
+        </nav>
+
+        <button
+            type="button"
+            class="mobile-menu-button"
+            id="menu-toggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-navigation"
+        >
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+
+    </div>
+
+    <nav
+        class="mobile-navigation"
+        id="mobile-navigation"
+        aria-label="Mobile navigation"
+        aria-hidden="true"
+    >
+
+        <a href="index.html">HOME</a>
+        <a href="experiences.html">EXPERIENCES</a>
+        <a href="packages.html">PACKAGES</a>
+        <a href="gallery.html">GALLERY</a>
+        <a href="about.html">ABOUT US</a>
+        <a href="contact.html">CONTACT</a>
+
+    </nav>
+
+</header>
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+        <section
+            class="reservation-page"
+            aria-labelledby="reservation-title"
+        >
+
+            <div class="reservation-window">
+
+                <div class="reservation-inner">
+
+                    <!-- =====================================
+                         RESERVATION HEADER
+                    ====================================== -->
+
+                    <header class="reservation-header">
+
+                        <span
+                            class="eyebrow"
+                            id="reservation-eyebrow"
+                        >
+                            Reservation
+                        </span>
+
+                        <h1 id="reservation-title">
+                            Reserve Your Package
+                        </h1>
+
+                        <p id="reservation-subtitle">
+                            Please provide your details and preferences.
+                            We will review your request and contact you
+                            to confirm availability and the next steps.
+                        </p>
+
+
+                        <!-- =================================
+                             RESERVATION INFORMATION
+                        ================================== -->
+
+                        <div
+                            class="reservation-information"
+                            id="reservation-information"
+                            hidden
+                        >
+
+                            <h2 id="reservation-information-title">
+                                Before You Reserve
+                            </h2>
+
+                            <p id="reservation-information-text"></p>
+
+                            <p
+                                id="reservation-information-important"
+                                class="reservation-information-important"
+                            ></p>
+
+                        </div>
+
+
+                        <!-- =================================
+                             SELECTED PACKAGE
+                        ================================== -->
+
+                        <div class="reservation-package">
+
+                            <span id="selected-package-label">
+                                Selected Package
+                            </span>
+
+                            <strong
+                                id="reservation-package-name"
+                            >
+                                Loading...
+                            </strong>
+
+                        </div>
+
+                    </header>
+
+
+                    <!-- =====================================
+                         RESERVATION FORM
+                    ====================================== -->
+
+                    <form
+                        id="reservation-form"
+                        class="reservation-form"
+                        novalidate
+                        autocomplete="on"
+                    >
+
+                        <!-- =================================
+                             TRAVELLER DETAILS
+                        ================================== -->
+
+                        <section
+                            class="reservation-section"
+                            id="traveller-details-section"
+                        >
+
+                            <div class="reservation-section-heading">
+
+                                <h2 id="traveller-details-title">
+                                    Traveller Details
+                                </h2>
+
+                            </div>
+
+                            <div
+                                id="reservation-fields"
+                                class="reservation-fields"
+                            ></div>
+
+                        </section>
+
+
+                        <!-- =================================
+                             TRAVEL PREFERENCES
+                        ================================== -->
+
+                        <section
+                            class="reservation-section"
+                            id="travel-preferences-section"
+                        >
+
+                            <div class="reservation-section-heading">
+
+                                <h2 id="travel-preferences-title">
+                                    Travel Preferences
+                                </h2>
+
+                            </div>
+
+                            <div
+                                id="reservation-options"
+                                class="reservation-options"
+                            ></div>
+
+                        </section>
+
+
+                        <!-- =================================
+                             ADDITIONAL INFORMATION
+                        ================================== -->
+
+                        <section
+                            class="reservation-section"
+                            id="additional-information-section"
+                        >
+
+                            <div class="reservation-section-heading">
+
+                                <h2 id="additional-information-title">
+                                    Additional Information
+                                </h2>
+
+                            </div>
+
+                            <div
+                                id="reservation-notes"
+                                class="reservation-notes"
+                            ></div>
+
+                        </section>
+
+
+                        <!-- =================================
+                             DECLARATIONS
+                        ================================== -->
+
+                        <section
+                            class="reservation-section"
+                            id="declarations-section"
+                        >
+
+                            <div class="reservation-section-heading">
+
+                                <h2 id="declarations-title">
+                                    Declarations &amp; Agreements
+                                </h2>
+
+                            </div>
+
+                            <div
+                                id="reservation-declarations"
+                                class="reservation-declarations"
+                            ></div>
+
+                        </section>
+
+
+                        <!-- =================================
+                             FORM MESSAGE
+                        ================================== -->
+
+                        <div
+                            id="reservation-message"
+                            class="reservation-message"
+                            hidden
+                            role="status"
+                            aria-live="polite"
+                        ></div>
+
+
+                        <!-- =================================
+                             ACTIONS
+                        ================================== -->
+
+                        <div class="reservation-actions">
+
+                            <a
+                                href="packages.html"
+                                class="reservation-back-button"
+                                id="reservation-back-button"
+                            >
+                                Back to Packages
+                            </a>
+
+
+                            <button
+                                type="submit"
+                                id="submit-reservation"
+                                class="reservation-submit-button"
+                            >
+                                Reservation
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         RESERVATION INFORMATION / FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <p id="footer-copyright">
+                © 2026 Szeperd. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         WHATSAPP
+         This is the normal website contact button.
+         Reservation notifications are handled server-side.
+    ====================================================== -->
+
+    <a
+        href="https://wa.me/48571993223"
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+    >
+
+        <i
+            class="fab fa-whatsapp"
+            aria-hidden="true"
+        ></i>
+
+    </a>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="reservation.js"></script>
+
+</body>
+</html>

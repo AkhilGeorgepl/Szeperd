@@ -1,0 +1,1573 @@
+/* =========================================================
+   SZEPPERD RESERVATION PAGE
+========================================================= */
+
+:root {
+    --green-dark: #10281d;
+    --green: #173c2a;
+    --green-soft: #234b38;
+
+    --cream: #f4f0e6;
+    --cream-dark: #e9e2d4;
+
+    --gold: #dfc582;
+    --gold-dark: #a88445;
+
+    --text: #26352d;
+    --muted: #70756f;
+
+    --white: #ffffff;
+
+    --border: rgba(23, 60, 42, 0.12);
+
+    --shadow:
+        0 20px 60px rgba(20, 50, 35, 0.10);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    font-family:
+        "Nunito",
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   HEADER
+   MATCHES ABOUT US PAGE
+
+   DESKTOP:
+   LOGO LEFT
+   NAV CENTER
+
+   MOBILE:
+   LOGO LEFT
+   MENU ICON RIGHT
+========================================================= */
+
+.site-header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 1000;
+
+    background:
+        rgba(20, 45, 33, 0.72);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.10);
+}
+
+
+/* =========================================================
+   HEADER INNER
+========================================================= */
+
+.header-inner {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.site-logo {
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.site-logo img {
+
+    display: block;
+
+    width: auto;
+
+    height: 40px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
+
+.main-nav {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 32px;
+
+    margin: 0;
+
+    z-index: 1;
+}
+
+.main-nav a {
+
+    position: relative;
+
+    padding: 0;
+
+    color:
+        rgba(255,255,255,.88);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .6px;
+
+    white-space: nowrap;
+
+    transition:
+        color .25s ease,
+        transform .25s ease;
+}
+
+.main-nav a:hover {
+
+    color: #fff;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-button {
+
+    display: none;
+
+    width: 42px;
+
+    height: 42px;
+
+    margin-left: auto;
+
+    padding: 0;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 0;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    z-index: 2;
+}
+
+.mobile-menu-button i {
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+.mobile-navigation {
+
+    display: none;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    width: 100%;
+}
+
+
+/* =========================================================
+   RESERVATION PAGE
+========================================================= */
+
+.reservation-page {
+
+    min-height:
+        calc(100vh - 50px);
+
+    padding:
+        105px 24px 80px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f4f0e6 0%,
+            #eee8dc 100%
+        );
+}
+
+
+/* =========================================================
+   MAIN RESERVATION WINDOW
+
+   IMPORTANT:
+   NO FIXED HEIGHT
+   NO MAX HEIGHT
+   NO SCROLLING INSIDE
+========================================================= */
+
+.reservation-window {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    background:
+        rgba(255,255,255,.72);
+
+    border:
+        1px solid
+        rgba(23,60,42,.10);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 80px
+        rgba(20,50,35,.10);
+
+    overflow: visible;
+}
+
+.reservation-inner {
+
+    width: 100%;
+
+    padding:
+        55px 65px 65px;
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   RESERVATION HEADER
+========================================================= */
+
+.reservation-header {
+
+    text-align: center;
+
+    padding-bottom: 40px;
+}
+
+.eyebrow {
+
+    display: block;
+
+    margin-bottom: 16px;
+
+    color: var(--gold-dark);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+.reservation-header h1 {
+
+    margin-bottom: 18px;
+
+    color: var(--green);
+
+    font-family:
+        "Lora",
+        serif;
+
+    font-size:
+        clamp(40px, 5vw, 66px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+.reservation-subtitle {
+
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    color: var(--muted);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   INFORMATION BOX
+========================================================= */
+
+.reservation-information {
+
+    max-width: 780px;
+
+    margin:
+        32px auto 0;
+
+    padding:
+        24px 28px;
+
+    text-align: left;
+
+    background:
+        rgba(23,60,42,.055);
+
+    border:
+        1px solid
+        rgba(23,60,42,.10);
+
+    border-left:
+        3px solid
+        var(--gold-dark);
+
+    border-radius: 14px;
+}
+
+.reservation-information[hidden] {
+    display: none;
+}
+
+.reservation-information h2 {
+
+    margin-bottom: 10px;
+
+    color: var(--green);
+
+    font-family:
+        "Lora",
+        serif;
+
+    font-size: 22px;
+
+    font-weight: 500;
+}
+
+.reservation-information p {
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.75;
+}
+
+.reservation-information-important {
+
+    margin-top: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SELECTED PACKAGE
+========================================================= */
+
+.reservation-package {
+
+    max-width: 780px;
+
+    margin:
+        28px auto 0;
+
+    padding:
+        18px 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    text-align: left;
+
+    background:
+        var(--green);
+
+    color: #fff;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(23,60,42,.12);
+}
+
+.reservation-package span {
+
+    color:
+        rgba(255,255,255,.68);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+}
+
+.reservation-package strong {
+
+    color: var(--gold);
+
+    font-family:
+        "Lora",
+        serif;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   FORM
+   ALWAYS VISIBLE
+========================================================= */
+
+.reservation-form {
+
+    display: block;
+
+    width: 100%;
+
+    visibility: visible;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.reservation-section {
+
+    margin-top: 38px;
+
+    padding-top: 34px;
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+.reservation-section-heading {
+
+    margin-bottom: 24px;
+}
+
+.reservation-section-heading h2 {
+
+    color: var(--green);
+
+    font-family:
+        "Lora",
+        serif;
+
+    font-size: 30px;
+
+    font-weight: 500;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   FORM FIELDS
+========================================================= */
+
+.reservation-fields {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        22px 24px;
+}
+
+.reservation-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.reservation-field.full-width {
+
+    grid-column:
+        1 / -1;
+}
+
+.reservation-field label {
+
+    color: var(--green);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .2px;
+}
+
+.required-mark {
+
+    color: var(--gold-dark);
+
+    margin-left: 3px;
+}
+
+.reservation-field input,
+.reservation-field textarea,
+.reservation-field select {
+
+    width: 100%;
+
+    padding:
+        14px 16px;
+
+    border:
+        1px solid
+        rgba(23,60,42,.15);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,.80);
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.reservation-field input {
+
+    min-height: 48px;
+}
+
+.reservation-field textarea {
+
+    min-height: 125px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+.reservation-field input::placeholder,
+.reservation-field textarea::placeholder {
+
+    color:
+        rgba(112,117,111,.65);
+}
+
+.reservation-field input:focus,
+.reservation-field textarea:focus,
+.reservation-field select:focus {
+
+    border-color:
+        rgba(168,132,69,.75);
+
+    background:
+        #fff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(223,197,130,.20);
+}
+
+.reservation-field.invalid input,
+.reservation-field.invalid textarea,
+.reservation-field.invalid select {
+
+    border-color:
+        #a84b43;
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+.reservation-options {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+.reservation-option {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding:
+        15px 17px;
+
+    background:
+        rgba(255,255,255,.52);
+
+    border:
+        1px solid
+        rgba(23,60,42,.09);
+
+    border-radius: 11px;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.reservation-option:hover {
+
+    background:
+        rgba(255,255,255,.80);
+
+    border-color:
+        rgba(23,60,42,.16);
+}
+
+.reservation-option input {
+
+    width: 17px;
+
+    height: 17px;
+
+    margin-top: 2px;
+
+    accent-color:
+        var(--green);
+
+    flex-shrink: 0;
+}
+
+.reservation-option label {
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+.reservation-notes {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.reservation-note {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.reservation-note label {
+
+    color: var(--green);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.reservation-note textarea {
+
+    width: 100%;
+
+    min-height: 125px;
+
+    padding:
+        14px 16px;
+
+    border:
+        1px solid
+        rgba(23,60,42,.15);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,.80);
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    resize: vertical;
+}
+
+.reservation-note textarea:focus {
+
+    border-color:
+        rgba(168,132,69,.75);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(223,197,130,.20);
+}
+
+.reservation-note-helper {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   DECLARATIONS
+========================================================= */
+
+.reservation-declarations {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.reservation-declaration {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding:
+        16px 17px;
+
+    background:
+        rgba(255,255,255,.52);
+
+    border:
+        1px solid
+        rgba(23,60,42,.09);
+
+    border-radius: 11px;
+}
+
+.reservation-declaration input {
+
+    width: 17px;
+
+    height: 17px;
+
+    margin-top: 3px;
+
+    accent-color:
+        var(--green);
+
+    flex-shrink: 0;
+}
+
+.reservation-declaration label {
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+.reservation-declaration a {
+
+    color:
+        var(--gold-dark);
+
+    font-weight: 700;
+
+    text-decoration:
+        underline;
+
+    text-underline-offset: 3px;
+}
+
+.reservation-declaration.invalid {
+
+    border-color:
+        #a84b43;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.reservation-message {
+
+    margin-top: 30px;
+
+    padding:
+        17px 20px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.reservation-message[hidden] {
+    display: none;
+}
+
+.reservation-message.error {
+
+    background:
+        rgba(168,75,67,.08);
+
+    border:
+        1px solid
+        rgba(168,75,67,.22);
+
+    color:
+        #8b3933;
+}
+
+.reservation-message.success {
+
+    background:
+        rgba(23,60,42,.08);
+
+    border:
+        1px solid
+        rgba(23,60,42,.18);
+
+    color:
+        var(--green);
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.reservation-actions {
+
+    margin-top: 42px;
+
+    padding-top: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+.reservation-back-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding:
+        12px 22px;
+
+    border:
+        1px solid
+        rgba(23,60,42,.18);
+
+    border-radius: 999px;
+
+    color:
+        var(--green);
+
+    background:
+        rgba(255,255,255,.55);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+.reservation-back-button:hover {
+
+    background:
+        #fff;
+
+    transform:
+        translateY(-1px);
+}
+
+.reservation-submit-button {
+
+    min-width: 205px;
+
+    min-height: 50px;
+
+    padding:
+        13px 26px;
+
+    border: 0;
+
+    border-radius: 999px;
+
+    background:
+        var(--green);
+
+    color:
+        #fff;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.reservation-submit-button:hover {
+
+    background:
+        var(--green-dark);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(23,60,42,.20);
+}
+
+.reservation-submit-button:disabled {
+
+    opacity: .65;
+
+    cursor:
+        wait;
+
+    transform:
+        none;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+
+    width: 100%;
+
+    min-height: 50px;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #173c2a 0%,
+            #10281d 100%
+        );
+
+    border-top:
+        1px solid
+        rgba(223,197,130,.22);
+}
+
+.footer-inner {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+#footer-copyright {
+
+    color:
+        rgba(255,255,255,.68);
+
+    font-size: 11px;
+
+    letter-spacing: .4px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp-float {
+
+    position: fixed;
+
+    right: 24px;
+
+    bottom: 24px;
+
+    z-index: 2000;
+
+    width: 54px;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        #25d366;
+
+    color:
+        #fff;
+
+    font-size: 26px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.20);
+
+    transition:
+        transform .25s ease;
+}
+
+.whatsapp-float:hover {
+
+    transform:
+        scale(1.08);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    /* HEADER */
+
+    .site-header {
+
+        height: 70px;
+
+        padding:
+            0 22px;
+    }
+
+    .header-inner {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+    }
+
+    .site-logo {
+
+        flex-shrink: 0;
+    }
+
+    .site-logo img {
+
+        height: 40px;
+    }
+
+    .main-nav {
+
+        display: none;
+    }
+
+    .mobile-menu-button {
+
+        display: flex;
+
+        margin-left: auto;
+    }
+
+
+    /* MOBILE POPUP */
+
+    .mobile-navigation {
+
+        position: absolute;
+
+        top:
+            calc(100% + 10px);
+
+        left: 50%;
+
+        right: auto;
+
+        width:
+            calc(100% - 30px);
+
+        height: auto;
+
+        transform:
+            translateX(-50%);
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 3px;
+
+        padding: 10px;
+
+        background:
+            rgba(20,48,35,.97);
+
+        backdrop-filter:
+            blur(18px);
+
+        -webkit-backdrop-filter:
+            blur(18px);
+
+        border:
+            1px solid
+            rgba(255,255,255,.12);
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 20px 50px
+            rgba(0,0,0,.25);
+
+        z-index: 1001;
+    }
+
+    .mobile-navigation.open {
+
+        display: flex;
+    }
+
+    .mobile-navigation a {
+
+        width: 100%;
+
+        padding:
+            13px 12px;
+
+        color:
+            rgba(255,255,255,.88);
+
+        text-align: center;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        border-radius: 10px;
+    }
+
+    .mobile-navigation a:hover {
+
+        background:
+            rgba(255,255,255,.07);
+
+        color:
+            #fff;
+    }
+
+
+    /* RESERVATION */
+
+    .reservation-page {
+
+        padding-top:
+            110px;
+    }
+
+    .reservation-inner {
+
+        padding:
+            45px 45px 55px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .site-header {
+
+        height: 64px;
+
+        padding:
+            0 17px;
+    }
+
+    .site-logo img {
+
+        height: 35px;
+    }
+
+    .mobile-menu-button {
+
+        width: 40px;
+
+        height: 40px;
+    }
+
+
+    /* RESERVATION */
+
+    .reservation-page {
+
+        padding:
+            90px 12px 55px;
+    }
+
+    .reservation-window {
+
+        border-radius: 18px;
+    }
+
+    .reservation-inner {
+
+        padding:
+            32px 20px 40px;
+    }
+
+    .reservation-header {
+
+        padding-bottom:
+            28px;
+    }
+
+    .reservation-header h1 {
+
+        font-size:
+            clamp(36px, 12vw, 52px);
+
+        letter-spacing:
+            -1.5px;
+    }
+
+    .reservation-subtitle {
+
+        font-size:
+            14px;
+
+        line-height:
+            1.7;
+    }
+
+    .reservation-information {
+
+        padding:
+            20px;
+
+        margin-top:
+            25px;
+    }
+
+    .reservation-package {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            8px;
+
+        padding:
+            17px 18px;
+    }
+
+    .reservation-package strong {
+
+        text-align:
+            left;
+
+        font-size:
+            17px;
+    }
+
+    .reservation-section {
+
+        margin-top:
+            30px;
+
+        padding-top:
+            28px;
+    }
+
+    .reservation-section-heading h2 {
+
+        font-size:
+            26px;
+    }
+
+    .reservation-fields {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            18px;
+    }
+
+    .reservation-field.full-width {
+
+        grid-column:
+            auto;
+    }
+
+    .reservation-actions {
+
+        flex-direction:
+            column-reverse;
+
+        align-items:
+            stretch;
+
+        gap:
+            12px;
+    }
+
+    .reservation-submit-button,
+    .reservation-back-button {
+
+        width:
+            100%;
+    }
+
+    .whatsapp-float {
+
+        right:
+            16px;
+
+        bottom:
+            16px;
+
+        width:
+            50px;
+
+        height:
+            50px;
+
+        font-size:
+            23px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+}

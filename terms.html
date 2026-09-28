@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Szeperd Terms & Conditions</title>
+
+    <link
+        rel="stylesheet"
+        href="reservation.css"
+    >
+
+    <style>
+
+        /* =========================================
+           TERMS PAGE
+        ========================================= */
+
+        .policy-section h2 {
+            font-size: 1.25rem;
+            line-height: 1.4;
+            margin: 0 0 0.75rem;
+            font-weight: 600;
+        }
+
+        .policy-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        #terms-title {
+            font-size: 2rem;
+            line-height: 1.25;
+            font-weight: 600;
+        }
+
+        #terms-version,
+        #terms-status,
+        #terms-introduction {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+    <div class="main-nav">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Szeperd
+        </a>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="packages.html">
+                Packages
+            </a>
+
+            <a href="aboutus.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<main class="reservation-page">
+
+    <div class="reservation-window">
+
+        <div class="reservation-inner">
+
+            <div class="reservation-header">
+
+                <p
+                    id="terms-eyebrow"
+                    class="reservation-eyebrow"
+                >
+                    Szeperd
+                </p>
+
+
+                <h1 id="terms-title">
+                    Szeperd Terms & Conditions
+                </h1>
+
+
+                <p
+                    id="terms-version"
+                    class="reservation-subtitle"
+                ></p>
+
+            </div>
+
+
+
+            <section
+                class="reservation-information"
+            >
+
+                <p id="terms-status"></p>
+
+                <p id="terms-introduction"></p>
+
+            </section>
+
+
+
+            <section
+                id="terms-sections"
+                class="reservation-section"
+            ></section>
+
+
+
+            <div class="reservation-actions">
+
+                <a
+                    href="reservation.html"
+                    class="reservation-back-button"
+                >
+                    Back to Reservation
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <p id="footer-copyright">
+        © 2026 Szeperd. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        try {
+
+            const response =
+                await fetch(
+                    "reservation.json",
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load reservation.json"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            const terms =
+                data.termsAndConditions;
+
+
+            if (!terms) {
+
+                throw new Error(
+                    "Terms & Conditions data not found."
+                );
+
+            }
+
+
+            document.title =
+                terms.title ||
+                "Szeperd Terms & Conditions";
+
+
+            const title =
+                document.getElementById(
+                    "terms-title"
+                );
+
+
+            if (title) {
+
+                title.textContent =
+                    terms.title ||
+                    "Szeperd Terms & Conditions";
+
+            }
+
+
+            const version =
+                document.getElementById(
+                    "terms-version"
+                );
+
+
+            if (
+                version &&
+                terms.version
+            ) {
+
+                version.textContent =
+                    terms.version;
+
+            }
+
+
+            const status =
+                document.getElementById(
+                    "terms-status"
+                );
+
+
+            if (
+                status &&
+                terms.status
+            ) {
+
+                status.textContent =
+                    terms.status;
+
+            }
+
+
+            const introduction =
+                document.getElementById(
+                    "terms-introduction"
+                );
+
+
+            if (introduction) {
+
+                introduction.textContent =
+                    terms.introduction ||
+                    "";
+
+            }
+
+
+            const sections =
+                document.getElementById(
+                    "terms-sections"
+                );
+
+
+            if (sections) {
+
+                sections.innerHTML = "";
+
+
+                if (
+                    Array.isArray(
+                        terms.sections
+                    )
+                ) {
+
+                    terms.sections.forEach(
+                        function (section) {
+
+                            if (!section) {
+                                return;
+                            }
+
+
+                            const article =
+                                document.createElement(
+                                    "article"
+                                );
+
+
+                            article.className =
+                                "policy-section";
+
+
+                            const heading =
+                                document.createElement(
+                                    "h2"
+                                );
+
+
+                            heading.textContent =
+                                section.title ||
+                                "";
+
+
+                            const paragraph =
+                                document.createElement(
+                                    "p"
+                                );
+
+
+                            paragraph.textContent =
+                                section.text ||
+                                "";
+
+
+                            article.appendChild(
+                                heading
+                            );
+
+
+                            article.appendChild(
+                                paragraph
+                            );
+
+
+                            sections.appendChild(
+                                article
+                            );
+
+                        }
+                    );
+
+                }
+
+            }
+
+
+            const footer =
+                document.getElementById(
+                    "footer-copyright"
+                );
+
+
+            if (
+                footer &&
+                data.footer &&
+                data.footer.copyright
+            ) {
+
+                footer.textContent =
+                    data.footer.copyright;
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Terms page error:",
+                error
+            );
+
+
+            const sections =
+                document.getElementById(
+                    "terms-sections"
+                );
+
+
+            if (sections) {
+
+                sections.innerHTML =
+                    "<p>Unable to load the Terms & Conditions. Please try again later.</p>";
+
+            }
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

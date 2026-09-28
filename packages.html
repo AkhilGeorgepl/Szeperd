@@ -10,52 +10,32 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>India Tour Packages | Szepred</title>
+    <title>Travel Packages</title>
 
     <meta
         name="description"
-        content="Explore carefully designed India tour packages with Szepred."
+        content="Explore Szeperd's curated India travel packages."
     >
 
+    <!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- =====================================================
-         GOOGLE FONTS
-         ===================================================== -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- =====================================================
-         PACKAGES CSS
-         ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="packages.css"
-    >
-
-
-    <!-- =====================================================
-         FONT AWESOME
-         ===================================================== -->
-
+    <!-- Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Packages CSS -->
+    <link
+        rel="stylesheet"
+        href="packages.css"
     >
 
 </head>
@@ -64,80 +44,108 @@
 <body>
 
 
-<header id="site-header">
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="site-header" id="site-header">
+
+    <div class="header-inner">
 
 
-    <div class="logo">
-
-        <a href="index.html">
+        <!-- LOGO ONLY -->
+        <a
+            href="index.html"
+            class="site-logo"
+            aria-label="Szeperd Home"
+        >
 
             <img
                 src="logo.png"
-                alt="Szepred Logo"
+                alt="Szeperd"
             >
 
         </a>
 
-    </div>
 
+        <!-- DESKTOP NAVIGATION -->
 
-    <nav id="menu">
-
-        <a href="index.html">
-            HOME
-        </a>
-
-        <a href="experiences.html">
-            EXPERIENCES
-        </a>
-
-        <a
-            href="packages.html"
-            class="active"
+        <nav
+            class="main-navigation"
+            id="menu"
+            aria-label="Main navigation"
         >
-            PACKAGES
-        </a>
 
-        <a href="gallery.html">
-            GALLERY
-        </a>
+            <a href="index.html">
+                HOME
+            </a>
 
-        <a href="about.html">
-            ABOUT US
-        </a>
+            <a href="experiences.html">
+                EXPERIENCES
+            </a>
 
-        <a href="contact.html">
-            CONTACT
-        </a>
+            <a
+                href="packages.html"
+                class="active"
+                aria-current="page"
+            >
+                PACKAGES
+            </a>
 
-    </nav>
+            <a href="gallery.html">
+                GALLERY
+            </a>
+
+            <a href="aboutus.html">
+                ABOUT US
+            </a>
+
+            <a href="contact.html">
+                CONTACT
+            </a>
+
+        </nav>
 
 
-    <div class="header-icons">
+        <!-- MOBILE MENU BUTTON -->
 
-        <i
-            class="fas fa-bars"
+        <button
+            type="button"
+            class="menu-toggle"
             id="menu-btn"
-            aria-label="Open menu"
-            role="button"
-            tabindex="0"
-        ></i>
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="menu"
+        >
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
 
     </div>
-
 
 </header>
 
 
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
 <main>
 
 
     <!-- =====================================================
          HERO
-         ===================================================== -->
+    ====================================================== -->
 
     <section class="packages-hero">
+
+        <div class="packages-hero-glow packages-hero-glow-one"></div>
+
+        <div class="packages-hero-glow packages-hero-glow-two"></div>
+
 
         <div class="packages-hero-content">
 
@@ -145,9 +153,10 @@
                 DISCOVER INDIA
             </span>
 
-            <h1>
-                Our Tour Packages
-            </h1>
+           <h1 class="packages-title">
+    <span class="title-solid">Travel</span>
+    <span class="title-stylish">Packages</span>
+</h1>
 
             <p>
                 Carefully designed journeys across India,
@@ -163,63 +172,64 @@
 
     <!-- =====================================================
          FILTERS
-         ===================================================== -->
-
-    <section class="packages-filters">
-
-
-        <div class="packages-filter">
-
-            <label for="category-filter">
-                Destination
-            </label>
-
-            <select id="category-filter">
-
-                <option value="all">
-                    All destinations
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="packages-filter">
-
-            <label for="duration-filter">
-                Duration
-            </label>
-
-            <select id="duration-filter">
-
-                <option value="all">
-                    All durations
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            type="button"
-            id="reset-filters"
-        >
-            Reset
-        </button>
-
-
-    </section>
-
-
-
-    <!-- =====================================================
-         PACKAGE GRID
-         ===================================================== -->
+    ====================================================== -->
 
     <section class="packages-section">
 
+
+        <div class="package-filters">
+
+
+            <div class="filter-group">
+
+                <label for="category-filter">
+                    Destination
+                </label>
+
+                <select id="category-filter">
+
+                    <option value="all">
+                        All destinations
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="duration-filter">
+                    Duration
+                </label>
+
+                <select id="duration-filter">
+
+                    <option value="all">
+                        All durations
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="reset-filters"
+                class="reset-filters"
+            >
+                Reset
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             PACKAGE GRID
+        ================================================== -->
 
         <div
             id="packages-grid"
@@ -227,6 +237,8 @@
             aria-live="polite"
         ></div>
 
+
+        <!-- EMPTY STATE -->
 
         <div
             id="packages-empty"
@@ -251,12 +263,13 @@
 
     <!-- =====================================================
          PACKAGE DETAIL
-         ===================================================== -->
+    ====================================================== -->
 
     <section
         id="package-detail"
         class="package-detail"
         hidden
+        aria-label="Package details"
     >
 
 
@@ -275,10 +288,12 @@
         <div class="package-detail-inner">
 
 
-            <div class="package-detail-image">
+            <!-- DETAIL IMAGE -->
+
+            <div class="package-detail-image-wrap">
 
                 <img
-                    id="detail-image"
+                    id="package-detail-image"
                     src=""
                     alt=""
                 >
@@ -286,23 +301,28 @@
             </div>
 
 
+            <!-- DETAIL CONTENT -->
+
             <div class="package-detail-content">
 
 
                 <span
-                    id="detail-category"
-                    class="eyebrow"
+                    id="package-detail-category"
+                    class="package-detail-category"
                 ></span>
 
 
-                <h2 id="detail-title"></h2>
+                <h2 id="package-detail-title"></h2>
 
 
                 <p
-                    id="detail-subtitle"
+                    id="package-detail-subtitle"
                     class="package-detail-subtitle"
                 ></p>
 
+
+
+                <!-- META -->
 
                 <div class="package-detail-meta">
 
@@ -311,7 +331,7 @@
 
                         <i class="far fa-calendar"></i>
 
-                        <span id="detail-duration"></span>
+                        <span id="package-detail-duration"></span>
 
                     </div>
 
@@ -320,7 +340,7 @@
 
                         <i class="fas fa-location-dot"></i>
 
-                        <span id="detail-destinations"></span>
+                        <span id="package-detail-destinations"></span>
 
                     </div>
 
@@ -329,7 +349,7 @@
 
                         <i class="fas fa-euro-sign"></i>
 
-                        <span id="detail-price"></span>
+                        <span id="package-detail-price"></span>
 
                     </div>
 
@@ -337,12 +357,17 @@
                 </div>
 
 
+
+                <!-- DESCRIPTION -->
+
                 <p
-                    id="detail-description"
+                    id="package-detail-description"
                     class="package-detail-description"
                 ></p>
 
 
+
+                <!-- HIGHLIGHTS -->
 
                 <div class="detail-section">
 
@@ -351,13 +376,32 @@
                     </h3>
 
                     <ul
-                        id="detail-highlights"
+                        id="package-detail-highlights"
                         class="detail-list"
                     ></ul>
 
                 </div>
 
 
+
+                <!-- DESTINATIONS -->
+
+                <div class="detail-section">
+
+                    <h3>
+                        Destinations
+                    </h3>
+
+                    <div
+                        id="package-detail-destinations-list"
+                        class="detail-destinations-list"
+                    ></div>
+
+                </div>
+
+
+
+                <!-- ITINERARY -->
 
                 <div class="detail-section">
 
@@ -366,13 +410,15 @@
                     </h3>
 
                     <div
-                        id="detail-itinerary"
+                        id="package-detail-itinerary"
                         class="detail-itinerary"
                     ></div>
 
                 </div>
 
 
+
+                <!-- INCLUDED / NOT INCLUDED -->
 
                 <div class="detail-columns">
 
@@ -384,7 +430,7 @@
                         </h3>
 
                         <ul
-                            id="detail-included"
+                            id="package-detail-included"
                             class="detail-list"
                         ></ul>
 
@@ -398,7 +444,7 @@
                         </h3>
 
                         <ul
-                            id="detail-not-included"
+                            id="package-detail-not-included"
                             class="detail-list"
                         ></ul>
 
@@ -409,13 +455,16 @@
 
 
 
+                <!-- ACTION -->
+
                 <div class="package-detail-actions">
 
                     <a
-                        href="contact.html"
+                        href="reservation.html"
+                        id="reserve-package-button"
                         class="package-enquiry-button"
                     >
-                        Enquire About This Package
+                        Reserve This Package
                     </a>
 
                 </div>
@@ -423,9 +472,7 @@
 
             </div>
 
-
         </div>
-
 
     </section>
 
@@ -434,14 +481,16 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer class="footer">
 
     <div class="footer-bottom">
-        © 2026 Szepred. All Rights Reserved.
+
+        © 2026 Szeperd. All Rights Reserved.
+
     </div>
 
 </footer>
@@ -449,14 +498,14 @@
 
 
 <!-- =========================================================
-     WHATSAPP FLOATING BUTTON
-     ========================================================= -->
+     WHATSAPP
+========================================================= -->
 
 <a
     href="https://wa.me/48571993223"
     class="whatsapp-float"
     target="_blank"
-    rel="noopener"
+    rel="noopener noreferrer"
     aria-label="Chat on WhatsApp"
 >
 
@@ -465,6 +514,10 @@
 </a>
 
 
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script src="packages.js"></script>
 
