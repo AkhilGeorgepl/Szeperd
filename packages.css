@@ -136,7 +136,8 @@ img {
 
 
 /* =========================================================
-   HEADER — MATCH OLD VERSION
+   HEADER
+   Matches About Us header
 ========================================================= */
 
 .site-header {
@@ -159,21 +160,28 @@ img {
     padding: 0 50px;
 
     background:
-        rgba(255, 250, 239, 0.78);
+    rgba(255, 250, 239, 0.78);
 
-    border-bottom:
-        1px solid rgba(23, 60, 42, 0.08);
+border-bottom:
+    1px solid
+    rgba(23, 60, 42, 0.08);
 
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
+box-shadow:
+    0 6px 25px
+    rgba(16, 41, 29, 0.07);
 
-    box-shadow:
-        0 6px 25px rgba(16, 41, 29, 0.07);
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
 
 }
 
 
-/* Header inner should not move the logo */
+/* =========================================================
+   HEADER INNER
+========================================================= */
 
 .header-inner {
 
@@ -193,16 +201,18 @@ img {
 
 
 /* =========================================================
-   LOGO — OLD SIZE / POSITION
+   LOGO
 ========================================================= */
 
 .site-logo {
 
-    display: flex;
-
-    align-items: center;
+    display: block;
 
     flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 2;
 
 }
 
@@ -215,12 +225,9 @@ img {
 
     height: 40px;
 
-    max-width: 125px;
-
     object-fit: contain;
 
 }
-
 
 
 /* =========================================================
@@ -241,7 +248,13 @@ img {
 
     align-items: center;
 
+    justify-content: center;
+
     gap: 32px;
+
+    margin: 0;
+
+    z-index: 1;
 
 }
 
@@ -249,6 +262,8 @@ img {
 .main-navigation a {
 
     position: relative;
+
+    padding: 0;
 
     color: #777;
 
@@ -292,8 +307,6 @@ img {
 }
 
 
-/* No underline — intentionally matching old design */
-
 .main-navigation a::after {
 
     display: none;
@@ -309,20 +322,38 @@ img {
 
     display: none;
 
+    align-items: center;
+
+    justify-content: center;
+
     margin-left: auto;
 
     width: 42px;
+
     height: 42px;
+
+    padding: 0;
 
     border: 0;
 
     background: transparent;
 
-    color: var(--green);
+    color: #fff;
 
-    font-size: 21px;
+    font-size: 24px;
 
-    border-radius: 12px;
+    border-radius: 10px;
+
+    line-height: 1;
+
+}
+
+
+.menu-toggle i {
+
+    display: block;
+
+    line-height: 1;
 
 }
 
@@ -2047,28 +2078,6 @@ img {
 
 @media (max-width: 1050px) {
 
-    .header-inner {
-
-        width:
-            calc(100% - 44px);
-
-    }
-
-
-    .main-navigation {
-
-        gap: 20px;
-
-    }
-
-
-    .main-navigation a {
-
-        font-size: 12px;
-
-    }
-
-
     .packages-grid {
 
         grid-template-columns:
@@ -2080,29 +2089,28 @@ img {
 
 
 /* =========================================================
-   RESPONSIVE — MOBILE
+   RESPONSIVE — TABLET / MOBILE HEADER
+   Matches About Us header
 ========================================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
 
     .site-header {
-
         height: 70px;
-
+        padding: 0 10px 0 22px;
     }
 
 
     .header-inner {
 
-        width:
-            calc(100% - 44px);
+        width: 100%;
 
     }
 
 
     .site-logo img {
 
-        height: 38px;
+        height: 42px;
 
     }
 
@@ -2121,7 +2129,9 @@ img {
         width:
             calc(100vw - 30px);
 
-        max-width: 420px;
+        max-width: none;
+
+        height: auto;
 
         padding:
             10px;
@@ -2133,16 +2143,19 @@ img {
 
         align-items: stretch;
 
-        gap: 2px;
+        justify-content: center;
+
+        gap: 3px;
 
         background:
-            rgba(255, 250, 239, 0.90);
+            rgba(255, 250, 239, 0.97);
 
         border:
             1px solid
-            rgba(255, 255, 255, 0.72);
+            rgba(23, 60, 42, 0.10);
 
-        border-radius: 16px;
+        border-radius:
+            16px;
 
         box-shadow:
             0 20px 50px
@@ -2153,6 +2166,8 @@ img {
 
         -webkit-backdrop-filter:
             blur(24px);
+
+        z-index: 1001;
 
     }
 
@@ -2173,12 +2188,14 @@ img {
 
         text-align: center;
 
-        border-radius: 10px;
+        border-radius:
+            10px;
 
         color:
             var(--green);
 
-        font-size: 13px;
+        font-size:
+            13px;
 
     }
 
@@ -2212,7 +2229,16 @@ img {
         display: flex;
 
         align-items: center;
+
         justify-content: center;
+
+        width: 42px;
+
+        height: 42px;
+
+        padding: 0;
+
+        font-size: 24px;
 
     }
 
@@ -2227,31 +2253,31 @@ img {
     }
 
 
-   .packages-hero h1 {
+    .packages-hero h1 {
 
-    font-size:
-        clamp(40px, 12vw, 58px);
+        font-size:
+            clamp(40px, 12vw, 58px);
 
-    letter-spacing:
-        -1px;
+        letter-spacing:
+            -1px;
 
-}
-
-
-.packages-hero h1 .title-solid {
-
-    letter-spacing:
-        -1.8px;
-
-}
+    }
 
 
-.packages-hero h1 .title-stylish {
+    .packages-hero h1 .title-solid {
 
-    letter-spacing:
-        0;
+        letter-spacing:
+            -1.8px;
 
-}
+    }
+
+
+    .packages-hero h1 .title-stylish {
+
+        letter-spacing:
+            0;
+
+    }
 
 
     .packages-hero p {
@@ -2384,16 +2410,24 @@ img {
 
     }
 
+}
 
-    .whatsapp-float {
 
-        right: 17px;
-        bottom: 18px;
+/* =========================================================
+   MOBILE — MATCHES ABOUT US
+========================================================= */
 
-        width: 50px;
-        height: 50px;
+@media (max-width: 767px) {
 
-        font-size: 23px;
+    .site-header {
+        height: 64px;
+        padding: 0 8px 0 17px;
+    }
+
+
+    .site-logo img {
+
+        height: 35px;
 
     }
 
@@ -2409,7 +2443,7 @@ img {
     .header-inner {
 
         width:
-            calc(100% - 32px);
+            100%;
 
     }
 
@@ -2504,13 +2538,26 @@ img {
 
     }
 
-}/* Keep package detail below the fixed header when scrolling */
-#package-detail {
-    scroll-margin-top: 90px;
 }
 
+
+/* =========================================================
+   PACKAGE DETAIL SCROLL POSITION
+========================================================= */
+
+#package-detail {
+
+    scroll-margin-top: 90px;
+
+}
+
+
 @media (max-width: 800px) {
+
     #package-detail {
+
         scroll-margin-top: 100px;
+
     }
+
 }

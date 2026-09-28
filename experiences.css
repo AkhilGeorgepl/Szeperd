@@ -290,7 +290,7 @@ header.scrolled {
     color:
         #173c2a;
 
-    font-size: 20px;
+    font-size: 24px;
 
 }
 
@@ -990,62 +990,47 @@ header.scrolled {
 }
 
 
-/* =========================================================
-   WHATSAPP FLOAT
-========================================================= */
+/* =====================================================
+   WHATSAPP FLOATING BUTTON
+===================================================== */
 
 .whatsapp-float {
-
     position: fixed;
-
     right: 24px;
-
     bottom: 24px;
+    z-index: 2000;
 
     width: 54px;
-
     height: 54px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    z-index: 900;
 
     border-radius: 50%;
 
-    background:
-        #244d38;
+    background: #25d366;
+    color: #fff;
 
-    color:
-        #f8f3e8;
-
+    font-size: 26px;
     text-decoration: none;
 
-    font-size: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
 
-    box-shadow:
-        0 10px 25px
-        rgba(36,77,56,.25);
-
-    transition:
-        transform .25s ease,
-        background .25s ease;
-
+    transition: transform 0.3s ease;
 }
-
 
 .whatsapp-float:hover {
-
-    transform:
-        translateY(-4px);
-
-    background:
-        #173c2a;
-
+    transform: scale(1.08);
 }
+
+/* Keyboard accessibility */
+.whatsapp-float:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+
 
 
 /* =========================================================
@@ -1200,21 +1185,7 @@ header.scrolled {
     }
 
 
-    .whatsapp-float {
-
-        right: 17px;
-
-        bottom: 18px;
-
-        width: 50px;
-
-        height: 50px;
-
-        font-size: 23px;
-
-    }
-
-}
+   
 
 
 /* =========================================================

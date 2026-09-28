@@ -395,13 +395,11 @@ header.sticky {
 ===================================================== */
 
 .content {
-
     position: relative;
 
     width: 100%;
 
-    height:
-        calc(100vh - 60px);
+    height: calc(100vh + 200px);
 
     margin-top: 0;
 
@@ -409,31 +407,25 @@ header.sticky {
 }
 
 .content > img {
-
     position: absolute;
 
-    bottom: -30px;
+    bottom: 0px;
     left: -2%;
 
-    width: 105%;
-    height: 100%;
+    width: 100%;
+    height: calc(100% + 200px);
 
     max-width: none;
 
     object-fit: cover;
 
-    object-position: center;
+    object-position: center bottom 60%;
 
     pointer-events: none;
 
-    transform:
-        translate(
-            var(--moveX,0px),
-            var(--moveY,0px)
-        );
+    transform: none;
 
-    transition:
-        transform .3s ease-out;
+    transition: transform .3s ease-out;
 }
 
 .back-6 {
@@ -459,7 +451,6 @@ header.sticky {
 .back-1 {
     z-index: 5;
 }
-
 
 /* =====================================================
    CLOUD SYSTEM
@@ -1715,7 +1706,7 @@ and (orientation:landscape) {
     margin-bottom: 20px;
 }
 
-.experience-button {
+.experience-btn {
 
     display: inline-flex;
 
@@ -1750,7 +1741,7 @@ and (orientation:landscape) {
         var(--transition);
 }
 
-.experience-button:hover {
+.experience-btn:hover {
 
     background: white;
 
@@ -1758,13 +1749,13 @@ and (orientation:landscape) {
         var(--turquoise-dark);
 }
 
-.experience-button i {
+.experience-btn i {
 
     transition:
         transform var(--transition);
 }
 
-.experience-button:hover i {
+.experience-btn:hover i {
 
     transform:
         translateX(4px);
@@ -2568,129 +2559,46 @@ and (orientation:landscape) {
 
 
 /* =====================================================
-   12. FLOATING ELEMENTS
+   WHATSAPP FLOATING BUTTON
 ===================================================== */
 
 .whatsapp-float {
-
     position: fixed;
-
     right: 24px;
-
     bottom: 24px;
-
     z-index: 2000;
 
     width: 54px;
-
     height: 54px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     border-radius: 50%;
 
-    background:
-        #25d366;
+    background: #25d366;
+    color: #fff;
 
-    color:
-        #fff;
-
-    font-size:
-        26px;
-
+    font-size: 26px;
     text-decoration: none;
 
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,.20);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
 
-    transition:
-        transform .3s ease;
+    transition: transform 0.3s ease;
 }
 
 .whatsapp-float:hover {
-
-    transform:
-        scale(1.08);
+    transform: scale(1.08);
 }
 
-.whatsapp-float:hover {
-
-    transform:
-        scale(1.08);
+/* Keyboard accessibility */
+.whatsapp-float:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
 }
 
-.floating-social {
 
-    position: fixed;
-
-    left: 10px;
-    top: 50%;
-
-    transform:
-        translateY(-50%);
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 15px;
-
-    background:
-        rgba(255,255,255,.38);
-
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
-
-    padding:
-        12px 10px;
-
-    border-radius: 40px;
-
-    border:
-        1px solid rgba(255,255,255,.35);
-
-    z-index: 9999;
-}
-
-.floating-social a {
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.92);
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    font-size: 20px;
-
-    text-decoration: none;
-}
-
-.floating-social .fa-facebook-f {
-    color: #1877F2;
-}
-
-.floating-social .fa-instagram {
-    color: #E4405F;
-}
-
-.floating-social .fa-envelope {
-    color: #555;
-}
 
 
 /* =====================================================
@@ -3080,8 +2988,8 @@ and (orientation:landscape) {
 and (max-width:1439px) {
 
     .content {
-        height: 100vh;
-    }
+    height: calc(100vh + 200px);
+}
 
     .content > img {
 
@@ -3155,10 +3063,8 @@ and (max-width:1024px) {
     }
 
     .content {
-
-        height:
-            100vh;
-    }
+    height: calc(100vh + 200px);
+}
 
     .content > img {
 
@@ -4373,7 +4279,7 @@ and (orientation:landscape) {
 nav a:focus-visible,
 .view-all:focus-visible,
 .package-btn:focus-visible,
-.experience-button:focus-visible,
+.experience-btn:focus-visible,
 .cta-button:focus-visible,
 .review-arrow:focus-visible {
 
@@ -4395,20 +4301,92 @@ nav a:focus-visible,
 
     html {
         scroll-behavior: smooth;
-
     }
-
-   
 
     .hero-section {
         position: sticky;
-        top: 0;
+        top: 20px;
         z-index: 1;
+        pointer-events: none;
     }
 
     .featured-packages-section {
         position: relative;
         z-index: 30;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    #menu {
+        position: fixed !important;
+        top: 55px !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+
+        padding: 35px 0 !important;
+        box-sizing: border-box !important;
+
+        display: none;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+
+       background: rgba(255, 255, 255, 0.55);
+backdrop-filter: blur(18px) saturate(120%);
+-webkit-backdrop-filter: blur(18px) saturate(120%);
+border: 1px solid rgba(255, 255, 255, 0.65);
+box-shadow: 0 12px 35px rgba(70, 58, 40, 0.12);
+color: #173c2a;
+
+        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+
+        transform: translateY(-30px) !important;
+        opacity: 0;
+        pointer-events: none;
+
+        transition: 0.4s ease;
+
+        z-index: 1001;
+    }
+
+
+    #menu.open {
+        display: flex !important;
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+
+    #menu a {
+        width: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+
+        font-size: 14px !important;
+        font-weight: 600;
+
+        color: #173c2a !important;
+        text-align: center;
+
+        background: transparent !important;
+        border-radius: 0 !important;
+    }
+
+
+    #menu a:hover,
+    #menu a.active {
+         color: #000000 !important;
+        background: transparent !important;
+        transform: none !important;
+        box-shadow: none !important;
     }
 
 }

@@ -19,115 +19,7 @@ body {
 }
 
 
-/* =========================================================
-   HEADER
-   Keep the existing site header structure/layout.
-   ========================================================= */
-
-#site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 82px;
-    z-index: 1000;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 5%;
-
-    background: rgba(244, 239, 229, 0.92);
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    transition:
-        background 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.logo {
-    flex-shrink: 0;
-}
-
-.logo a {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    display: block;
-    width: auto;
-    height: 52px;
-}
-
-#menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-}
-
-#menu a {
-    position: relative;
-
-    color: #24352d;
-    text-decoration: none;
-
-    font-family: "Nunito", sans-serif;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-
-    transition: color 0.25s ease;
-}
-
-#menu a::after {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    bottom: -7px;
-
-    width: 0;
-    height: 2px;
-
-    background: #b28a42;
-
-    transition: width 0.25s ease;
-}
-
-#menu a:hover,
-#menu a.active {
-    color: #8b6a2e;
-}
-
-#menu a:hover::after,
-#menu a.active::after {
-    width: 100%;
-}
-
-.header-icons {
-    display: flex;
-    align-items: center;
-}
-
-#menu-btn {
-    display: none;
-
-    width: 44px;
-    height: 44px;
-
-    border: 0;
-    background: transparent;
-
-    color: #24352d;
-    font-size: 1.35rem;
-
-    cursor: pointer;
-}
+/* delete     */
 
 
 /* =========================================================
@@ -472,7 +364,7 @@ main {
 .gallery-layout-button {
     position: fixed;
 
-    right: 28px;
+    right: 24px;
     bottom: 90px;
 
     z-index: 1200;
@@ -730,18 +622,15 @@ main {
 }
 
 
-/* =========================================================
-   WHATSAPP
-   ORIGINAL POSITION
-   ========================================================= */
+/* =====================================================
+   WHATSAPP FLOATING BUTTON
+===================================================== */
 
 .whatsapp-float {
     position: fixed;
-
-    right: 28px;
-    bottom: 25px;
-
-    z-index: 1100;
+    right: 24px;
+    bottom: 24px;
+    z-index: 2000;
 
     width: 54px;
     height: 54px;
@@ -753,26 +642,26 @@ main {
     border-radius: 50%;
 
     background: #25d366;
-    color: #ffffff;
+    color: #fff;
 
+    font-size: 26px;
     text-decoration: none;
 
-    font-size: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
 
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.18);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    transition: transform 0.3s ease;
 }
 
 .whatsapp-float:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 25px rgba(0, 0, 0, 0.22);
+    transform: scale(1.08);
 }
+
+/* Keyboard accessibility */
+.whatsapp-float:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
 
 
 /* =========================================================
@@ -780,7 +669,7 @@ main {
    ========================================================= */
 
 .gallery-see-all.tile-hidden {
-    display: none;
+    display: none; 
 }
 
 
@@ -819,6 +708,381 @@ main {
     }
 }
 
+/* =========================================================
+   COMMON SITE HEADER
+   Use this exact header CSS on EVERY page
+========================================================= */
+
+header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 50px;
+
+    padding: 0 50px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 1000;
+
+    background:
+        rgba(233, 224, 207, 0.78);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(120%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(120%);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.55);
+
+    box-shadow:
+        0 8px 28px
+        rgba(70, 58, 40, 0.08);
+
+    transition:
+        background .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+
+header.scrolled {
+
+    background:
+        rgba(227, 215, 195, 0.94);
+
+    box-shadow:
+        0 10px 30px
+        rgba(70, 58, 40, 0.12);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.logo a {
+
+    display: block;
+}
+
+
+.logo img {
+
+    display: block;
+
+    width: auto;
+
+    height: 40px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   DESKTOP MENU
+========================================================= */
+
+#menu {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 32px;
+
+    margin: 0;
+
+    z-index: 1;
+}
+
+
+#menu a {
+
+    position: relative;
+
+    padding: 0;
+
+    color:
+        #173c2a;
+
+    text-decoration: none;
+
+    font-family:
+        var(--main-font);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .6px;
+
+    white-space: nowrap;
+
+    border-radius: 0;
+
+    transition:
+        color .25s ease,
+        background .25s ease,
+        transform .25s ease;
+}
+
+
+#menu a:hover {
+
+    color:
+        #a88445;
+
+    background:
+        transparent;
+
+    transform:
+        translateY(-1px);
+}
+
+
+#menu a.active {
+
+    color:
+        #a88445;
+
+    background:
+        transparent;
+}
+
+
+/* =========================================================
+   HEADER ICONS
+========================================================= */
+
+.header-icons {
+
+    display: none;
+
+    align-items: center;
+
+    gap: 18px;
+
+    color:
+        #173c2a;
+
+    font-size: 20px;
+}
+
+
+.header-icons i {
+
+    cursor: pointer;
+
+    transition:
+        color .25s ease,
+        transform .25s ease;
+}
+
+
+.header-icons i:hover {
+
+    color:
+        #a88445;
+
+    transform:
+        scale(1.08);
+}
+
+
+/* =========================================================
+   TABLET / MOBILE HEADER
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    header {
+
+        height: 70px;
+
+        padding:
+            0 22px;
+    }
+
+
+    .logo img {
+
+        height: 42px;
+    }
+
+
+    .header-icons {
+
+        display: flex;
+    }
+
+
+    #menu {
+
+        position: absolute;
+
+        top:
+            calc(100% + 10px);
+
+        left: 50%;
+
+        right: auto;
+
+        width:
+            calc(100% - 30px);
+
+        max-width: none;
+
+        height: auto;
+
+        transform:
+            translateX(-50%);
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        padding: 10px;
+
+        margin: 0;
+
+        box-sizing: border-box;
+
+        background:
+            rgba(233, 224, 207, 0.97);
+
+        backdrop-filter:
+            blur(18px)
+            saturate(120%);
+
+        -webkit-backdrop-filter:
+            blur(18px)
+            saturate(120%);
+
+        border:
+            1px solid
+            rgba(168,132,69,0.25);
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 20px 50px
+            rgba(70,58,40,.16);
+
+        z-index: 1001;
+    }
+
+
+    #menu.show {
+
+        display: flex;
+    }
+
+
+    #menu a {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding:
+            13px 12px;
+
+        margin: 0;
+
+        text-align: center;
+
+        color:
+            #173c2a;
+
+        border-radius: 10px;
+
+        transform: none;
+    }
+
+
+    #menu a:hover {
+
+        color:
+            #a88445;
+
+        background:
+            rgba(168,132,69,.07);
+
+        transform: none;
+    }
+
+
+    #menu a.active {
+
+        color:
+            #a88445;
+
+        background:
+            transparent;
+
+        box-shadow: none;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE HEADER
+========================================================= */
+
+@media (max-width: 767px) {
+
+    header {
+
+        height: 64px;
+
+        padding:
+            0 17px;
+    }
+
+
+    .logo img {
+
+        height: 35px;
+    }
+}
 
 /* =========================================================
    MOBILE
@@ -826,72 +1090,77 @@ main {
 
 @media (max-width: 800px) {
 
-    #site-header {
-        height: 55px;
-        padding: 0 20px;
-    }
-
-    .logo img {
-        height: 45px;
-    }
-
     #menu {
-        position: fixed;
+        position: fixed !important;
+        top: 55px !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
 
-        top: 55px;
-        left: 0;
-
-        width: 100%;
+        padding: 35px 0 !important;
+        box-sizing: border-box !important;
 
         display: none;
+
         flex-direction: column;
-
-        gap: 0;
-
-        padding: 18px 25px 25px;
-
-        background: rgba(244, 239, 229, 0.98);
-
-        box-shadow:
-            0 15px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    #menu.open {
-        display: flex;
-    }
-
-    #menu a {
-        width: 100%;
-
-        padding: 14px 0;
-
-        font-size: 0.8rem;
-    }
-
-    #menu a::after {
-        bottom: 7px;
-    }
-
-    #menu-btn {
-        display: flex;
         align-items: center;
         justify-content: center;
+        gap: 25px;
 
-        width: auto;
-        height: auto;
+       background: rgba(139, 106, 46, 0.70);
+backdrop-filter: blur(18px) saturate(120%);
+-webkit-backdrop-filter: blur(18px) saturate(120%);
+border: 1px solid rgba(255, 255, 255, 0.65);
+box-shadow: 0 12px 35px rgba(70, 58, 40, 0.12);
+color: #173c2a;
 
-        border: 0;
-        background: transparent;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 
-        color: #24352d;
-        font-size: 25px;
+        transform: translateY(-30px) !important;
+        opacity: 0;
+        pointer-events: none;
 
-        cursor: pointer;
+        transition: 0.4s ease;
+
+        z-index: 1001;
     }
 
-    main {
-        padding-top: 55px;
+
+    #menu.open {
+        display: flex !important;
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
     }
+
+
+    #menu a {
+        width: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+
+        font-size: 14px !important;
+        font-weight: 600;
+
+        color: #FFFFFF !important;
+        text-align: center;
+
+        background: transparent !important;
+        border-radius: 0 !important;
+    }
+
+
+    #menu a:hover,
+    #menu a.active {
+        color: #FFF9D6 !important;
+        background: transparent !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+}
 
 
     /* =====================================================
@@ -1011,23 +1280,9 @@ main {
         -webkit-backdrop-filter: blur(10px);
     }
 
-    .gallery-layout-button {
-        right: 18px;
-        bottom: 82px;
 
-        width: 52px;
-        height: 52px;
-    }
 
-    .whatsapp-float {
-        right: 20px;
-        bottom: 20px;
 
-        width: 50px;
-        height: 50px;
-
-        font-size: 24px;
-    }
 
 
     /* =====================================================

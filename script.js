@@ -853,116 +853,141 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       EXPERIENCES
-       experiences.json
-       FIRST 4 EXPERIENCES
-    ===================================================== */
+   EXPERIENCES
+   experiences.json
+   FIRST 4 EXPERIENCES
+===================================================== */
 
-    const homeExperiences =
-        document.querySelector("#home-experiences");
+const homeExperiences =
+    document.querySelector("#home-experiences");
 
 
-    if (homeExperiences) {
+if (homeExperiences) {
 
-        fetch("experiences.json")
+    fetch("experiences.json")
 
-            .then(response => {
+        .then(response => {
 
-                if (!response.ok) {
+            if (!response.ok) {
 
-                    throw new Error(
-                        "Could not load experiences.json"
-                    );
+                throw new Error(
+                    "Could not load experiences.json"
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(experiences => {
+
+            homeExperiences.innerHTML = "";
+
+            const experienceList =
+                Array.isArray(experiences)
+                    ? experiences.slice(0, 4)
+                    : [];
+
+
+            experienceList.forEach(
+                experience => {
+
+                    const card =
+                        document.createElement("article");
+
+                    card.className =
+                        "experience-card";
+
+
+                    const image =
+                        experience.image ||
+                        experience.photo ||
+                        "";
+
+
+                    const title =
+                        experience.title ||
+                        experience.name ||
+                        "Experience";
+
+
+                    const description =
+                        experience.description ||
+                        experience.text ||
+                        "";
+
+
+                    const link =
+                        experience.link ||
+                        "#";
+
+
+                    const buttonText =
+                        experience.buttonText ||
+                        "Explore";
+
+
+                    card.innerHTML = `
+
+                        <div class="experience-image">
+
+                            <img
+                                src="${image}"
+                                alt="${title}"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="experience-content">
+
+                            <h3>
+                                ${title}
+                            </h3>
+
+
+                            <p>
+                                ${description}
+                            </p>
+
+
+                            <a
+                                href="${link}"
+                                class="experience-btn"
+                            >
+                                ${buttonText}
+
+                                <i
+                                    class="fas fa-arrow-right"
+                                    aria-hidden="true"
+                                ></i>
+
+                            </a>
+
+                        </div>
+
+                    `;
+
+
+                    homeExperiences.appendChild(card);
 
                 }
+            );
 
-                return response.json();
+        })
 
-            })
+        .catch(error => {
 
-            .then(experiences => {
+            console.error(
+                "Error loading experiences:",
+                error
+            );
 
-                homeExperiences.innerHTML = "";
+        });
 
-                const experienceList =
-                    Array.isArray(experiences)
-                        ? experiences.slice(0, 4)
-                        : [];
-
-
-                experienceList.forEach(
-                    experience => {
-
-                        const card =
-                            document.createElement("article");
-
-                        card.className =
-                            "experience-card";
-
-
-                        const image =
-                            experience.image ||
-                            experience.photo ||
-                            "";
-
-
-                        const title =
-                            experience.title ||
-                            experience.name ||
-                            "Experience";
-
-
-                        const description =
-                            experience.description ||
-                            experience.text ||
-                            "";
-
-
-                        card.innerHTML = `
-
-                            <div class="experience-image">
-
-                                <img
-                                    src="${image}"
-                                    alt="${title}"
-                                    loading="lazy"
-                                >
-
-                            </div>
-
-
-                            <div class="experience-content">
-
-                                <h3>
-                                    ${title}
-                                </h3>
-
-                                <p>
-                                    ${description}
-                                </p>
-
-                            </div>
-
-                        `;
-
-
-                        homeExperiences.appendChild(card);
-
-                    }
-                );
-
-            })
-
-            .catch(error => {
-
-                console.error(
-                    "Error loading experiences:",
-                    error
-                );
-
-            });
-
-    }
+}
 
 
     /* =====================================================
@@ -1255,11 +1280,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     heroContent.style.filter =
-                        `blur(${eased * 6}px)`;
+                        `blur(${eased * 3}px)`;
 
 
                     heroContent.style.transform =
-                        `scale(${1 + eased * 0.03})`;
+    `scale(${1 + eased * 0.06})`;
 
                 }
 
@@ -1269,7 +1294,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 ----------------------------------------- */
 
                 const SVG_FADE_START =
-                    0.75;
+                    0.90;
 
 
                 const svgFadeProgress =
@@ -1291,19 +1316,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 svgLayers.forEach(
-                    layer => {
+    layer => {
 
-                        layer.style.opacity =
-                            String(
-                                1 - svgEased
-                            );
+        layer.style.opacity =
+            String(
+                1 - svgEased
+            );
 
+        layer.style.transform =
+            "none";
 
-                        layer.style.transform =
-                            `translateY(${svgEased * -40}px)`;
-
-                    }
-                );
+    }
+);
 
 
                 /* -----------------------------------------
@@ -1546,7 +1570,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.stopPropagation();
 
                 menu.classList.toggle(
-                    "show"
+                    "open"
                 );
 
             }
@@ -1774,3 +1798,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+

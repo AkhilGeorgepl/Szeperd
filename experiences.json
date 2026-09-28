@@ -5,7 +5,7 @@
     "description": "Explore breathtaking landscapes, mountain trails and unforgettable outdoor adventures.",
     "image": "experiences/adventure.jpg",
     "buttonText": "Explore",
-    "link": "adventure.html"
+    "link": "Adventure.html"
   },
   {
     "id": "wellness",
@@ -13,7 +13,7 @@
     "description": "Slow down, reconnect and experience peaceful retreats surrounded by nature.",
     "image": "experiences/wellness.jpg",
     "buttonText": "Explore",
-    "link": "wellness.html"
+    "link": "Wellness.html"
   },
   {
     "id": "extreme-sports",
@@ -21,7 +21,7 @@
     "description": "Feel the adrenaline with thrilling activities created for those who love adventure.",
     "image": "experiences/extreme-sports.jpg",
     "buttonText": "Explore",
-    "link": "extreme-sports.html"
+    "link": "Extreme-Sports.html"
   },
   {
     "id": "cultural-experiences",
@@ -29,6 +29,6 @@
     "description": "Discover local traditions, heritage, food and authentic experiences beyond the usual tourist routes.",
     "image": "experiences/cultural.jpg",
     "buttonText": "Explore",
-    "link": "cultural-experiences.html"
+    "link": "Cultural-Experiences.html"
   }
 ]
